@@ -8,7 +8,7 @@
         <Title>AlastairLundy.Extensions.Collections</Title>
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) 2024 Alastair Lundy</Copyright>
-        <RepositoryUrl>https://github.com/alastairlundy/SystemExtensions</RepositoryUrl>
+        <RepositoryUrl>https://github.com/alastairlundy/CollectionsExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
         <PackageReleaseNotes>Initial release as separate library.</PackageReleaseNotes>
