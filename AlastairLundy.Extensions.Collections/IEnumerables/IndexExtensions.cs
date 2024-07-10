@@ -36,16 +36,16 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
         /// <exception cref="ValueNotFoundException">Thrown if the IEnumerable does not contain the specified object.</exception>
         public static int IndexOf<T>(this IEnumerable<T> enumerable, T obj)
         {
-            int index = 0;
+            T[] items = enumerable as T[] ?? enumerable.ToArray();
 
-            foreach (T item in enumerable)
+            for(int index = 0; index < items.Length; index++)
             {
+                T item = items[index];
+                
                 if (item != null && item.Equals(obj))
                 {
                     return index;
                 }
-                
-                index++;
             }
 
             throw new ValueNotFoundException(nameof(enumerable));
