@@ -56,7 +56,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
         /// </summary>
         /// <param name="enumerable">The IEnumerable to be searched.</param>
         /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
-        /// <returns></returns>
+        /// <returns>a Dictionary containing objects and the number of times each one appears in the IEnumerable.</returns>
         public static Dictionary<T, int> FrequencyOfAll<T>(this IEnumerable<T> enumerable)
         {
             Dictionary<T, int> items = new();
