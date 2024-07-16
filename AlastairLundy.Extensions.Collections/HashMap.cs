@@ -73,7 +73,6 @@ namespace AlastairLundy.Extensions.Collections;
         /// Add a KeyValuePair to the HashMap.
         /// </summary>
         /// <param name="pair">The KeyValuePair to be added.</param>
-        /// <exception cref="ArgumentException"></exception>
         public void Put(KeyValuePair<TKey, TValue> pair)
         {
             Put(pair.Key, pair.Value);
@@ -148,7 +147,7 @@ namespace AlastairLundy.Extensions.Collections;
         /// <summary>
         /// Returns an IEnumerable of Keys in the HashMap.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>an IEnumerable of Keys in the HashMap.</returns>
         public IEnumerable<TKey> Keys()
         {
             return _dictionary.Keys;
@@ -157,7 +156,7 @@ namespace AlastairLundy.Extensions.Collections;
         /// <summary>
         /// Returns an IEnumerable of Values in the HashMap.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>an IEnumerable of Values in the HashMap.</returns>
         public IEnumerable<TValue> Values()
         {
             return _dictionary.Values;
