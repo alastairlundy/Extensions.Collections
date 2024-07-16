@@ -27,7 +27,7 @@ using System.Collections;
 namespace AlastairLundy.Extensions.Collections
 {
     // ReSharper disable once TypeParameterCanBeVariant
-    public interface IBigCollection<T> : IEnumerable
+    public interface IBigCollection<T> : IEnumerable, IDisposable
     {
         ulong Count { get; }
 
