@@ -77,9 +77,9 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
         /// </summary>
         /// <param name="enumerableOne">The first IEnumerable to be added.</param>
         /// <param name="enumerableTwo">The second IEnumerable to be added.</param>
-        /// <param name="destinationEnumerable">The combined IEnumerable if sucessful; is null otherwise.</param>
+        /// <param name="destinationEnumerable">The combined IEnumerable if successful; is null otherwise.</param>
         /// <typeparam name="T">The type of the value.</typeparam>
-        /// <returns>true if combining IEnumerables was successful; returns false otherwise.</returns>
+        /// <returns>true if combining the IEnumerables was successful; returns false otherwise.</returns>
         public static bool TryCombine<T>(this IEnumerable<T> enumerableOne, IEnumerable<T> enumerableTwo, out IEnumerable<T>? destinationEnumerable)
         {
             try
