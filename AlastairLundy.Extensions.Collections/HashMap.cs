@@ -181,7 +181,7 @@ namespace AlastairLundy.Extensions.Collections;
         /// </summary>
         /// <param name="pair">The KeyValuePair to be removed.</param>
         /// <returns>true if the item has been successfully removed from the HashMap, and false otherwise.</returns>
-        /// <exception cref="KeyValuePairNotFoundException"></exception>
+        /// <exception cref="KeyValuePairNotFoundException">Thrown if the KeyValuePair isn't found in the HashMap.</exception>
         public bool Remove(KeyValuePair<TKey, TValue> pair)
         {
             if (ContainsKeyValuePair(pair))
