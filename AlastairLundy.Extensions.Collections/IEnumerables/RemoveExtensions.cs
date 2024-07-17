@@ -26,6 +26,7 @@ namespace AlastairLundy.Extensions.Collections;
 
 public static class RemoveExtensions
 {
+    
     /// <summary>
     /// Removes an item from an IEnumerable (by creating a new IEnumerable without the removed item).
     /// </summary>
