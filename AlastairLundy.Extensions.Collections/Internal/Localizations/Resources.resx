@@ -121,6 +121,6 @@
     <value>KeyValuePair not found within the collection</value>
   </data>
   <data name="Exceptions.ValueNotFound" xml:space="preserve">
-    <value>Value Not Found within Key Value Pair</value>
+    <value>Value {x} Not Found within Key Value Pair</value>
   </data>
 </root>

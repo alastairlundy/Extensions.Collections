@@ -51,7 +51,7 @@ namespace AlastairLundy.Extensions.Collections.Dictionaries;
                 }
             }
 
-            throw new ValueNotFoundException(nameof(dictionary));
+            throw new ValueNotFoundException(nameof(dictionary), nameof(value));
         }
         
         /// <summary>
@@ -80,7 +80,7 @@ namespace AlastairLundy.Extensions.Collections.Dictionaries;
                 return list.ToArray();
             }
 
-            throw new ValueNotFoundException(nameof(dictionary));
+            throw new ValueNotFoundException(nameof(dictionary), nameof(value));
         }
         
         /// <summary>

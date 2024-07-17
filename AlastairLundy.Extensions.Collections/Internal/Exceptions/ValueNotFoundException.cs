@@ -29,8 +29,8 @@ namespace AlastairLundy.Extensions.Collections
     public class ValueNotFoundException : Exception
     {
 
-        public ValueNotFoundException(string collectionName) : base(
-            $"{Resources.Exceptions_ValueNotFound}: {collectionName}")
+        public ValueNotFoundException(string collectionName, string valueName) : base(
+            $"{Resources.Exceptions_ValueNotFound.Replace("{x}", $"'{valueName}'")}: {collectionName}")
         {
             
         }

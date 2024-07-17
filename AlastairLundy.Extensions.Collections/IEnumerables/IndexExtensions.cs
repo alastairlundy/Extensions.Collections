@@ -48,6 +48,6 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
                 }
             }
 
-            throw new ValueNotFoundException(nameof(enumerable));
+            throw new ValueNotFoundException(nameof(enumerable), nameof(obj));
         }
     }
