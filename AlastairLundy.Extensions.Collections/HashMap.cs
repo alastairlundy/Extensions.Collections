@@ -23,7 +23,9 @@
    */
 
 using System.Runtime.CompilerServices;
+
 using System.Text;
+
 using AlastairLundy.Extensions.Collections.Dictionaries;
 
 namespace AlastairLundy.Extensions.Collections;
