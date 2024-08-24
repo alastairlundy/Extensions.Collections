@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System.Runtime.CompilerServices;
 using AlastairLundy.Extensions.Collections.Dictionaries;
 
 namespace AlastairLundy.Extensions.Collections;
@@ -313,7 +314,7 @@ namespace AlastairLundy.Extensions.Collections;
                 return _dictionary[pair.Key]!.Equals(pair.Value);
             }
 
-            throw new KeyNotFoundException();
+            throw new KeyValuePairNotFoundException(nameof(_dictionary));
         }
 
         /// <summary>
