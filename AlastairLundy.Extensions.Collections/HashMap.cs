@@ -23,6 +23,7 @@
    */
 
 using System.Runtime.CompilerServices;
+using System.Text;
 using AlastairLundy.Extensions.Collections.Dictionaries;
 
 namespace AlastairLundy.Extensions.Collections;
@@ -32,7 +33,7 @@ namespace AlastairLundy.Extensions.Collections;
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    public class HashMap<TKey, TValue> : IHashMap<TKey, TValue>
+    public class HashMap<TKey, TValue> : IHashMap<TKey, TValue>, IEquatable<HashMap<TKey, TValue>>
     {
         // ReSharper disable once InconsistentNaming
         protected Dictionary<TKey, TValue> _dictionary;
@@ -322,8 +323,68 @@ namespace AlastairLundy.Extensions.Collections;
         /// </summary>
         /// <param name="map">The HashMap to be compared against.</param>
         /// <returns>true if the compared HashMap's Dictionary is equal to this HashMap's internal Dictionary. Returns false otherwise.</returns>
-        public bool Equals(HashMap<TKey, TValue> map)
+        public bool Equals(HashMap<TKey, TValue>? map)
         {
-            return _dictionary.Equals(map.ToDictionary());
+            if (map == null)
+            {
+                return false;
+            }
+            else
+            {
+                List<bool> bools = new List<bool>();
+                
+                foreach (KeyValuePair<TKey, TValue> pair in _dictionary)
+                {
+                    if (map!.GetValue(pair.Key)!.Equals(pair.Value))
+                    {
+                        bools.Add(true);
+                    }
+                    else
+                    {
+                        bools.Add(true);
+                    }
+                }
+                
+                return bools.All(b => true);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object? obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            
+            if (obj is HashMap<TKey, TValue> map)
+            {
+                return Equals(map);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            StringBuilder stringBuilder = new();
+            
+            foreach (KeyValuePair<TKey, TValue> pair in _dictionary)
+            {
+                stringBuilder.Append($"K{pair.Key},V:{pair.Value}");
+                stringBuilder.AppendLine();
+            }
+
+            return stringBuilder.ToString().GetHashCode();
         }
     }
