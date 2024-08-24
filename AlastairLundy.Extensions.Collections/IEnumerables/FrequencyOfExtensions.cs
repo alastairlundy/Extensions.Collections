@@ -22,6 +22,8 @@
        SOFTWARE.
    */
 
+using System.Collections.Generic;
+
 namespace AlastairLundy.Extensions.Collections.IEnumerables;
 
     /// <summary>

@@ -23,6 +23,8 @@
    */
 
 
+using System.Collections.Generic;
+
 namespace AlastairLundy.Extensions.Collections;
 
     public interface IHashMap<TKey, TValue>

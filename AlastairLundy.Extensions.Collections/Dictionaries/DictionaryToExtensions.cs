@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System.Collections.Generic;
 using AlastairLundy.Extensions.Collections.HashMaps;
 
 namespace AlastairLundy.Extensions.Collections.Dictionaries;

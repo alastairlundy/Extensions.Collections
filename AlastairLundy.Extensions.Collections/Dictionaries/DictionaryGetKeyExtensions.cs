@@ -23,6 +23,8 @@
    */
 
 
+using System.Collections.Generic;
+
 namespace AlastairLundy.Extensions.Collections.Dictionaries;
 
     public static class DictionaryGetKeyExtensions

@@ -22,6 +22,9 @@
        SOFTWARE.
    */
 
+using System;
+using System.Collections.Generic;
+
 namespace AlastairLundy.Extensions.Collections.IEnumerables;
 
     public static class ToStringEnumerablesExtensions

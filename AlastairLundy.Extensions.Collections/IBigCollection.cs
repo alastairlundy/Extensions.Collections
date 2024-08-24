@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections;
 
 namespace AlastairLundy.Extensions.Collections

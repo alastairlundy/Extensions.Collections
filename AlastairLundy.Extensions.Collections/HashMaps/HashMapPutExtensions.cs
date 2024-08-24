@@ -23,6 +23,7 @@
    */
 
 using System.Collections;
+using System.Collections.Generic;
 
 namespace AlastairLundy.Extensions.Collections.HashMaps;
 

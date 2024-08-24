@@ -22,6 +22,9 @@
        SOFTWARE.
    */
 
+using System.Collections.Generic;
+using System.Linq;
+
 namespace AlastairLundy.Extensions.Collections;
 
 public static class RemoveExtensions
