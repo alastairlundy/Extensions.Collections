@@ -56,7 +56,7 @@ namespace AlastairLundy.Extensions.Collections.ICollections
         /// </summary>
         /// <param name="collection">The collection to be searched.</param>
         /// <param name="item">The item to get the index of.</param>
-        /// <returns>the index of an object in a collection.</returns>
+        /// <returns>The index of an object in a collection.</returns>
         /// <exception cref="KeyNotFoundException">Thrown if the item could not be found within the collection.</exception>
         public static int IndexOf(ICollection collection, object item)
         {
@@ -88,7 +88,7 @@ namespace AlastairLundy.Extensions.Collections.ICollections
         /// <param name="item">The item to attempt to get the index of.</param>
         /// <param name="index">the index of an object in a collection if found; null otherwise.</param>
         /// <typeparam name="T">The type of the object in teh collection.</typeparam>
-        /// <returns>true if an index can be found for an item in a collection; false otherwise.</returns>
+        /// <returns>True if an index can be found for an item in a collection; false otherwise.</returns>
         public static bool TryIndexOf<T>(ICollection<T> collection, T item, out int? index)
         {
             try
@@ -109,7 +109,7 @@ namespace AlastairLundy.Extensions.Collections.ICollections
         /// <param name="collection">The collection to be searched.</param>
         /// <param name="item">The item to get the index of.</param>
         /// <typeparam name="T">The type of the object in teh collection.</typeparam>
-        /// <returns>the index of the specified item in a collection.</returns>
+        /// <returns>The index of the specified item in a collection.</returns>
         /// <exception cref="KeyNotFoundException">Thrown if the item could not be found within the collection.</exception>
         public static int IndexOf<T>(ICollection<T> collection, T item)
         {

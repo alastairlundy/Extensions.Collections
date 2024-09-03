@@ -27,7 +27,7 @@ using System.Linq;
 
 namespace AlastairLundy.Extensions.Collections.IEnumerables;
 
-    public static class IndexExtensions
+    public static class IEnumerableIndexExtensions
     {
         /// <summary>
         /// Returns the index of an object in an IEnumerable.
@@ -35,7 +35,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
         /// <param name="enumerable">The IEnumerable to be searched.</param>
         /// <param name="obj">The object to get the index of.</param>
         /// <typeparam name="T">The type of object in the IEnumerable.</typeparam>
-        /// <returns>the index of an object in an IEnumerable, if the IEnumerable contains the object; throws an exception otherwise.</returns>
+        /// <returns>The index of an object in an IEnumerable, if the IEnumerable contains the object; throws an exception otherwise.</returns>
         /// <exception cref="ValueNotFoundException">Thrown if the IEnumerable does not contain the specified object.</exception>
         public static int IndexOf<T>(this IEnumerable<T> enumerable, T obj)
         {
