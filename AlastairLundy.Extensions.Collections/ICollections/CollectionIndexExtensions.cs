@@ -31,7 +31,7 @@ namespace AlastairLundy.Extensions.Collections.ICollections
     public static class CollectionIndexExtensions
     {
         /// <summary>
-        /// 
+        /// Attempts to get the index of a specified element in a collection.
         /// </summary>
         /// <param name="collection">The collection to be searched.</param>
         /// <param name="item">The item to get the index of.</param>
@@ -52,7 +52,7 @@ namespace AlastairLundy.Extensions.Collections.ICollections
         }
         
         /// <summary>
-        /// 
+        /// Gets the index of the specified item in a collection.
         /// </summary>
         /// <param name="collection">The collection to be searched.</param>
         /// <param name="item">The item to get the index of.</param>
@@ -82,7 +82,7 @@ namespace AlastairLundy.Extensions.Collections.ICollections
         }
 
         /// <summary>
-        /// 
+        /// Attempts to get the index of a specified element in a collection.
         /// </summary>
         /// <param name="collection">The collection to be searched.</param>
         /// <param name="item">The item to attempt to get the index of.</param>
@@ -104,7 +104,7 @@ namespace AlastairLundy.Extensions.Collections.ICollections
         }
         
         /// <summary>
-        /// 
+        /// Gets the index of a specified item in a collection.
         /// </summary>
         /// <param name="collection">The collection to be searched.</param>
         /// <param name="item">The item to get the index of.</param>
