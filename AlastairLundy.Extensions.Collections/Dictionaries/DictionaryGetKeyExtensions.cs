@@ -106,9 +106,8 @@ namespace AlastairLundy.Extensions.Collections.Dictionaries;
         /// <typeparam name="TValue">The type of Value in the HashMap.</typeparam>
         /// <param name="hashMap">The HashMap to be searched.</param>
         /// <param name="value">The value to search for.</param>
-        /// <exception cref="ValueNotFoundException">Thrown if the value is not found within the HashMap.</exception>
-        /// <exception cref="NullReferenceException">Thrown if the HashMap provided is null.</exception>
-        /// <returns>the keys associated with the specified value in the HashMap.</returns>
+        /// <exception cref="ValueNotFoundException">Thrown if the specified value is not found within the HashMap.</exception>
+        /// <returns>The keys associated with the specified value in the HashMap.</returns>
         public static IEnumerable<TKey> GetKeys<TKey, TValue>(this HashMap<TKey, TValue> hashMap, TValue value)
         {
             return hashMap.ToDictionary().GetKeys(value);
