@@ -28,20 +28,20 @@ using System.Collections.Generic;
 
 namespace AlastairLundy.Extensions.Collections.ICollections
 {
-    public static class CollectionsGetAtExtensions
+    public static class CollectionsElementAtExtensions
     {
         /// <summary>
-        /// 
+        /// Attempts to retrieve the item at the specified index.
         /// </summary>
         /// <param name="collection">The collection to be searched.</param>
         /// <param name="index">The index position to search an element for.</param>
         /// <param name="value">The value at the index position if one is found; null otherwise.</param>
         /// <returns>true if an item is found at the specified index position; false otherwise.</returns>
-        public static bool TryGetAt(this ICollection collection, int index, out object? value)
+        public static bool TryElementAt(this ICollection collection, int index, out object? value)
         {
             try
             {
-                value = GetAt(collection, index);
+                value = ElementAt(collection, index);
                 return true;
             }
             catch
@@ -52,14 +52,14 @@ namespace AlastairLundy.Extensions.Collections.ICollections
         }
         
         /// <summary>
-        /// 
+        /// Gets the item at the specified index.
         /// </summary>
         /// <param name="collection">The collection to be searched.</param>
         /// <param name="index">The index position to search an element for.</param>
         /// <returns>The item associated with the specified index in the collection.</returns>
         /// <exception cref="IndexOutOfRangeException">Thrown if the greater is larger than the collection or is less than 0.</exception>
         /// <exception cref="KeyNotFoundException">Thrown if no item is found at the specified index.</exception>
-        public static object GetAt(this ICollection collection, int index)
+        public static object ElementAt(this ICollection collection, int index)
         {
             if (index > collection.Count || index < 0)
             {
