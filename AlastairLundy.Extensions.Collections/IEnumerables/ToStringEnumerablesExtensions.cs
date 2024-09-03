@@ -34,7 +34,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
         /// </summary>
         /// <param name="enumerable">The IEnumerable to be converted.</param>
         /// <typeparam name="T">The type of objects stored.</typeparam>
-        /// <returns>the IEnumerable of strings.</returns>
+        /// <returns>The IEnumerable of strings.</returns>
         /// <exception cref="ArgumentException">Thrown if the object of type T doesn't implement a ToString method.</exception>
         public static IEnumerable<string> ToStringEnumerable<T>(this IEnumerable<T> enumerable)
         {
@@ -42,6 +42,8 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
             {
                 List<string> list = new List<string>();
 
+                
+                
                 foreach (T item in enumerable)
                 {
                     if (item?.GetType() != typeof(object))

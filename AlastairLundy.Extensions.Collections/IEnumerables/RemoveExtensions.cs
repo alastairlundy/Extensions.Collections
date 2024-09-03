@@ -48,7 +48,7 @@ public static class RemoveExtensions
     /// <param name="enumerable">The IEnumerable to have items removed from.</param>
     /// <param name="itemsToBeRemoved">The items to be removed.</param>
     /// <typeparam name="T">The type of object stored in the IEnumerable.</typeparam>
-    /// <returns>the new IEnumerable with the removed items.</returns>
+    /// <returns>The new IEnumerable with the specified items removed.</returns>
     public static IEnumerable<T> Remove<T>(this IEnumerable<T> enumerable, IEnumerable<T> itemsToBeRemoved)
     {
         T[] itemsToBeRemovedArr = itemsToBeRemoved as T[] ?? itemsToBeRemoved.ToArray();

@@ -38,7 +38,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
         /// </summary>
         /// <param name="enumerable">The IEnumerable to be searched.</param>
         /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
-        /// <returns>true if the IEnumerable contains duplicate objects; returns false otherwise.</returns>
+        /// <returns>True if the IEnumerable contains duplicate objects; false otherwise.</returns>
         public static bool ContainsDuplicates<T>(this IEnumerable<T> enumerable)
         {
             Dictionary<T, int> frequency = enumerable.FrequencyOfAll();
@@ -59,7 +59,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
         /// </summary>
         /// <param name="enumerable">The IEnumerable to be searched for duplicates.</param>
         /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
-        /// <returns>an IEnumerable with duplicate objects removed.</returns>
+        /// <returns>An IEnumerable with duplicate objects removed.</returns>
         /// <exception cref="NullReferenceException">Thrown if no objects exist in the IEnumerable.</exception>
         public static IEnumerable<T> DeDuplicate<T>(this IEnumerable<T> enumerable)
         {
@@ -79,7 +79,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
         /// <param name="enumerableToBeDeDuplicated">The IEnumerable to be searched for duplicates.</param>
         /// <param name="destinationEnumerable">The IEnumerable with duplicates removed, if any duplicates were found.</param>
         /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
-        /// <returns>whether duplicates of an object were removed from the specified IEnumerable.</returns>
+        /// <returns>True if duplicates of an object were removed from the specified IEnumerable; false otherwise.</returns>
         public static bool TryDeDuplicate<T>(this IEnumerable<T> enumerableToBeDeDuplicated, out IEnumerable<T> destinationEnumerable)
         {
             T[] toBeDeDuplicated = enumerableToBeDeDuplicated as T[] ?? enumerableToBeDeDuplicated.ToArray();

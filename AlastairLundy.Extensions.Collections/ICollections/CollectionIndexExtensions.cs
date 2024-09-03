@@ -36,7 +36,7 @@ namespace AlastairLundy.Extensions.Collections.ICollections
         /// <param name="collection">The collection to be searched.</param>
         /// <param name="item">The item to get the index of.</param>
         /// <param name="index">The index position of an item to search for.</param>
-        /// <returns>true if an index can be found for an item in a collection; false otherwise.</returns>
+        /// <returns>True if an index can be found for an item in a collection; false otherwise.</returns>
         public static bool TryIndexOf(ICollection collection, object item, out int? index)
         {
             try
