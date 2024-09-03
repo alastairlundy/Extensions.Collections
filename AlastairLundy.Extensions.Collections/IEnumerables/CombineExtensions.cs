@@ -37,7 +37,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
         /// <param name="enumerableOne">The IEnumerable to be added to.</param>
         /// <param name="enumerableTwo">The IEnumerable to be added.</param>
         /// <typeparam name="T">The type of the value.</typeparam>
-        /// <returns>the newly combined IEnumerables.</returns>
+        /// <returns>The newly created IEnumerable.</returns>
         /// <exception cref="OverflowException">Thrown if the size of the new IEnumerable is larger than the max size for IEnumerables.</exception>
         public static IEnumerable<T> Combine<T>(this IEnumerable<T> enumerableOne, IEnumerable<T> enumerableTwo)
         {   
@@ -68,7 +68,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
         /// </summary>
         /// <param name="enumerableOne">The first IEnumerable to be added.</param>
         /// <param name="enumerableTwo">The second IEnumerable to be added.</param>
-        /// <param name="destinationEnumerable"></param>
+        /// <param name="destinationEnumerable">The combined IEnumerable.</param>
         /// <typeparam name="T">The type of the value.</typeparam>
         public static void Combine<T>(this IEnumerable<T> enumerableOne, IEnumerable<T> enumerableTwo, out IEnumerable<T> destinationEnumerable)
         {

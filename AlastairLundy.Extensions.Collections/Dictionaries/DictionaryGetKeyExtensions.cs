@@ -63,8 +63,8 @@ namespace AlastairLundy.Extensions.Collections.Dictionaries;
         /// <param name="value">The value to search for.</param>
         /// <typeparam name="TKey">The type of Key in the Dictionary.</typeparam>
         /// <typeparam name="TValue">The type of Value in the Dictionary.</typeparam>
-        /// <exception cref="ValueNotFoundException">An exception that is thrown if the value is not found within the Dictionary.</exception>
         /// <returns>The keys associated with the specified value in a Dictionary.</returns>
+        /// <exception cref="ValueNotFoundException">Thrown if the specified value is not found within the Dictionary.</exception>
         public static IEnumerable<TKey> GetKeys<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TValue value)
         {
             List<TKey> list = new();
@@ -92,8 +92,8 @@ namespace AlastairLundy.Extensions.Collections.Dictionaries;
         /// <typeparam name="TValue">The type of the Values used.</typeparam>
         /// <param name="hashMap">The HashMap to be added to.</param>
         /// <param name="value">The value to use to return the desired keys.</param>
-        /// <exception cref="ValueNotFoundException">An exception that is thrown if the specified Value is not found within the HashMap.</exception>
         /// <returns>The key associated with the value in the HashMap. If more than one Key is associated with the value, only the first key is returned.</returns>
+        /// <exception cref="ValueNotFoundException">Thrown if the specified value is not found within the HashMap.</exception>
         public static TKey GetKey<TKey, TValue>(this HashMap<TKey, TValue> hashMap, TValue value)
         {
             return hashMap.ToDictionary().GetKey(value);
