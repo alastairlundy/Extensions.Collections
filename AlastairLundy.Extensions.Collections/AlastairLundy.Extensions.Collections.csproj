@@ -4,7 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>5.1.0</Version>
+        <Version>5.2.0</Version>
         <Title>AlastairLundy.Extensions.Collections</Title>
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) 2024 Alastair Lundy</Copyright>
@@ -12,14 +12,16 @@
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-        <PackageReleaseNotes>### Changes since 5.0.0
-* Added missing xml doc comments
-* Fix issues in some xml doc comments
-* Improvements to HashMap class</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes since 5.1.0
+* Improvements to existing xml doc comments
+* Added some missing xml doc comments
+* Added ``IndexOf`` extensions for ICollections
+* Added ``ElementAt`` extensions for ICollections
+* Updates to IBigCollection&lt;T&gt; and IHashMap&lt;TKey, TValue&gt;</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <AssemblyName>AlastairLundy.Extensions.Collections</AssemblyName>
         <RootNamespace>AlastairLundy.Extensions.Collections</RootNamespace>
-        <Description>Extensions to C# Collections.</Description>
+        <Description>Extensions to C# IEnumerables, ICollections, and more.</Description>
         <LangVersion>default</LangVersion>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
