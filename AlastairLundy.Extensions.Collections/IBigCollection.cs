@@ -23,12 +23,12 @@
    */
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace AlastairLundy.Extensions.Collections
 {
     // ReSharper disable once TypeParameterCanBeVariant
-    public interface IBigCollection<T> : IEnumerable, IDisposable
+    public interface IBigCollection<T> : IEnumerable<T>, IDisposable
     {
         ulong Count { get; }
 
