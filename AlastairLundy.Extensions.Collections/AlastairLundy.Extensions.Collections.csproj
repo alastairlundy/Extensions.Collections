@@ -29,6 +29,9 @@
             <PackagePath>LICENSE.txt</PackagePath>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
+        <Content Include="..\README.md">
+          <Link>README.md</Link>
+        </Content>
     </ItemGroup>
     
     <ItemGroup>
