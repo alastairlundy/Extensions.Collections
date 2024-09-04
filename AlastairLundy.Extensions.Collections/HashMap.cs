@@ -325,13 +325,13 @@ namespace AlastairLundy.Extensions.Collections;
         }
 
         /// <summary>
-        /// Returns whether a HashMap's internal Dictionary is equal to another HashMap's internal Dictionary.
+        /// Returns whether a HashMap is equal to another HashMap.
         /// </summary>
-        /// <param name="map">The HashMap to be compared against.</param>
-        /// <returns>True if the compared HashMap's Dictionary is equal to this HashMap's internal Dictionary; false otherwise.</returns>
-        public bool Equals(HashMap<TKey, TValue>? map)
+        /// <param name="hashMap">The HashMap to be compared against.</param>
+        /// <returns>True if the compared HashMap is equal to this HashMap; false otherwise.</returns>
+        public bool Equals(HashMap<TKey, TValue>? hashMap)
         {
-            if (map == null)
+            if (hashMap == null)
             {
                 return false;
             }
@@ -341,7 +341,7 @@ namespace AlastairLundy.Extensions.Collections;
                 
                 foreach (KeyValuePair<TKey, TValue> pair in _dictionary)
                 {
-                    if (map!.GetValue(pair.Key)!.Equals(pair.Value))
+                    if (hashMap!.GetValue(pair.Key)!.Equals(pair.Value))
                     {
                         bools.Add(true);
                     }
@@ -356,10 +356,10 @@ namespace AlastairLundy.Extensions.Collections;
         }
 
         /// <summary>
-        /// 
+        /// Returns whether this HashMap is equal to another object.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">The object to be compared against.</param>
+        /// <returns>True if the object is equal to this HashMap; false otherwise.</returns>
         public override bool Equals(object? obj)
         {
             if (obj == null)
