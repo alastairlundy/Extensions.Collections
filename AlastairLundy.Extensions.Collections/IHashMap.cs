@@ -29,6 +29,9 @@ namespace AlastairLundy.Extensions.Collections;
 
     public interface IHashMap<TKey, TValue>
     {
+        int Count { get; }
+        bool IsEmpty { get; }
+        
         void Put(TKey key, TValue value);
         void Put(KeyValuePair<TKey, TValue> pair);
 
