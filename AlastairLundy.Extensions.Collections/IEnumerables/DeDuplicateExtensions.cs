@@ -36,12 +36,12 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
         /// <summary>
         /// Returns whether an IEnumerable contains duplicate instances of an object.
         /// </summary>
-        /// <param name="enumerable">The IEnumerable to be searched.</param>
+        /// <param name="source">The IEnumerable to be searched.</param>
         /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
         /// <returns>True if the IEnumerable contains duplicate objects; false otherwise.</returns>
-        public static bool ContainsDuplicates<T>(this IEnumerable<T> enumerable)
+        public static bool ContainsDuplicates<T>(this IEnumerable<T> source)
         {
-            Dictionary<T, int> frequency = enumerable.FrequencyOfAll();
+            Dictionary<T, int> frequency = source.FrequencyOfAll();
 
             foreach (int frequencyValue in frequency.Values)
             {
@@ -57,13 +57,13 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
         /// <summary>
         /// Returns an IEnumerable with duplicates removed.
         /// </summary>
-        /// <param name="enumerable">The IEnumerable to be searched for duplicates.</param>
+        /// <param name="source">The IEnumerable to be searched for duplicates.</param>
         /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
         /// <returns>An IEnumerable with duplicate objects removed.</returns>
         /// <exception cref="NullReferenceException">Thrown if no objects exist in the IEnumerable.</exception>
-        public static IEnumerable<T> DeDuplicate<T>(this IEnumerable<T> enumerable)
+        public static IEnumerable<T> DeDuplicate<T>(this IEnumerable<T> source)
         {
-            Dictionary<T, int> frequency = enumerable.FrequencyOfAll();
+            Dictionary<T, int> frequency = source.FrequencyOfAll();
 
             if (frequency.Keys.Count == 0 || frequency.Keys.Count < 1)
             {
