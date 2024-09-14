@@ -53,4 +53,30 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
 
             throw new ValueNotFoundException(nameof(source), nameof(obj));
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="obj"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static IEnumerable<int> IndexesOf<T>(this IEnumerable<T> source, T obj)
+        {
+            List<int> indexes = new List<int>();
+            
+            T[] items = source as T[] ?? source.ToArray();
+
+            for(int index = 0; index < items.Length; index++)
+            {
+                T item = items[index];
+                
+                if (item != null && item.Equals(obj))
+                {
+                     indexes.Add(index);
+                }
+            }
+
+            return indexes;
+        }
     }
