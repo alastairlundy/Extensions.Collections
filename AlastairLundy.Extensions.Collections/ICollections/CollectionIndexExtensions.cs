@@ -25,6 +25,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AlastairLundy.Extensions.Collections.ICollections
 {
@@ -47,6 +48,33 @@ namespace AlastairLundy.Extensions.Collections.ICollections
             catch
             {
                 index = null;
+                return false;
+            }
+        }
+        
+        /// <summary>
+        /// Attempts to get the indexes of a specified element in a collection.
+        /// </summary>
+        /// <param name="collection">The collection to be searched.</param>
+        /// <param name="item">The item to attempt to get the indexes of.</param>
+        /// <param name="indexes">the indexes of an object in a collection if found; null otherwise.</param>
+        /// <returns>True if one or more indexes can be found for an item in a collection; false otherwise.</returns>
+        public static bool TryIndexesOf(this ICollection collection, object item, out IEnumerable<int>? indexes)
+        {
+            try
+            {
+                indexes = IndexesOf(collection, item);
+
+                if (indexes.Any() == false)
+                {
+                    throw new KeyNotFoundException();    
+                }
+                
+                return true;
+            }
+            catch
+            {
+                indexes = null;
                 return false;
             }
         }
@@ -80,6 +108,37 @@ namespace AlastairLundy.Extensions.Collections.ICollections
 
             throw new KeyNotFoundException();
         }
+        
+        /// <summary>
+        /// Gets the indexes of the specified item in a collection.
+        /// </summary>
+        /// <param name="collection">The collection to be searched.</param>
+        /// <param name="item">The item to get the indexes of.</param>
+        /// <returns>The indexes of an object in the collection.</returns>
+        public static IEnumerable<int> IndexesOf(this ICollection collection, object item)
+        {
+            List<int> indexes = new List<int>();
+            indexes.Clear();
+            int index = 0;
+            
+            IEnumerator enumerator = collection.GetEnumerator();
+            using var enumerator1 = enumerator as IDisposable;
+
+            while (enumerator.MoveNext())
+            {
+                if (enumerator.Current is not null)
+                {
+                    if (enumerator.Current.Equals(item))
+                    {
+                        indexes.Add(index);
+                    }
+                }
+
+                index++;
+            }
+
+            return indexes;
+        }
 
         /// <summary>
         /// Attempts to get the index of a specified element in a collection.
@@ -99,6 +158,34 @@ namespace AlastairLundy.Extensions.Collections.ICollections
             catch
             {
                 index = null;
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Attempts to get the indexes of a specified element in a collection.
+        /// </summary>
+        /// <param name="collection">The collection to be searched.</param>
+        /// <param name="item">The item to attempt to get the indexes of.</param>
+        /// <param name="indexes">the indexes of an object in a collection if found; null otherwise.</param>
+        /// <typeparam name="T">The type of the object in the collection.</typeparam>
+        /// <returns>True if one or more indexes can be found for an item in a collection; false otherwise.</returns>
+        public static bool TryIndexesOf<T>(this ICollection<T> collection, T item, out IEnumerable<int>? indexes)
+        {
+            try
+            {
+                indexes = IndexesOf(collection, item);
+
+                if (indexes.Any() == false)
+                {
+                    throw new KeyNotFoundException();    
+                }
+                
+                return true;
+            }
+            catch
+            {
+                indexes = null;
                 return false;
             }
         }
@@ -131,6 +218,37 @@ namespace AlastairLundy.Extensions.Collections.ICollections
             }
             
             throw new KeyNotFoundException();
+        }
+        
+        /// <summary>
+        /// Gets the indexes of a specified item in a collection.
+        /// </summary>
+        /// <param name="collection">The collection to be searched.</param>
+        /// <param name="item">The item to get the indexes of.</param>
+        /// <typeparam name="T">The type of the object in the collection.</typeparam>
+        /// <returns>The indexes of the specified item in the collection.</returns>
+        public static IEnumerable<int> IndexesOf<T>(this ICollection<T> collection, T item)
+        {
+            List<int> indexes = new List<int>();
+            indexes.Clear();
+            int index = 0;
+            
+            using IEnumerator<T> enumerator = collection.GetEnumerator();
+
+            while (enumerator.MoveNext())
+            {
+                if (enumerator.Current is not null)
+                {
+                    if (enumerator.Current.Equals(item))
+                    {
+                        indexes.Add(index);
+                    }
+                }
+
+                index++;
+            }
+
+            return indexes;
         }
     }
 }
