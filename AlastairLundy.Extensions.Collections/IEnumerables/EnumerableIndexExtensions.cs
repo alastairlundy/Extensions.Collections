@@ -37,9 +37,9 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
         /// <typeparam name="T">The type of object in the IEnumerable.</typeparam>
         /// <returns>The index of an object in an IEnumerable, if the IEnumerable contains the object; throws an exception otherwise.</returns>
         /// <exception cref="ValueNotFoundException">Thrown if the IEnumerable does not contain the specified object.</exception>
-        public static int IndexOf<T>(this IEnumerable<T> enumerable, T obj)
+        public static int IndexOf<T>(this IEnumerable<T> source, T obj)
         {
-            T[] items = enumerable as T[] ?? enumerable.ToArray();
+            T[] items = source as T[] ?? source.ToArray();
 
             for(int index = 0; index < items.Length; index++)
             {
@@ -52,5 +52,6 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
             }
 
             throw new ValueNotFoundException(nameof(enumerable), nameof(obj));
+            throw new ValueNotFoundException(nameof(source), nameof(obj));
         }
     }
