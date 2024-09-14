@@ -37,7 +37,7 @@ namespace AlastairLundy.Extensions.Collections.ICollections
         /// <param name="item">The item to get the index of.</param>
         /// <param name="index">The index position of an item to search for.</param>
         /// <returns>True if an index can be found for an item in a collection; false otherwise.</returns>
-        public static bool TryIndexOf(ICollection collection, object item, out int? index)
+        public static bool TryIndexOf(this ICollection collection, object item, out int? index)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace AlastairLundy.Extensions.Collections.ICollections
         /// <param name="item">The item to get the index of.</param>
         /// <returns>The index of an object in the collection.</returns>
         /// <exception cref="KeyNotFoundException">Thrown if the item could not be found within the collection.</exception>
-        public static int IndexOf(ICollection collection, object item)
+        public static int IndexOf(this ICollection collection, object item)
         {
             int index = 0;
             
@@ -89,7 +89,7 @@ namespace AlastairLundy.Extensions.Collections.ICollections
         /// <param name="index">the index of an object in a collection if found; null otherwise.</param>
         /// <typeparam name="T">The type of the object in the collection.</typeparam>
         /// <returns>True if an index can be found for an item in a collection; false otherwise.</returns>
-        public static bool TryIndexOf<T>(ICollection<T> collection, T item, out int? index)
+        public static bool TryIndexOf<T>(this ICollection<T> collection, T item, out int? index)
         {
             try
             {
@@ -111,7 +111,7 @@ namespace AlastairLundy.Extensions.Collections.ICollections
         /// <typeparam name="T">The type of the object in the collection.</typeparam>
         /// <returns>The index of the specified item in a collection.</returns>
         /// <exception cref="KeyNotFoundException">Thrown if the item could not be found within the collection.</exception>
-        public static int IndexOf<T>(ICollection<T> collection, T item)
+        public static int IndexOf<T>(this ICollection<T> collection, T item)
         {
             int index = 0;
             
