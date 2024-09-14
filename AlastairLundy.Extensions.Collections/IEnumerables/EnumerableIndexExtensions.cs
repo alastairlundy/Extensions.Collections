@@ -51,7 +51,6 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
                 }
             }
 
-            throw new ValueNotFoundException(nameof(enumerable), nameof(obj));
             throw new ValueNotFoundException(nameof(source), nameof(obj));
         }
     }
