@@ -33,26 +33,26 @@ public static class RemoveExtensions
     /// <summary>
     /// Removes an item from an IEnumerable (by creating a new IEnumerable without the removed item).
     /// </summary>
-    /// <param name="enumerable">The IEnumerable to have an item removed from it.</param>
+    /// <param name="source">The IEnumerable to have an item removed from it.</param>
     /// <param name="itemToBeRemoved">The item to be removed.</param>
     /// <typeparam name="T">The type of object stored in the IEnumerable.</typeparam>
     /// <returns>the new IEnumerable with the removed item.</returns>
-    public static IEnumerable<T> Remove<T>(this IEnumerable<T> enumerable, T itemToBeRemoved)
+    public static IEnumerable<T> Remove<T>(this IEnumerable<T> source, T itemToBeRemoved)
     {
-        return Remove(enumerable, [itemToBeRemoved]);
+        return Remove(source, [itemToBeRemoved]);
     }
     
     /// <summary>
     /// Removes items from an IEnumerable (by creating a new IEnumerable without the removed items).
     /// </summary>
-    /// <param name="enumerable">The IEnumerable to have items removed from.</param>
+    /// <param name="source">The IEnumerable to have items removed from.</param>
     /// <param name="itemsToBeRemoved">The items to be removed.</param>
     /// <typeparam name="T">The type of object stored in the IEnumerable.</typeparam>
     /// <returns>The new IEnumerable with the specified items removed.</returns>
-    public static IEnumerable<T> Remove<T>(this IEnumerable<T> enumerable, IEnumerable<T> itemsToBeRemoved)
+    public static IEnumerable<T> Remove<T>(this IEnumerable<T> source, IEnumerable<T> itemsToBeRemoved)
     {
         T[] itemsToBeRemovedArr = itemsToBeRemoved as T[] ?? itemsToBeRemoved.ToArray();
-        T[] oldItems = enumerable as T[] ?? enumerable.ToArray();
+        T[] oldItems = source as T[] ?? source.ToArray();
 
         List<T> newItems = new List<T>();
 

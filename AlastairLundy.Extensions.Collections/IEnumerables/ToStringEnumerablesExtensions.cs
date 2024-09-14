@@ -32,19 +32,17 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
         /// <summary>
         /// Converts an IEnumerable of objects to an IEnumerable of strings. 
         /// </summary>
-        /// <param name="enumerable">The IEnumerable to be converted.</param>
+        /// <param name="source">The IEnumerable to be converted.</param>
         /// <typeparam name="T">The type of objects stored.</typeparam>
         /// <returns>The IEnumerable of strings.</returns>
         /// <exception cref="ArgumentException">Thrown if the object of type T doesn't implement a ToString method.</exception>
-        public static IEnumerable<string> ToStringEnumerable<T>(this IEnumerable<T> enumerable)
+        public static IEnumerable<string> ToStringEnumerable<T>(this IEnumerable<T> source)
         {
             if (typeof(T).GetMethod("ToString")?.DeclaringType != typeof(object) && typeof(T) != typeof(object))
             {
                 List<string> list = new List<string>();
-
                 
-                
-                foreach (T item in enumerable)
+                foreach (T item in source)
                 {
                     if (item?.GetType() != typeof(object))
                     {

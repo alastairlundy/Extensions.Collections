@@ -76,13 +76,13 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
         /// <summary>
         /// Attempts to remove duplicates from an IEnumerable and returns whether it has succeeded or not.
         /// </summary>
-        /// <param name="enumerableToBeDeDuplicated">The IEnumerable to be searched for duplicates.</param>
+        /// <param name="source">The IEnumerable to be searched for duplicates.</param>
         /// <param name="destinationEnumerable">The IEnumerable with duplicates removed, if any duplicates were found.</param>
         /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
         /// <returns>True if duplicates of an object were removed from the specified IEnumerable; false otherwise.</returns>
-        public static bool TryDeDuplicate<T>(this IEnumerable<T> enumerableToBeDeDuplicated, out IEnumerable<T> destinationEnumerable)
+        public static bool TryDeDuplicate<T>(this IEnumerable<T> source, out IEnumerable<T> destinationEnumerable)
         {
-            T[] toBeDeDuplicated = enumerableToBeDeDuplicated as T[] ?? enumerableToBeDeDuplicated.ToArray();
+            T[] toBeDeDuplicated = source as T[] ?? source.ToArray();
 
             try
             {

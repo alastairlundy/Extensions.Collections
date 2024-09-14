@@ -34,15 +34,15 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
         /// <summary>
         ///  Calculates the number of times an object appears in an IEnumerable.
         /// </summary>
-        /// <param name="enumerable">The IEnumerable to be searched.</param>
+        /// <param name="source">The IEnumerable to be searched.</param>
         /// <param name="obj">The object to be searched for.</param>
         /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
         /// <returns>The number of times the object appears in the IEnumerable.</returns>
-        public static int FrequencyOf<T>(this IEnumerable<T> enumerable, T obj)
+        public static int FrequencyOf<T>(this IEnumerable<T> source, T obj)
         {
             int frequency = 0;
 
-            foreach (T item in enumerable)
+            foreach (T item in source)
             {
                 if (item != null && item.Equals(obj))
                 {
@@ -56,14 +56,14 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
         /// <summary>
         /// Calculates the number of times each distinct object appears in an IEnumerable.
         /// </summary>
-        /// <param name="enumerable">The IEnumerable to be searched.</param>
+        /// <param name="source">The IEnumerable to be searched.</param>
         /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
         /// <returns>A Dictionary containing objects and the number of times each one appears in the IEnumerable.</returns>
-        public static Dictionary<T, int> FrequencyOfAll<T>(this IEnumerable<T> enumerable)
+        public static Dictionary<T, int> FrequencyOfAll<T>(this IEnumerable<T> source)
         {
             Dictionary<T, int> items = new();
 
-            foreach (T item in enumerable)
+            foreach (T item in source)
             {
 #if NET6_0_OR_GREATER
                 if (!items.TryAdd(item, 1))

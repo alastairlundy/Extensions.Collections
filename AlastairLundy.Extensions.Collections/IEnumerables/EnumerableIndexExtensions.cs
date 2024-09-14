@@ -27,12 +27,12 @@ using System.Linq;
 
 namespace AlastairLundy.Extensions.Collections.IEnumerables;
 
-    public static class IEnumerableIndexExtensions
+    public static class EnumerableIndexExtensions
     {
         /// <summary>
         /// Returns the index of an object in an IEnumerable.
         /// </summary>
-        /// <param name="enumerable">The IEnumerable to be searched.</param>
+        /// <param name="source">The IEnumerable to be searched.</param>
         /// <param name="obj">The object to get the index of.</param>
         /// <typeparam name="T">The type of object in the IEnumerable.</typeparam>
         /// <returns>The index of an object in an IEnumerable, if the IEnumerable contains the object; throws an exception otherwise.</returns>
