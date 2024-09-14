@@ -4,7 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>5.2.0</Version>
+        <Version>5.3.0</Version>
         <Title>AlastairLundy.Extensions.Collections</Title>
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) 2024 Alastair Lundy</Copyright>
@@ -12,12 +12,11 @@
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-        <PackageReleaseNotes>### Changes since 5.1.0
+        <PackageReleaseNotes>### Changes since 5.2.0
+* Added ``IndexesOf`` extensions for ICollections
+* Added ``IndexesOf`` extensions for IEnumerables
 * Improvements to existing xml doc comments
-* Added some missing xml doc comments
-* Added ``IndexOf`` extensions for ICollections
-* Added ``ElementAt`` extensions for ICollections
-* Updates to IBigCollection&lt;T&gt; and IHashMap&lt;TKey, TValue&gt;</PackageReleaseNotes>
+* Fixed some issues with some ``IndexOf`` extension methods</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <AssemblyName>AlastairLundy.Extensions.Collections</AssemblyName>
         <RootNamespace>AlastairLundy.Extensions.Collections</RootNamespace>
