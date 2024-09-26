@@ -32,7 +32,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables.Indexes.Specializati
 public static class EnumerableStringIndexesExtensions
 {
     /// <summary>
-    /// Gets the indexes of the specified string within a string.
+    /// Gets the indexes of the specified string within an IEnumerable of strings.
     /// </summary>
     /// <param name="strings">The IEnumerable of strings to be searched.</param>
     /// <param name="expected">The string to look for.</param>
