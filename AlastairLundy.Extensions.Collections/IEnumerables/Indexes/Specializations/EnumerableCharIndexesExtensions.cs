@@ -38,7 +38,7 @@ public static class EnumerableCharIndexesExtensions
     /// <param name="expected">The char to look for.</param>
     /// <param name="ignoreCase">Whether to ignore the case of the expected char.</param>
     /// <returns>The indexes if the char is found.</returns>
-    public static IEnumerable<int> GetCharIndexes(IEnumerable<string> strings, char expected, bool ignoreCase)
+    public static IEnumerable<int> CharIndexesOf(this IEnumerable<string> strings, char expected, bool ignoreCase)
     {
         List<int> indexes = new List<int>();
         
