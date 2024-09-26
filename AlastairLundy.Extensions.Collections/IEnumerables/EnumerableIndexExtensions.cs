@@ -25,6 +25,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using AlastairLundy.Extensions.Collections.IEnumerables.Indexes.Specializations;
+
 namespace AlastairLundy.Extensions.Collections.IEnumerables;
 
     public static class EnumerableIndexExtensions
@@ -55,28 +57,42 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
         }
 
         /// <summary>
-        /// 
+        /// Gets the indexes of the specified object within an IEnumerable of an object..
         /// </summary>
         /// <param name="source"></param>
         /// <param name="obj"></param>
         /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        /// <returns>The indexes if the object is found; a single element Enumerable with a value of -1 otherwise.</returns>
         public static IEnumerable<int> IndexesOf<T>(this IEnumerable<T> source, T obj)
         {
-            List<int> indexes = new List<int>();
-            
-            T[] items = source as T[] ?? source.ToArray();
-
-            for(int index = 0; index < items.Length; index++)
+            if (typeof(T) == typeof(string))
             {
-                T item = items[index];
-                
-                if (item != null && item.Equals(obj))
+                return ((source as IEnumerable<string>)!).StringIndexesOf((obj as string)!, false);
+            }
+            else
+            {
+                List<int> indexes = new List<int>();
+            
+                T[] items = source as T[] ?? source.ToArray();
+
+                for(int index = 0; index < items.Length; index++)
                 {
-                     indexes.Add(index);
+                    T item = items[index];
+                
+                    if (item != null && item.Equals(obj))
+                    {
+                        indexes.Add(index);
+                    }
+                }
+
+                if (indexes.Count > 0)
+                {
+                    return indexes; 
+                }
+                else
+                {
+                    return new[]{-1};
                 }
             }
-
-            return indexes;
         }
     }
