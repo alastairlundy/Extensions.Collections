@@ -123,4 +123,7 @@
   <data name="Exceptions.ValueNotFound" xml:space="preserve">
     <value>Value {x} Not Found within Key Value Pair</value>
   </data>
+  <data name="Exceptions.IndexOutOfRange.Enumerable" xml:space="preserve">
+    <value>The Index provided of {x1} was outside the valid range of between 0 and {x2}.</value>
+  </data>
 </root>

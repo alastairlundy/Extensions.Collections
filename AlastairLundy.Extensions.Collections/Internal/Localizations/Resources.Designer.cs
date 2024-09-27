@@ -60,6 +60,15 @@ namespace AlastairLundy.Extensions.Collections.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Index provided of {x1} was outside the valid range of between 0 and {x2}..
+        /// </summary>
+        internal static string Exceptions_IndexOutOfRange_Enumerable {
+            get {
+                return ResourceManager.GetString("Exceptions.IndexOutOfRange.Enumerable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to KeyValuePair not found within the collection.
         /// </summary>
         internal static string Exceptions_KeyValuePairNotFound {
