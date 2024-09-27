@@ -59,8 +59,8 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
         /// <summary>
         /// Gets the indexes of the specified object within an IEnumerable of an object..
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="obj"></param>
+        /// <param name="source">The IEnumerable to be searched.</param>
+        /// <param name="obj">The item to search for.</param>
         /// <typeparam name="T"></typeparam>
         /// <returns>The indexes if the object is found; a single element Enumerable with a value of -1 otherwise.</returns>
         public static IEnumerable<int> IndexesOf<T>(this IEnumerable<T> source, T obj)
