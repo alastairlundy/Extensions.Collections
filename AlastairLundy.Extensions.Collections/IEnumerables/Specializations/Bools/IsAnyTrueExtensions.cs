@@ -30,7 +30,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables.Specializations.Bool
 public static class IsAnyTrueExtensions
 {
     /// <summary>
-    /// Returns true if any of the bools in an IEnumerable are true.
+    /// Returns true if any of the bool objects in an IEnumerable are true.
     /// </summary>
     /// <param name="source">The IEnumerable to be searched.</param>
     /// <returns>True if any bool in the IEnumerable is true; False otherwise.</returns>
