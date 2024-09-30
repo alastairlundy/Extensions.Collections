@@ -24,8 +24,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
-
-using AlastairLundy.Extensions.Collections.IEnumerables.Indexes.Specializations;
+using AlastairLundy.Extensions.Collections.IEnumerables.Specializations.Indexes;
 
 namespace AlastairLundy.Extensions.Collections.IEnumerables;
 
