@@ -24,10 +24,9 @@
 
 using System.Collections.Generic;
 using System.Linq;
-
 using AlastairLundy.Extensions.System.Indexes;
 
-namespace AlastairLundy.Extensions.Collections.IEnumerables.Indexes.Specializations;
+namespace AlastairLundy.Extensions.Collections.IEnumerables.Specializations.Indexes;
 
 public static class EnumerableCharIndexesExtensions
 {
