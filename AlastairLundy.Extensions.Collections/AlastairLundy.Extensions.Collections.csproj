@@ -68,4 +68,8 @@
       <PackageReference Include="AlastairLundy.Extensions.System" Version="5.2.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Specializations\Enumerables\" />
+    </ItemGroup>
+
 </Project>
