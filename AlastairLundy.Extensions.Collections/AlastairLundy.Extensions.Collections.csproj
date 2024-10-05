@@ -4,7 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>5.4.0-preview.2</Version>
+        <Version>5.4.0-preview.3</Version>
         <Title>AlastairLundy.Extensions.Collections</Title>
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) 2024 Alastair Lundy</Copyright>
@@ -12,17 +12,10 @@
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-        <PackageReleaseNotes>## Changes since 5.4.0 Preview 1
-
-### Additions
-* Added ``AnyTrue`` bool IEnumerable extension - This has been moved from SystemExtensions
-* Added ``AnyFalse`` bool IEnumerable extension - This has been moved from SystemExtensions
-* Added ``AllTrue`` bool IEnumerable extension - This has been moved from SystemExtensions
-* Added ``AllFalse`` bool IEnumerable extension - This has been moved from SystemExtensions
-* Added ``Replace`` IEnumerable Generic extension
-
-### General Changes
-* Moved IEnumerable Specializations folder and namespace</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes since 5.4.0 Preview 2
+* Added generic IEnumerable ``ForEach`` extension
+* Renamed some bool IEnumerable extensions
+* Restuctured generic extensions directory and non generic extension directories</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <AssemblyName>AlastairLundy.Extensions.Collections</AssemblyName>
         <RootNamespace>AlastairLundy.Extensions.Collections</RootNamespace>
