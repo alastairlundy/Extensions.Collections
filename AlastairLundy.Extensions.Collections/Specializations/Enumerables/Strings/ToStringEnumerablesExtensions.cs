@@ -25,7 +25,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AlastairLundy.Extensions.Collections.IEnumerables;
+namespace AlastairLundy.Extensions.Collections.Specializations.Strings;
 
     public static class ToStringEnumerablesExtensions
     {
