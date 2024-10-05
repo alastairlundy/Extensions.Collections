@@ -23,26 +23,29 @@
    */
 
 using System.Collections.Generic;
+using System.Linq;
 
-namespace AlastairLundy.Extensions.Collections.IEnumerables.Specializations.Bools;
+namespace AlastairLundy.Extensions.Collections.Specializations.Bools;
 
-    public static class AllTrueExtensions
+public static class IsAnyFalseExtensions
+{
+    /// <summary>
+    /// Returns true if any of the bool objects in an IEnumerable are false.
+    /// </summary>
+    /// <param name="source">The IEnumerable to be searched.</param>
+    /// <returns>True if any bool in the IEnumerable is false; False otherwise.</returns>
+    public static bool IsAnyFalse(this IEnumerable<bool> source)
     {
-        /// <summary>
-        /// Returns whether all the bool objects in an array are true or not.
-        /// </summary>
-        /// <param name="source">The bool array to be checked.</param>
-        /// <returns>true if all the bool objects in the array are true, returns false otherwise.</returns>
-        public static bool IsAllTrue(this IEnumerable<bool> source)
-        {
-            foreach (bool input in source)
-            {
-                if (input.Equals(false))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
+        return source.Any(x => x == false);
     }
+
+    /// <summary>
+    /// Returns true if any of the bools in an ICollection are false.
+    /// </summary>
+    /// <param name="source">The ICollection to be searched.</param>
+    /// <returns>True if any bool in the ICollection is false; False otherwise.</returns>
+    public static bool IsAnyFalse(this ICollection<bool> source)
+    {
+        return source.Any(x => x == false);
+    }
+}

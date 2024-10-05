@@ -23,24 +23,30 @@
    */
 
 using System.Collections.Generic;
+using System.Linq;
+using AlastairLundy.Extensions.Collections.IEnumerables;
+using AlastairLundy.Extensions.System.Indexes;
 
-namespace AlastairLundy.Extensions.Collections.IEnumerables.Specializations.Bools;
-    public static class AllFalseExtensions
+namespace AlastairLundy.Extensions.Collections.Specializations.Indexes;
+
+public static class EnumerableCharIndexesExtensions
+{
+    /// <summary>
+    /// Gets the indexes of the specified char in an IEnumerable of strings.
+    /// </summary>
+    /// <param name="strings">The IEnumerable of strings to be searched.</param>
+    /// <param name="expected">The char to look for.</param>
+    /// <param name="ignoreCase">Whether to ignore the case of the expected char.</param>
+    /// <returns>The indexes if the char is found.</returns>
+    public static IEnumerable<int> CharIndexesOf(this IEnumerable<string> strings, char expected, bool ignoreCase)
     {
-        /// <summary>
-        /// Returns whether all the bool objects in an array are false or not.
-        /// </summary>
-        /// <param name="source">The bool array to be checked.</param>
-        /// <returns>true if all the bool objects in the array are false, returns false otherwise.</returns>
-        public static bool IsAllFalse(this IEnumerable<bool> source)
+        List<int> indexes = new List<int>();
+        
+        foreach (string str in strings)
         {
-            foreach (bool input in source)
-            {
-                if (input.Equals(true))
-                {
-                    return false;
-                }
-            }
-            return true;
+            indexes = indexes.Combine(str.IndexesOf(expected, ignoreCase)).ToList();
         }
+        
+        return indexes;
     }
+}

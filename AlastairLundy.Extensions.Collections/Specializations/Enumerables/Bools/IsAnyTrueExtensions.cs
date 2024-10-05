@@ -25,27 +25,27 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AlastairLundy.Extensions.Collections.IEnumerables.Specializations.Bools;
+namespace AlastairLundy.Extensions.Collections.Specializations.Bools;
 
-public static class IsAnyFalseExtensions
+public static class IsAnyTrueExtensions
 {
     /// <summary>
-    /// Returns true if any of the bool objects in an IEnumerable are false.
+    /// Returns true if any of the bool objects in an IEnumerable are true.
     /// </summary>
     /// <param name="source">The IEnumerable to be searched.</param>
-    /// <returns>True if any bool in the IEnumerable is false; False otherwise.</returns>
-    public static bool IsAnyFalse(this IEnumerable<bool> source)
+    /// <returns>True if any bool in the IEnumerable is true; False otherwise.</returns>
+    public static bool IsAnyTrue(this IEnumerable<bool> source)
     {
-        return source.Any(x => x == false);
+        return source.Any(x => x == true);
     }
-
+    
     /// <summary>
-    /// Returns true if any of the bools in an ICollection are false.
+    /// Returns true if any of the bools in an ICollection are true.
     /// </summary>
-    /// <param name="source">The ICollection to be searched.</param>
-    /// <returns>True if any bool in the ICollection is false; False otherwise.</returns>
-    public static bool IsAnyFalse(this ICollection<bool> source)
+    /// <param name="source">The collection to be searched.</param>
+    /// <returns>True if any bool in the ICollection is true; False otherwise.</returns>
+    public static bool IsAnyTrue(this ICollection<bool> source)
     {
-        return source.Any(x => x == false);
+        return source.Any(x => x == true);
     }
 }
