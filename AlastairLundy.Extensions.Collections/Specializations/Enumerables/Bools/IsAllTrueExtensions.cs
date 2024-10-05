@@ -26,7 +26,7 @@ using System.Collections.Generic;
 
 namespace AlastairLundy.Extensions.Collections.Specializations.Bools;
 
-    public static class AllTrueExtensions
+    public static class IsAllTrueExtensions
     {
         /// <summary>
         /// Returns whether all the bool objects in an array are true or not.
