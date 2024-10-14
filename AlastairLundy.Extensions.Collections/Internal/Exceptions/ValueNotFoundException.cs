@@ -23,6 +23,7 @@
    */
 
 using System;
+
 using AlastairLundy.Extensions.Collections.Localizations;
 
 namespace AlastairLundy.Extensions.Collections
