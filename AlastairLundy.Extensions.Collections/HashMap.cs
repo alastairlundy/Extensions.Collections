@@ -31,8 +31,8 @@ using System.Text;
 
 using AlastairLundy.Extensions.Collections.Dictionaries;
 
-namespace AlastairLundy.Extensions.Collections;
-
+namespace AlastairLundy.Extensions.Collections
+{
     /// <summary>
     /// A class to store keys and values that tries to mimic how Java's HashMap works.
     /// </summary>
@@ -193,7 +193,7 @@ namespace AlastairLundy.Extensions.Collections;
         {
             if (ContainsKeyValuePair(pair))
             {
-              return Remove(pair.Key);
+                return Remove(pair.Key);
             }
 
             throw new KeyValuePairNotFoundException(nameof(pair));
@@ -394,3 +394,4 @@ namespace AlastairLundy.Extensions.Collections;
             return stringBuilder.ToString().GetHashCode();
         }
     }
+}

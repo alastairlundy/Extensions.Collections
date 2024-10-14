@@ -24,29 +24,31 @@
 
 using System.Collections.Generic;
 using System.Linq;
+
 using AlastairLundy.Extensions.Collections.IEnumerables;
 using AlastairLundy.Extensions.System.Indexes;
 
-namespace AlastairLundy.Extensions.Collections.Specializations.Indexes;
-
-public static class EnumerableCharIndexesExtensions
+namespace AlastairLundy.Extensions.Collections.Specializations.Indexes
 {
-    /// <summary>
-    /// Gets the indexes of the specified char in an IEnumerable of strings.
-    /// </summary>
-    /// <param name="strings">The IEnumerable of strings to be searched.</param>
-    /// <param name="expected">The char to look for.</param>
-    /// <param name="ignoreCase">Whether to ignore the case of the expected char.</param>
-    /// <returns>The indexes if the char is found.</returns>
-    public static IEnumerable<int> CharIndexesOf(this IEnumerable<string> strings, char expected, bool ignoreCase)
+    public static class EnumerableCharIndexesExtensions
     {
-        List<int> indexes = new List<int>();
-        
-        foreach (string str in strings)
+        /// <summary>
+        /// Gets the indexes of the specified char in an IEnumerable of strings.
+        /// </summary>
+        /// <param name="strings">The IEnumerable of strings to be searched.</param>
+        /// <param name="expected">The char to look for.</param>
+        /// <param name="ignoreCase">Whether to ignore the case of the expected char.</param>
+        /// <returns>The indexes if the char is found.</returns>
+        public static IEnumerable<int> CharIndexesOf(this IEnumerable<string> strings, char expected, bool ignoreCase)
         {
-            indexes = indexes.Combine(str.IndexesOf(expected, ignoreCase)).ToList();
-        }
+            List<int> indexes = new List<int>();
         
-        return indexes;
+            foreach (string str in strings)
+            {
+                indexes = indexes.Combine(str.IndexesOf(expected, ignoreCase)).ToList();
+            }
+        
+            return indexes;
+        }
     }
 }

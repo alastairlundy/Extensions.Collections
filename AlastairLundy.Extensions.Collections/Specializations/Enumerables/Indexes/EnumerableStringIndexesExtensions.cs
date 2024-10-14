@@ -27,31 +27,32 @@ using System.Linq;
 using AlastairLundy.Extensions.Collections.IEnumerables;
 using AlastairLundy.Extensions.System.Indexes;
 
-namespace AlastairLundy.Extensions.Collections.Specializations.Indexes;
-
-public static class EnumerableStringIndexesExtensions
+namespace AlastairLundy.Extensions.Collections.Specializations.Indexes
 {
-    /// <summary>
-    /// Gets the indexes of the specified string within an IEnumerable of strings.
-    /// </summary>
-    /// <param name="strings">The IEnumerable of strings to be searched.</param>
-    /// <param name="expected">The string to look for.</param>
-    /// <param name="ignoreCase">Whether to ignore the case of the expected string.</param>
-    /// <returns>The indexes if the string is found.</returns>
-    public static IEnumerable<int> StringIndexesOf(this IEnumerable<string> strings, string expected, bool ignoreCase)
+    public static class EnumerableStringIndexesExtensions
     {
-        List<int> indexes = new();
-        
-        foreach (string str in strings)
+        /// <summary>
+        /// Gets the indexes of the specified string within an IEnumerable of strings.
+        /// </summary>
+        /// <param name="strings">The IEnumerable of strings to be searched.</param>
+        /// <param name="expected">The string to look for.</param>
+        /// <param name="ignoreCase">Whether to ignore the case of the expected string.</param>
+        /// <returns>The indexes if the string is found.</returns>
+        public static IEnumerable<int> StringIndexesOf(this IEnumerable<string> strings, string expected, bool ignoreCase)
         {
-            int[] result = str.IndexesOf(expected, ignoreCase).ToArray();
-
-            if (result.Any() && result.Length != 1 && result[0] != -1)
-            {
-                indexes = indexes.Combine(result).ToList();
-            }
-        }
+            List<int> indexes = new();
         
-        return indexes;
+            foreach (string str in strings)
+            {
+                int[] result = str.IndexesOf(expected, ignoreCase).ToArray();
+
+                if (result.Any() && result.Length != 1 && result[0] != -1)
+                {
+                    indexes = indexes.Combine(result).ToList();
+                }
+            }
+        
+            return indexes;
+        }
     }
 }

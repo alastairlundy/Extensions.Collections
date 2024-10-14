@@ -26,40 +26,41 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AlastairLundy.Extensions.Collections.IEnumerables;
-
-public static class ForEachExtensions
+namespace AlastairLundy.Extensions.Collections.IEnumerables
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="source"></param>
-    /// <param name="action"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    public static IEnumerable<T> ForEach<T>(this IEnumerable<T> source, Action<T> action)
+    public static class ForEachExtensions
     {
-        T[] enumerable = source as T[] ?? source.ToArray();
-        
-        for (int i = 0; i < enumerable.Length; i++)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static IEnumerable<T> ForEach<T>(this IEnumerable<T> source, Action<T> action)
         {
-            action.Invoke(enumerable[i]);
+            T[] enumerable = source as T[] ?? source.ToArray();
+        
+            for (int i = 0; i < enumerable.Length; i++)
+            {
+                action.Invoke(enumerable[i]);
+            }
+
+            return enumerable;
         }
 
-        return enumerable;
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="source"></param>
-    /// <param name="action"></param>
-    /// <typeparam name="T"></typeparam>
-    public static void ForEach<T>(this T[] source, Action<T> action)
-    {
-        for (int i = 0; i < source.Length; i++)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="action"></param>
+        /// <typeparam name="T"></typeparam>
+        public static void ForEach<T>(this T[] source, Action<T> action)
         {
-            action.Invoke(source[i]);
+            for (int i = 0; i < source.Length; i++)
+            {
+                action.Invoke(source[i]);
+            }
         }
     }
 }

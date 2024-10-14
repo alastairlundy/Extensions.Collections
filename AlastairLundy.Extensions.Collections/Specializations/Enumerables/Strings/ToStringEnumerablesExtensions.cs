@@ -25,8 +25,8 @@
 using System;
 using System.Collections.Generic;
 
-namespace AlastairLundy.Extensions.Collections.Specializations.Strings;
-
+namespace AlastairLundy.Extensions.Collections.Specializations.Strings
+{
     public static class ToStringEnumerablesExtensions
     {
         /// <summary>
@@ -59,3 +59,4 @@ namespace AlastairLundy.Extensions.Collections.Specializations.Strings;
             }
         }
     }
+}

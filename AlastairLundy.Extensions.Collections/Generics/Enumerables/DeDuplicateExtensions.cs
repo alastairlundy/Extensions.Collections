@@ -26,8 +26,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
     
-namespace AlastairLundy.Extensions.Collections.IEnumerables;
-
+namespace AlastairLundy.Extensions.Collections.IEnumerables
+{
     /// <summary>
     /// 
     /// </summary>
@@ -102,3 +102,4 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
             }
         }
     }
+}

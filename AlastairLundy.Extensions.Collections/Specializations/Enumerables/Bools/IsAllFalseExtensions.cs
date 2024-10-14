@@ -24,7 +24,8 @@
 
 using System.Collections.Generic;
 
-namespace AlastairLundy.Extensions.Collections.Specializations.Bools;
+namespace AlastairLundy.Extensions.Collections.Specializations.Bools
+{
     public static class IsAllFalseExtensions
     {
         /// <summary>
@@ -44,3 +45,4 @@ namespace AlastairLundy.Extensions.Collections.Specializations.Bools;
             return true;
         }
     }
+}

@@ -26,8 +26,8 @@ using System.Collections.Generic;
 using System.Linq;
 using AlastairLundy.Extensions.Collections.Specializations.Indexes;
 
-namespace AlastairLundy.Extensions.Collections.IEnumerables;
-
+namespace AlastairLundy.Extensions.Collections.IEnumerables
+{
     public static class EnumerableIndexExtensions
     {
         /// <summary>
@@ -95,3 +95,4 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables;
             }
         }
     }
+}

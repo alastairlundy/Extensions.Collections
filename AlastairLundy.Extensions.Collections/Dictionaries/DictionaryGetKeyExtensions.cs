@@ -25,8 +25,8 @@
 
 using System.Collections.Generic;
 
-namespace AlastairLundy.Extensions.Collections.Dictionaries;
-
+namespace AlastairLundy.Extensions.Collections.Dictionaries
+{
     public static class DictionaryGetKeyExtensions
     {
         /// <summary>
@@ -113,3 +113,4 @@ namespace AlastairLundy.Extensions.Collections.Dictionaries;
             return hashMap.ToDictionary().GetKeys(value);
         }
     }
+}

@@ -25,8 +25,8 @@
 
 using System.Collections.Generic;
 
-namespace AlastairLundy.Extensions.Collections;
-
+namespace AlastairLundy.Extensions.Collections
+{
     public interface IHashMap<TKey, TValue>
     {
         int Count { get; }
@@ -63,3 +63,4 @@ namespace AlastairLundy.Extensions.Collections;
         bool ContainsValue(TValue value);
         bool ContainsKeyValuePair(KeyValuePair<TKey, TValue> pair);
     }
+}

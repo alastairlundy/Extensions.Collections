@@ -28,60 +28,61 @@ using System.Linq;
 
 using AlastairLundy.Extensions.Collections.Localizations;
 
-namespace AlastairLundy.Extensions.Collections.IEnumerables;
-
-public static class EnumerableReplaceExtensions
+namespace AlastairLundy.Extensions.Collections.IEnumerables
 {
-    /// <summary>
-    /// Replaces the item at a specified index in an IEnumerable with a replacement item.
-    /// </summary>
-    /// <param name="source">The IEnumerable to be modified.</param>
-    /// <param name="index">The index of the item to be replaced.</param>
-    /// <param name="newValue">The replacement item.</param>
-    /// <typeparam name="T">The type of item.</typeparam>
-    /// <returns>The modified IEnumerable with the replacement value at the index provided.</returns>
-    /// <exception cref="IndexOutOfRangeException">Thrown if the index provided is less than 0 or greater than the size of the IEnumerable.</exception>
-    public static IEnumerable<T> Replace<T>(this IEnumerable<T> source, int index, T newValue)
+    public static class EnumerableReplaceExtensions
     {
-        T[] enumerable = source.ToArray();
-
-        if (index < enumerable.Length && index >= 0)
+        /// <summary>
+        /// Replaces the item at a specified index in an IEnumerable with a replacement item.
+        /// </summary>
+        /// <param name="source">The IEnumerable to be modified.</param>
+        /// <param name="index">The index of the item to be replaced.</param>
+        /// <param name="newValue">The replacement item.</param>
+        /// <typeparam name="T">The type of item.</typeparam>
+        /// <returns>The modified IEnumerable with the replacement value at the index provided.</returns>
+        /// <exception cref="IndexOutOfRangeException">Thrown if the index provided is less than 0 or greater than the size of the IEnumerable.</exception>
+        public static IEnumerable<T> Replace<T>(this IEnumerable<T> source, int index, T newValue)
         {
-            enumerable[index] = newValue;
-        }
-        else
-        {
-            throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange_Enumerable
-                .Replace("{x1}", index.ToString())
-                .Replace("{x2}", enumerable.Length.ToString()));
-        }
+            T[] enumerable = source.ToArray();
 
-        return enumerable;
-    }
-    
-    /// <summary>
-    /// Replaces all occurrences of an item in an IEnumerable with a replacement item.
-    /// </summary>
-    /// <param name="source">The IEnumerable to be modified.</param>
-    /// <param name="oldValue">The value to be replaced.</param>
-    /// <param name="newValue">The replacement value.</param>
-    /// <typeparam name="T">The type of value.</typeparam>
-    /// <returns>The modified IEnumerable if the IEnumerable contains the value to be replaced; Otherwise the original IEnumerable is returned.</returns>
-    public static IEnumerable<T> Replace<T>(this IEnumerable<T> source, T oldValue, T newValue)
-    {
-        T[] enumerable = source.ToArray();
-
-        if (enumerable.Contains(oldValue))
-        {
-            for (int index = 0; index < enumerable.Length; index++)
+            if (index < enumerable.Length && index >= 0)
             {
-                if (enumerable[index]!.Equals(oldValue))
+                enumerable[index] = newValue;
+            }
+            else
+            {
+                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange_Enumerable
+                    .Replace("{x1}", index.ToString())
+                    .Replace("{x2}", enumerable.Length.ToString()));
+            }
+
+            return enumerable;
+        }
+    
+        /// <summary>
+        /// Replaces all occurrences of an item in an IEnumerable with a replacement item.
+        /// </summary>
+        /// <param name="source">The IEnumerable to be modified.</param>
+        /// <param name="oldValue">The value to be replaced.</param>
+        /// <param name="newValue">The replacement value.</param>
+        /// <typeparam name="T">The type of value.</typeparam>
+        /// <returns>The modified IEnumerable if the IEnumerable contains the value to be replaced; Otherwise the original IEnumerable is returned.</returns>
+        public static IEnumerable<T> Replace<T>(this IEnumerable<T> source, T oldValue, T newValue)
+        {
+            T[] enumerable = source.ToArray();
+
+            if (enumerable.Contains(oldValue))
+            {
+                for (int index = 0; index < enumerable.Length; index++)
                 {
-                    enumerable[index] = newValue;
+                    if (enumerable[index]!.Equals(oldValue))
+                    {
+                        enumerable[index] = newValue;
+                    }
                 }
             }
-        }
 
-        return enumerable;
+            return enumerable;
+        }
     }
 }

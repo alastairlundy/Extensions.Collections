@@ -25,27 +25,28 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AlastairLundy.Extensions.Collections.Specializations.Bools;
-
-public static class IsAnyFalseExtensions
+namespace AlastairLundy.Extensions.Collections.Specializations.Bools
 {
-    /// <summary>
-    /// Returns true if any of the bool objects in an IEnumerable are false.
-    /// </summary>
-    /// <param name="source">The IEnumerable to be searched.</param>
-    /// <returns>True if any bool in the IEnumerable is false; False otherwise.</returns>
-    public static bool IsAnyFalse(this IEnumerable<bool> source)
+    public static class IsAnyFalseExtensions
     {
-        return source.Any(x => x == false);
-    }
+        /// <summary>
+        /// Returns true if any of the bool objects in an IEnumerable are false.
+        /// </summary>
+        /// <param name="source">The IEnumerable to be searched.</param>
+        /// <returns>True if any bool in the IEnumerable is false; False otherwise.</returns>
+        public static bool IsAnyFalse(this IEnumerable<bool> source)
+        {
+            return source.Any(x => x == false);
+        }
 
-    /// <summary>
-    /// Returns true if any of the bools in an ICollection are false.
-    /// </summary>
-    /// <param name="source">The ICollection to be searched.</param>
-    /// <returns>True if any bool in the ICollection is false; False otherwise.</returns>
-    public static bool IsAnyFalse(this ICollection<bool> source)
-    {
-        return source.Any(x => x == false);
+        /// <summary>
+        /// Returns true if any of the bools in an ICollection are false.
+        /// </summary>
+        /// <param name="source">The ICollection to be searched.</param>
+        /// <returns>True if any bool in the ICollection is false; False otherwise.</returns>
+        public static bool IsAnyFalse(this ICollection<bool> source)
+        {
+            return source.Any(x => x == false);
+        }
     }
 }
