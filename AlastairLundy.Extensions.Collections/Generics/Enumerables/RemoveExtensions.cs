@@ -35,7 +35,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
         /// </summary>
         /// <param name="source">The IEnumerable to have an item removed from it.</param>
         /// <param name="itemToBeRemoved">The item to be removed.</param>
-        /// <typeparam name="T">The type of object stored in the IEnumerable.</typeparam>
+        /// <typeparam name="T">The type of elements stored in the IEnumerable.</typeparam>
         /// <returns>the new IEnumerable with the removed item.</returns>
         public static IEnumerable<T> Remove<T>(this IEnumerable<T> source, T itemToBeRemoved)
         {
@@ -47,7 +47,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
         /// </summary>
         /// <param name="source">The IEnumerable to have items removed from.</param>
         /// <param name="itemsToBeRemoved">The items to be removed.</param>
-        /// <typeparam name="T">The type of object stored in the IEnumerable.</typeparam>
+        /// <typeparam name="T">The type of elements stored in the IEnumerable.</typeparam>
         /// <returns>The new IEnumerable with the specified items removed.</returns>
         public static IEnumerable<T> Remove<T>(this IEnumerable<T> source, IEnumerable<T> itemsToBeRemoved)
         {
