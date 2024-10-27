@@ -23,6 +23,7 @@
    */
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AlastairLundy.Extensions.Collections.Specializations.Bools
 {
@@ -35,15 +36,7 @@ namespace AlastairLundy.Extensions.Collections.Specializations.Bools
         /// <returns>true if all the bool objects in the array are true, returns false otherwise.</returns>
         public static bool IsAllTrue(this IEnumerable<bool> source)
         {
-            foreach (bool input in source)
-            {
-                if (input.Equals(false))
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return source.All(x => x == true);
         }
     }
 }
