@@ -48,7 +48,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
             if (arrayOne.Length + arrayTwo.Length > Array.MaxLength)
 #else
             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-            if(arrayOne.Length + arrayTwo.Length > int.MaxValue)
+            if((arrayOne.Length + arrayTwo.Length) > int.MaxValue)
 #endif
             {
 
