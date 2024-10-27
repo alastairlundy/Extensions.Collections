@@ -22,9 +22,12 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using AlastairLundy.Extensions.Collections.IEnumerables;
+
 using AlastairLundy.Extensions.System.Indexes;
 
 namespace AlastairLundy.Extensions.Collections.Specializations.Indexes
@@ -41,19 +44,20 @@ namespace AlastairLundy.Extensions.Collections.Specializations.Indexes
         public static IEnumerable<int> StringIndexesOf(this IEnumerable<string> strings, string expected, bool ignoreCase)
         {
             List<int> indexes = new();
+            string[] stringsArray = strings.ToArray();
         
-            foreach (string str in strings)
+            for (int stringIndex = 0; stringIndex < stringsArray.Length; stringIndex++)
             {
-                int[] result = str.IndexesOf(expected, ignoreCase).ToArray();
+                int[] result = stringsArray[stringIndex].IndexesOf(expected, ignoreCase).ToArray();
 
+                result = result.DeDuplicate().ToArray();
+                
                 if (result.Any() && result.Length != 1 && result[0] != -1)
                 {
                     indexes = indexes.Combine(result).ToList();
                 }
             }
-
-            indexes = indexes.DeDuplicate().ToList();
-        
+            
             return indexes;
         }
     }

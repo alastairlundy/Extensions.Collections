@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -45,11 +46,16 @@ namespace AlastairLundy.Extensions.Collections.Specializations.Indexes
         
             foreach (string str in strings)
             {
-                indexes = indexes.Combine(str.IndexesOf(expected, ignoreCase)).ToList();
-            }
+                int[] result = str.IndexesOf(expected, ignoreCase).ToArray();
 
-            indexes = indexes.DeDuplicate().ToList();
-        
+                result = result.DeDuplicate().ToArray();
+                
+                if (result.Any() && result.Length != 1 && result[0] != -1)
+                {
+                    indexes = indexes.Combine(result).ToList();
+                }
+            }
+            
             return indexes;
         }
     }
