@@ -31,12 +31,12 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
     public static class ForEachExtensions
     {
         /// <summary>
-        /// 
+        /// Perform a specified action for each item in an IEnumerable.
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="action"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        /// <param name="source">The IEnumerable to be modified.</param>
+        /// <param name="action">The action to be performed.</param>
+        /// <typeparam name="T">The type of object the IEnumerable enumerates.</typeparam>
+        /// <returns>The resulting IEnumerable.</returns>
         public static IEnumerable<T> ForEach<T>(this IEnumerable<T> source, Action<T> action)
         {
             T[] enumerable = source as T[] ?? source.ToArray();
@@ -50,11 +50,11 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
         }
 
         /// <summary>
-        /// 
+        /// Perform a specified action for each item in an Array.
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="action"></param>
-        /// <typeparam name="T"></typeparam>
+        /// <param name="source">The array to be modified.</param>
+        /// <param name="action">The action to be performed.</param>
+        /// <typeparam name="T">The type of elements in the Array.</typeparam>
         public static void ForEach<T>(this T[] source, Action<T> action)
         {
             for (int i = 0; i < source.Length; i++)
