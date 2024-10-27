@@ -47,6 +47,8 @@ namespace AlastairLundy.Extensions.Collections.Specializations.Indexes
             {
                 indexes = indexes.Combine(str.IndexesOf(expected, ignoreCase)).ToList();
             }
+
+            indexes = indexes.DeDuplicate().ToList();
         
             return indexes;
         }

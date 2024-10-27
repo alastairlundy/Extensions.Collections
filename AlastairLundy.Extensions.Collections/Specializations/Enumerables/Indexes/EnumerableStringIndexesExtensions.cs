@@ -51,6 +51,8 @@ namespace AlastairLundy.Extensions.Collections.Specializations.Indexes
                     indexes = indexes.Combine(result).ToList();
                 }
             }
+
+            indexes = indexes.DeDuplicate().ToList();
         
             return indexes;
         }
