@@ -27,8 +27,18 @@ using System.Linq;
 
 namespace AlastairLundy.Extensions.Collections.Specializations.Bools
 {
-    public static class IsAllFalseExtensions
+    public static class IsAllExtensions
     {
+        /// <summary>
+        /// Returns whether all the bool objects in an array are true or not.
+        /// </summary>
+        /// <param name="source">The bool array to be checked.</param>
+        /// <returns>true if all the bool objects in the array are true, returns false otherwise.</returns>
+        public static bool IsAllTrue(this IEnumerable<bool> source)
+        {
+            return source.All(x => x == true);
+        }
+        
         /// <summary>
         /// Returns whether all the bool objects in an array are false or not.
         /// </summary>
