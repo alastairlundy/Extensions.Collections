@@ -3,7 +3,7 @@
     <PropertyGroup>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>5.4.0</Version>
+        <Version>5.5.0-preview.1</Version>
         <Title>AlastairLundy.Extensions.Collections</Title>
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) 2024 Alastair Lundy</Copyright>
@@ -11,30 +11,19 @@
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-        <PackageReleaseNotes>## Changes since 5.3.0
-
-### Additions
-* Added .NET Standard 2.0 support
-* Added ``IsAnyTrue`` bool IEnumerable extension - This has been moved from SystemExtensions
-* Added ``IsAnyFalse`` bool IEnumerable extension - This has been moved from SystemExtensions
-* Added ``IsAllTrue`` bool IEnumerable extension - This has been moved from SystemExtensions
-* Added ``IsAllFalse`` bool IEnumerable extension - This has been moved from SystemExtensions
-* Added ``Replace`` IEnumerable Generic extension
-* Added ``StringIndexesOf`` extension method for IEnumerables of type String
-* Added ``CharIndexesOf`` extension method for IEnumerables of type Char
-* Added generic IEnumerable ``ForEach`` extension
-
-### General Improvements
-* Improved the robustness of IndexesOf extension method for IEnumerables
-* Moved IEnumerable Specializations folder and namespace
-* Restuctured generic extensions directory and non generic extension directories</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes since 5.4.0
+* Added sourcelink and symbol output for Nuget
+* Improved compatibility with SystemExtensions 5
+* Simplified ``IsTrue`` and ``IsFalse`` code
+* Cleaned up ``IndexesOf`` extension methods
+* Added ``ToString()`` extension method for IEnumerables</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <AssemblyName>AlastairLundy.Extensions.Collections</AssemblyName>
         <RootNamespace>AlastairLundy.Extensions.Collections</RootNamespace>
         <Description>Extensions to C# IEnumerables, ICollections, and more.</Description>
         <LangVersion>default</LangVersion>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <TargetFrameworks>net8.0;netstandard2.0</TargetFrameworks>
+        <TargetFrameworks>net8.0;netstandard2.0;netstandard2.1</TargetFrameworks>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
