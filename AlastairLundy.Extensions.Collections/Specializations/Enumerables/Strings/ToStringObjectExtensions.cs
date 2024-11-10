@@ -72,6 +72,11 @@ public static class ToStringObjectExtensions
 
         foreach (T item in source)
         {
+            if (item is null)
+            {
+                throw new NullReferenceException($"Item {nameof(item)} in {nameof(source)} was null");
+            }
+            
             stringBuilder.Append(item.ToString());
 
             if (sourceItemSeparator == Environment.NewLine)
