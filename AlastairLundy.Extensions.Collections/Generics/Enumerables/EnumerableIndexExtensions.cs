@@ -57,7 +57,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
         }
 
         /// <summary>
-        /// Gets the indexes of the specified object within an IEnumerable of an object..
+        /// Gets the indexes of the specified object within an IEnumerable of an object.
         /// </summary>
         /// <param name="source">The IEnumerable to be searched.</param>
         /// <param name="obj">The item to search for.</param>
@@ -67,7 +67,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
         {
             if (typeof(T) == typeof(string))
             {
-                return ((source as IEnumerable<string>)!).StringIndexesOf((obj as string)!, false);
+                return (source as IEnumerable<string>)!.StringIndexesOf((obj as string)!, false);
             }
             else
             {
