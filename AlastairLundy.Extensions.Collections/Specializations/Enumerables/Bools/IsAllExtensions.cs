@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -34,6 +35,7 @@ namespace AlastairLundy.Extensions.Collections.Specializations.Bools
         /// </summary>
         /// <param name="source">The bool array to be checked.</param>
         /// <returns>true if all the bool objects in the array are true, returns false otherwise.</returns>
+        [Obsolete("This method is obsolete and will be removed in a future version.")]
         public static bool IsAllTrue(this IEnumerable<bool> source)
         {
             return source.All(x => x == true);
@@ -44,6 +46,7 @@ namespace AlastairLundy.Extensions.Collections.Specializations.Bools
         /// </summary>
         /// <param name="source">The bool array to be checked.</param>
         /// <returns>true if all the bool objects in the array are false, returns false otherwise.</returns>
+        [Obsolete("This method is obsolete and will be removed in a future version.")]
         public static bool IsAllFalse(this IEnumerable<bool> source)
         {
             return source.All(x => x == false);

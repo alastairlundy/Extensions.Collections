@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -34,6 +35,7 @@ namespace AlastairLundy.Extensions.Collections.Specializations.Bools
         /// </summary>
         /// <param name="source">The IEnumerable to be searched.</param>
         /// <returns>True if any bool in the IEnumerable is true; False otherwise.</returns>
+        [Obsolete("This method is obsolete and will be removed in a future version.")]
         public static bool IsAnyTrue(this IEnumerable<bool> source)
         {
             return source.Any(x => x == true);
@@ -44,6 +46,7 @@ namespace AlastairLundy.Extensions.Collections.Specializations.Bools
         /// </summary>
         /// <param name="source">The collection to be searched.</param>
         /// <returns>True if any bool in the ICollection is true; False otherwise.</returns>
+        [Obsolete("This method is obsolete and will be removed in a future version.")]
         public static bool IsAnyTrue(this ICollection<bool> source)
         {
             return source.Any(x => x == true);
@@ -54,6 +57,7 @@ namespace AlastairLundy.Extensions.Collections.Specializations.Bools
         /// </summary>
         /// <param name="source">The IEnumerable to be searched.</param>
         /// <returns>True if any bool in the IEnumerable is false; False otherwise.</returns>
+        [Obsolete("This method is obsolete and will be removed in a future version.")]
         public static bool IsAnyFalse(this IEnumerable<bool> source)
         {
             return source.Any(x => x == false);
@@ -64,6 +68,7 @@ namespace AlastairLundy.Extensions.Collections.Specializations.Bools
         /// </summary>
         /// <param name="source">The ICollection to be searched.</param>
         /// <returns>True if any bool in the ICollection is false; False otherwise.</returns>
+        [Obsolete("This method is obsolete and will be removed in a future version.")]
         public static bool IsAnyFalse(this ICollection<bool> source)
         {
             return source.Any(x => x == false);
