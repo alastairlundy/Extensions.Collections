@@ -39,7 +39,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
         /// <param name="source">The IEnumerable to be searched.</param>
         /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
         /// <returns>True if the IEnumerable contains duplicate objects; false otherwise.</returns>
-        public static bool ContainsDuplicates<T>(this IEnumerable<T> source)
+        public static bool ContainsDuplicates<T>(this IEnumerable<T> source) where T : notnull
         {
             Dictionary<T, int> frequency = source.FrequencyOfAll();
 
@@ -61,7 +61,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
         /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
         /// <returns>An IEnumerable with duplicate objects removed.</returns>
         /// <exception cref="NullReferenceException">Thrown if no objects exist in the IEnumerable.</exception>
-        public static IEnumerable<T> DeDuplicate<T>(this IEnumerable<T> source)
+        public static IEnumerable<T> DeDuplicate<T>(this IEnumerable<T> source) where T : notnull
         {
             Dictionary<T, int> frequency = source.FrequencyOfAll();
 
@@ -80,7 +80,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
         /// <param name="destinationEnumerable">The IEnumerable with duplicates removed, if any duplicates were found.</param>
         /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
         /// <returns>True if duplicates of an object were removed from the specified IEnumerable; false otherwise.</returns>
-        public static bool TryDeDuplicate<T>(this IEnumerable<T> source, out IEnumerable<T> destinationEnumerable)
+        public static bool TryDeDuplicate<T>(this IEnumerable<T> source, out IEnumerable<T> destinationEnumerable) where T : notnull
         {
             T[] toBeDeDuplicated = source as T[] ?? source.ToArray();
 
