@@ -44,21 +44,20 @@ namespace AlastairLundy.Extensions.Collections.Specializations.Indexes
         
         public static IEnumerable<int> StringIndexesOf(this IEnumerable<string> strings, string expected, bool ignoreCase)
         {
-            List<int> indexes = new();
-            string[] stringsArray = strings.ToArray();
+            List<int> indexes = new List<int>();
+            string[] enumerable = strings.ToArray();
         
-            for (int stringIndex = 0; stringIndex < stringsArray.Length; stringIndex++)
+            for (int stringIndex = 0; stringIndex < enumerable.Length; stringIndex++)
             {
-                string current = stringsArray[stringIndex];
-                int[] result = current.IndexesOf(expected, ignoreCase).ToArray();
-
-                result = result.DeDuplicate().ToArray();
+                var result = enumerable[stringIndex].IndexesOf(expected, ignoreCase).ToArray();
                 
-                if (result.Any() && result.Length != 1 && result[0] != -1)
+                if (result.Length > 0 && result.Length != 1 && result[0] != -1)
                 {
                     indexes = indexes.Combine(result).ToList();
                 }
             }
+            
+            indexes = indexes.DeDuplicate().ToList();
             
             return indexes;
         }
