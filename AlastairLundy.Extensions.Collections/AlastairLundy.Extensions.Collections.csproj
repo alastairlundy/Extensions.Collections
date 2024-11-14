@@ -3,7 +3,7 @@
     <PropertyGroup>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>5.5.0-preview.1</Version>
+        <Version>5.5.0-preview.2</Version>
         <Title>AlastairLundy.Extensions.Collections</Title>
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) 2024 Alastair Lundy</Copyright>
@@ -11,12 +11,12 @@
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-        <PackageReleaseNotes>### Changes since 5.4.0
-* Added sourcelink and symbol output for Nuget
-* Improved compatibility with SystemExtensions 5
-* Simplified ``IsTrue`` and ``IsFalse`` code
-* Cleaned up ``IndexesOf`` extension methods
-* Added ``ToString()`` extension method for IEnumerables</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes since 5.5.0 Preview 1
+* Updated dependency on SystemExtensions to 5.3.0 from 5.2.0
+* Fixed a typo in xml doc comments
+* Simplified string enumerable indexes of code
+* Deprecated ``IsAll`` and ``IsAny`` extension methods - These will be removed in a future version
+* Deprecated the ``ForEach`` extension method that works with Arrays - This will be removed in a future version</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <AssemblyName>AlastairLundy.Extensions.Collections</AssemblyName>
         <RootNamespace>AlastairLundy.Extensions.Collections</RootNamespace>
