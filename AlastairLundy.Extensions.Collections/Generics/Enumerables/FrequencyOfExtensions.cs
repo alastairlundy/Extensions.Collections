@@ -23,6 +23,7 @@
    */
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AlastairLundy.Extensions.Collections.IEnumerables
 {
@@ -40,17 +41,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
         /// <returns>The number of times the object appears in the IEnumerable.</returns>
         public static int FrequencyOf<T>(this IEnumerable<T> source, T obj)
         {
-            int frequency = 0;
-
-            foreach (T item in source)
-            {
-                if (item != null && item.Equals(obj))
-                {
-                    frequency++;
-                }
-            }
-
-            return frequency;
+            return source.Where(x => x != null && x.Equals(obj)).Count();
         }
         
         /// <summary>
