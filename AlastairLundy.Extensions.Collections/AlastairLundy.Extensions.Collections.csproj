@@ -3,7 +3,7 @@
     <PropertyGroup>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>5.5.0-preview.2</Version>
+        <Version>5.5.0-preview.3</Version>
         <Title>AlastairLundy.Extensions.Collections</Title>
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) 2024 Alastair Lundy</Copyright>
