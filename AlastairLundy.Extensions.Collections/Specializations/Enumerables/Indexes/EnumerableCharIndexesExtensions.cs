@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using AlastairLundy.Extensions.Collections.IEnumerables;
-using AlastairLundy.Extensions.System.Indexes;
+using AlastairLundy.Extensions.System.Strings.Indexes;
 
 namespace AlastairLundy.Extensions.Collections.Specializations.Indexes
 {
