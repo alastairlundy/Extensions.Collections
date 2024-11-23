@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -39,6 +40,7 @@ namespace AlastairLundy.Extensions.Collections.Specializations.Indexes
         /// <param name="expected">The char to look for.</param>
         /// <param name="ignoreCase">Whether to ignore the case of the expected char.</param>
         /// <returns>The indexes if the char is found.</returns>
+        [Obsolete("This method is deprecated and will be removed in a future version.")]
         public static IEnumerable<int> CharIndexesOf(this IEnumerable<string> strings, char expected, bool ignoreCase)
         {
             List<int> indexes = new List<int>();
