@@ -25,7 +25,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 
 using System.Text;
 
@@ -38,7 +37,7 @@ namespace AlastairLundy.Extensions.Collections
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    public class HashMap<TKey, TValue> : IHashMap<TKey, TValue>, IEquatable<HashMap<TKey, TValue>>
+    public class HashMap<TKey, TValue> : IHashMap<TKey, TValue>, IEquatable<HashMap<TKey, TValue>>, IDisposable
     {
         // ReSharper disable once InconsistentNaming
         protected Dictionary<TKey, TValue> _dictionary;
@@ -392,6 +391,14 @@ namespace AlastairLundy.Extensions.Collections
             }
 
             return stringBuilder.ToString().GetHashCode();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            Clear();
         }
     }
 }
