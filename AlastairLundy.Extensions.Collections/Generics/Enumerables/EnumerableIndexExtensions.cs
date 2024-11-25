@@ -25,8 +25,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using AlastairLundy.Extensions.Collections.Specializations.Indexes;
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable SuggestVarOrType_BuiltInTypes
 
@@ -69,25 +67,30 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
         
         public static IEnumerable<int> IndexesOf<T>(this IEnumerable<T> source, T obj)
         {
-            if (typeof(T) == typeof(string))
+            List<int> indexes = new List<int>();
+            
+            T[] items = source as T[] ?? source.ToArray();
+
+            for(int index = 0; index < items.Length; index++)
             {
-                return (source as IEnumerable<string>)!.StringIndexesOf((obj as string)!, false);
+                T item = items[index];
+                
+                if (item != null && item.Equals(obj))
+                {
+                    indexes.Add(index);
+                }
+            }
+
+            if (indexes.Count > 0)
+            {
+                return indexes; 
             }
             else
             {
-                List<int> indexes = new List<int>();
-            
-                T[] items = source as T[] ?? source.ToArray();
+                return new[]{-1};
+            }
+        }
 
-                for(int index = 0; index < items.Length; index++)
-                {
-                    T item = items[index];
-                
-                    if (item != null && item.Equals(obj))
-                    {
-                        indexes.Add(index);
-                    }
-                }
         /// <summary>
         /// Gets the indexes of the specified string within an IEnumerable of strings.
         /// </summary>
