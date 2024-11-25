@@ -37,6 +37,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
         /// <param name="action">The action to be performed.</param>
         /// <typeparam name="T">The type of object the IEnumerable enumerates.</typeparam>
         /// <returns>The resulting IEnumerable.</returns>
+        [Obsolete("This method is deprecated and will be removed in a future version.")]
         public static IEnumerable<T> ForEach<T>(this IEnumerable<T> source, Action<T> action)
         {
             T[] enumerable = source as T[] ?? source.ToArray();
@@ -55,7 +56,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
         /// <param name="source">The array to be modified.</param>
         /// <param name="action">The action to be performed.</param>
         /// <typeparam name="T">The type of elements in the Array.</typeparam>
-        [Obsolete("This method is obsolete and will be removed in a future version.")]
+        [Obsolete("This method is deprecated and will be removed in a future version.")]
         public static void ForEach<T>(this T[] source, Action<T> action)
         {
             for (int i = 0; i < source.Length; i++)
