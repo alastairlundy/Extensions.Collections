@@ -41,7 +41,7 @@ namespace AlastairLundy.Extensions.Collections.Specializations.Indexes
         /// <param name="expected">The string to look for.</param>
         /// <param name="ignoreCase">Whether to ignore the case of the expected string.</param>
         /// <returns>The indexes if the string is found.</returns>
-        [Obsolete("This method is deprecated and will be removed in a future version.")]
+        [Obsolete("This method is deprecated and will be removed in a future version. Use IndexesOf(IEnumerable<string>, string, bool) instead.")]
         public static IEnumerable<int> StringIndexesOf(this IEnumerable<string> strings, string expected, bool ignoreCase)
         {
             List<int> indexes = new List<int>();
