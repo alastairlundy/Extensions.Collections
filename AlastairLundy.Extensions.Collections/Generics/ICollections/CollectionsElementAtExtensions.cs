@@ -59,8 +59,14 @@ namespace AlastairLundy.Extensions.Collections.ICollections
         /// <returns>The item associated with the specified index in the collection.</returns>
         /// <exception cref="IndexOutOfRangeException">Thrown if the greater is larger than the collection or is less than 0.</exception>
         /// <exception cref="KeyNotFoundException">Thrown if no item is found at the specified index.</exception>
-        public static object ElementAt(this ICollection collection, int index)
+        public static object? ElementAt(this ICollection collection, int index)
         {
+#if NETSTANDARD2_1 || NET8_0_OR_GREATER
+            object? output = null;
+#else
+            object output = -1;
+#endif
+            
             if (index > collection.Count || index < 0)
             {
                 throw new IndexOutOfRangeException();
@@ -76,14 +82,21 @@ namespace AlastairLundy.Extensions.Collections.ICollections
                 {
                     if (enumerator.Current != null)
                     {
-                        return enumerator.Current;
+                        output = enumerator.Current;
                     }
                 }
 
                 internalIndex++;
             }
 
-            throw new KeyNotFoundException();
+            if (output == null || int.Parse(output.ToString()) == -1)
+            {
+                return null;
+            }
+            else
+            {
+                return output;
+            }
         }
     }   
 }

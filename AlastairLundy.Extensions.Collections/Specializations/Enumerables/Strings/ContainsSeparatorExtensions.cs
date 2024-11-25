@@ -60,12 +60,9 @@ public static class ContainsSeparatorExtensions
             {
                 if (arg.Split(' ').Length > 0)
                 {
-                    foreach (string s in arg.Split(' '))
+                    if (arg.Split(' ').Any(s => s.Equals(separator)))
                     {
-                        if (s.Equals(separator))
-                        {
-                            output = true;
-                        }
+                        return true;
                     }
                 }
             }

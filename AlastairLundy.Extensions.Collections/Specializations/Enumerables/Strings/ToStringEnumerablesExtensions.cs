@@ -24,6 +24,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AlastairLundy.Extensions.Collections.Specializations.Strings
 {
@@ -41,13 +42,12 @@ namespace AlastairLundy.Extensions.Collections.Specializations.Strings
             if (typeof(T).GetMethod("ToString")?.DeclaringType != typeof(object) && typeof(T) != typeof(object))
             {
                 List<string> list = new List<string>();
-                
-                foreach (T item in source)
+
+                if (typeof(T) != typeof(object))
                 {
-                    if (item?.GetType() != typeof(object))
-                    {
-                        list.Add(item?.ToString()!);
-                    }
+                    T[] enumerable = source as T[] ?? source.ToArray();
+                    
+                    list.AddRange(enumerable.Select(o => o?.ToString())!);
                 }
 
                 return list.ToArray();
