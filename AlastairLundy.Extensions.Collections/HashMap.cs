@@ -29,6 +29,8 @@ using System.Linq;
 using System.Text;
 
 using AlastairLundy.Extensions.Collections.Dictionaries;
+// ReSharper disable RedundantIfElseBlock
+// ReSharper disable RedundantBoolCompare
 
 namespace AlastairLundy.Extensions.Collections
 {
@@ -40,7 +42,7 @@ namespace AlastairLundy.Extensions.Collections
     public class HashMap<TKey, TValue> : IHashMap<TKey, TValue>, IEquatable<HashMap<TKey, TValue>>, IDisposable
     {
         // ReSharper disable once InconsistentNaming
-        protected Dictionary<TKey, TValue> _dictionary;
+        protected readonly Dictionary<TKey, TValue> _dictionary;
 
         /// <summary>
         /// 
@@ -340,7 +342,7 @@ namespace AlastairLundy.Extensions.Collections
                 
                 foreach (KeyValuePair<TKey, TValue> pair in _dictionary)
                 {
-                    if (hashMap!.GetValue(pair.Key)!.Equals(pair.Value))
+                    if (hashMap.GetValue(pair.Key)!.Equals(pair.Value))
                     {
                         bools.Add(true);
                     }
@@ -350,7 +352,7 @@ namespace AlastairLundy.Extensions.Collections
                     }
                 }
                 
-                return bools.All(b => true);
+                return bools.All(b => b == true);
             }
         }
 
