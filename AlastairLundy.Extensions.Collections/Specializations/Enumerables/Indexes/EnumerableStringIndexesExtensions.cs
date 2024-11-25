@@ -49,11 +49,11 @@ namespace AlastairLundy.Extensions.Collections.Specializations.Indexes
         
             for (int stringIndex = 0; stringIndex < enumerable.Length; stringIndex++)
             {
-                var result = enumerable[stringIndex].IndexesOf(expected, ignoreCase).ToArray();
+                int[] tempResults = enumerable[stringIndex].IndexesOf(expected, ignoreCase).ToArray();
                 
-                if (result.Length > 0 && result.Length != 1 && result[0] != -1)
+                if (tempResults.Length > 0 && tempResults.Length != 1 && tempResults[0] != -1)
                 {
-                    indexes = indexes.Combine(result).ToList();
+                    indexes = indexes.Combine(tempResults).ToList();
                 }
             }
             

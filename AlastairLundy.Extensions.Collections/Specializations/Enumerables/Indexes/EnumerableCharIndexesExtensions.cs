@@ -47,13 +47,13 @@ namespace AlastairLundy.Extensions.Collections.Specializations.Indexes
         
             foreach (string str in strings)
             {
-                int[] result = str.IndexesOf(expected, ignoreCase).ToArray();
+                int[] tempResults = str.IndexesOf(expected, ignoreCase).ToArray();
 
-                result = result.DeDuplicate().ToArray();
+                tempResults = tempResults.DeDuplicate().ToArray();
                 
-                if (result.Any() && result.Length != 1 && result[0] != -1)
+                if (tempResults.Any() && tempResults.Length != 1 && tempResults[0] != -1)
                 {
-                    indexes = indexes.Combine(result).ToList();
+                    indexes = indexes.Combine(tempResults).ToList();
                 }
             }
             
