@@ -25,9 +25,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+// ReSharper disable RedundantBoolCompare
 
 namespace AlastairLundy.Extensions.Collections.Specializations.Bools
 {
+    [Obsolete("This class is obsolete and will be removed in a future version.")]
+
     public static class IsAnyExtensions
     {
         /// <summary>
