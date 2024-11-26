@@ -50,17 +50,45 @@ namespace AlastairLundy.Extensions.Collections
         public HashMap()
         {
             _dictionary = new();
+            Disposed = false;
         }
+
+        private bool Disposed { get; set; }
 
         /// <summary>
         /// Returns whether the HashMap is empty or not.
         /// </summary>
-        public bool IsEmpty => Count == 0;
+        public bool IsEmpty
+        {
+            get
+            {
+                if (Disposed == false)
+                {
+                    return Count == 0;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
 
         /// <summary>
         /// Returns the number of KeyValuePairs in the HashMap. 
         /// </summary>
-        public int Count => _dictionary.Count;
+        public int Count {
+            get
+            {
+                if (Disposed == false)
+                {
+                    return _dictionary.Count;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
         
         /// <summary>
         /// Add a Key and a corresponding Value to the HashMap.
@@ -69,12 +97,15 @@ namespace AlastairLundy.Extensions.Collections
         /// <param name="value">The value to be associated with the key.</param>
         public void Put(TKey key, TValue value)
         {
-            if (!ContainsKey(key))
+            if (Disposed == false)
             {
-                _dictionary.Add(key, value);
-            }
+                if (!ContainsKey(key))
+                {
+                    _dictionary.Add(key, value);
+                }
 
-            throw new ArgumentException($"Existing key {key} found with value {GetValue(key)}. Can't put a Key that already exists.");
+                throw new ArgumentException($"Existing key {key} found with value {GetValue(key)}. Can't put a Key that already exists.");
+            }
         }
 
         /// <summary>
@@ -118,12 +149,19 @@ namespace AlastairLundy.Extensions.Collections
         /// <exception cref="KeyNotFoundException">Thrown if the key has not been found in the HashMap.</exception>
         public TValue GetValue(TKey key)
         {
-            if (ContainsKey(key))
+            if (Disposed == false)
             {
-                return _dictionary[key];
-            }
+                if (ContainsKey(key))
+                {
+                    return _dictionary[key];
+                }
             
-            throw new KeyNotFoundException();
+                throw new KeyNotFoundException();
+            }
+            else
+            {
+                return default!;
+            }
         }
 
         /// <summary>
@@ -134,21 +172,28 @@ namespace AlastairLundy.Extensions.Collections
         /// <returns>The value associated with the key if the key has been found in the HashMap; defaultValue otherwise.</returns>
         public TValue GetValueOrDefault(TKey key, TValue defaultValue)
         {
-            try
+            if (Disposed == false)
             {
-                if (ContainsKey(key))
+                try
                 {
-                    return GetValue(key);
+                    if (ContainsKey(key))
+                    {
+                        return GetValue(key);
+                    }
+                    // ReSharper disable once RedundantIfElseBlock
+                    else
+                    {
+                        return defaultValue;
+                    }
                 }
-                // ReSharper disable once RedundantIfElseBlock
-                else
+                catch
                 {
                     return defaultValue;
                 }
             }
-            catch
+            else
             {
-                return defaultValue;
+                return default!;
             }
         }
 
@@ -158,7 +203,14 @@ namespace AlastairLundy.Extensions.Collections
         /// <returns>An IEnumerable of Keys in the HashMap.</returns>
         public IEnumerable<TKey> Keys()
         {
-            return _dictionary.Keys;
+            if (Disposed == false)
+            {
+                return _dictionary.Keys;
+            }
+            else
+            {
+                return [default!];
+            }
         }
 
         /// <summary>
@@ -167,7 +219,14 @@ namespace AlastairLundy.Extensions.Collections
         /// <returns>An IEnumerable of Values in the HashMap.</returns>
         public IEnumerable<TValue> Values()
         {
-            return _dictionary.Values;
+            if (Disposed == false)
+            {
+                return _dictionary.Values;
+            }
+            else
+            {
+                return [default!];
+            }
         }
 
         /// <summary>
@@ -177,11 +236,21 @@ namespace AlastairLundy.Extensions.Collections
         /// <returns>True if the item has been successfully removed from the HashMap; false otherwise.</returns>
         public bool Remove(TKey key)
         {
-            if (ContainsKey(key))
+            if (Disposed == false)
             {
-                return _dictionary.Remove(key);
+                if (ContainsKey(key))
+                {
+                    return _dictionary.Remove(key);
+                }
+                else
+                {
+                    return false;
+                }
             }
-            return false;
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -192,12 +261,19 @@ namespace AlastairLundy.Extensions.Collections
         /// <exception cref="KeyValuePairNotFoundException">Thrown if the KeyValuePair isn't found in the HashMap.</exception>
         public bool Remove(KeyValuePair<TKey, TValue> pair)
         {
-            if (ContainsKeyValuePair(pair))
+            if (Disposed == false)
             {
-                return Remove(pair.Key);
-            }
+                if (ContainsKeyValuePair(pair))
+                {
+                    return Remove(pair.Key);
+                }
 
-            throw new KeyValuePairNotFoundException(nameof(pair));
+                throw new KeyValuePairNotFoundException(nameof(pair));
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -206,12 +282,15 @@ namespace AlastairLundy.Extensions.Collections
         /// <param name="value">The specified value to be removed.</param>
         public void RemoveInstancesOf(TValue value)
         {
-            TKey[] keys = _dictionary.GetKeys(value).ToArray();
-
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (int index = 0; index < keys.Length; index++)
+            if (Disposed == false)
             {
-                Remove(keys[index]);
+                TKey[] keys = _dictionary.GetKeys(value).ToArray();
+
+                // ReSharper disable once ForCanBeConvertedToForeach
+                for (int index = 0; index < keys.Length; index++)
+                {
+                    Remove(keys[index]);
+                }
             }
         }
 
@@ -224,20 +303,27 @@ namespace AlastairLundy.Extensions.Collections
         /// <exception cref="KeyNotFoundException">Thrown if the specified Key isn't found in the HashMap.</exception>
         public bool Replace(TKey key, TValue value)
         {
-            if (ContainsKey(key))
+            if (Disposed == false)
             {
-                try
+                if (ContainsKey(key))
                 {
-                    _dictionary[key] = value;
-                    return true;
+                    try
+                    {
+                        _dictionary[key] = value;
+                        return true;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
                 }
-                catch
-                {
-                    return false;
-                }
-            }
 
-            throw new KeyNotFoundException();
+                throw new KeyNotFoundException();
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -250,25 +336,32 @@ namespace AlastairLundy.Extensions.Collections
         /// <exception cref="KeyNotFoundException">Thrown if the specified Key isn't found in the HashMap.</exception>
         public bool Replace(TKey key, TValue oldValue, TValue newValue)
         {
-            if (ContainsKey(key))
+            if (Disposed == false)
             {
-                if (ContainsKeyValuePair(new KeyValuePair<TKey, TValue>(key, oldValue)))
+                if (ContainsKey(key))
                 {
-                    try
+                    if (ContainsKeyValuePair(new KeyValuePair<TKey, TValue>(key, oldValue)))
                     {
-                        _dictionary[key] = newValue;
-                        return true;
+                        try
+                        {
+                            _dictionary[key] = newValue;
+                            return true;
+                        }
+                        catch
+                        {
+                            return false;
+                        }
                     }
-                    catch
-                    {
-                        return false;
-                    }
+
+                    return false;
                 }
 
+                throw new KeyNotFoundException();
+            }
+            else
+            {
                 return false;
             }
-
-            throw new KeyNotFoundException();
         }
 
         /// <summary>
@@ -286,7 +379,14 @@ namespace AlastairLundy.Extensions.Collections
         /// <returns></returns>
         public Dictionary<TKey, TValue> ToDictionary()
         {
-            return _dictionary;
+            if (Disposed == false)
+            {
+                return _dictionary;
+            }
+            else
+            {
+                return new Dictionary<TKey, TValue>();
+            }
         }
 
         /// <summary>
@@ -296,7 +396,14 @@ namespace AlastairLundy.Extensions.Collections
         /// <returns>True if the HashMap contains the specified key, and false otherwise.</returns>
         public bool ContainsKey(TKey key)
         {
-            return _dictionary.ContainsKey(key);
+            if (Disposed == false)
+            {
+                return _dictionary.ContainsKey(key);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -306,7 +413,14 @@ namespace AlastairLundy.Extensions.Collections
         /// <returns>True if the HashMap contains the specified value; false otherwise.</returns>
         public bool ContainsValue(TValue value)
         {
-            return _dictionary.ContainsValue(value);
+            if (Disposed == false)
+            {
+                return _dictionary.ContainsValue(value);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -317,12 +431,19 @@ namespace AlastairLundy.Extensions.Collections
         /// <exception cref="KeyNotFoundException">Thrown if the KeyValuePair is not found within the HashMap.</exception>
         public bool ContainsKeyValuePair(KeyValuePair<TKey, TValue> pair)
         {
-            if (ContainsKey(pair.Key))
+            if (Disposed == false)
             {
-                return _dictionary[pair.Key]!.Equals(pair.Value);
-            }
+                if (ContainsKey(pair.Key))
+                {
+                    return _dictionary[pair.Key]!.Equals(pair.Value);
+                }
 
-            throw new KeyValuePairNotFoundException(nameof(_dictionary));
+                throw new KeyValuePairNotFoundException(nameof(_dictionary));
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -332,27 +453,34 @@ namespace AlastairLundy.Extensions.Collections
         /// <returns>True if the compared HashMap is equal to this HashMap; false otherwise.</returns>
         public bool Equals(HashMap<TKey, TValue>? hashMap)
         {
-            if (hashMap == null)
+            if (Disposed == false)
             {
-                return false;
+                if (hashMap == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    List<bool> bools = new List<bool>();
+
+                    foreach (KeyValuePair<TKey, TValue> pair in _dictionary)
+                    {
+                        if (hashMap.GetValue(pair.Key)!.Equals(pair.Value))
+                        {
+                            bools.Add(true);
+                        }
+                        else
+                        {
+                            bools.Add(true);
+                        }
+                    }
+
+                    return bools.All(b => b == true);
+                }
             }
             else
             {
-                List<bool> bools = new List<bool>();
-                
-                foreach (KeyValuePair<TKey, TValue> pair in _dictionary)
-                {
-                    if (hashMap.GetValue(pair.Key)!.Equals(pair.Value))
-                    {
-                        bools.Add(true);
-                    }
-                    else
-                    {
-                        bools.Add(true);
-                    }
-                }
-                
-                return bools.All(b => b == true);
+                return false;
             }
         }
 
@@ -363,14 +491,21 @@ namespace AlastairLundy.Extensions.Collections
         /// <returns>True if the object is equal to this HashMap; false otherwise.</returns>
         public override bool Equals(object? obj)
         {
-            if (obj == null)
+            if (Disposed == false)
             {
-                return false;
-            }
+                if (obj == null)
+                {
+                    return false;
+                }
             
-            if (obj is HashMap<TKey, TValue> map)
-            {
-                return Equals(map);
+                if (obj is HashMap<TKey, TValue> map)
+                {
+                    return Equals(map);
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
@@ -384,15 +519,22 @@ namespace AlastairLundy.Extensions.Collections
         /// <returns></returns>
         public override int GetHashCode()
         {
-            StringBuilder stringBuilder = new();
-            
-            foreach (KeyValuePair<TKey, TValue> pair in _dictionary)
+            if (Disposed == false)
             {
-                stringBuilder.Append($"K{pair.Key},V:{pair.Value}");
-                stringBuilder.AppendLine();
-            }
+                StringBuilder stringBuilder = new();
+            
+                foreach (KeyValuePair<TKey, TValue> pair in _dictionary)
+                {
+                    stringBuilder.Append($"K{pair.Key},V:{pair.Value}");
+                    stringBuilder.AppendLine();
+                }
 
-            return stringBuilder.ToString().GetHashCode();
+                return stringBuilder.ToString().GetHashCode();
+            }
+            else
+            {
+                return typeof(TKey).GetHashCode();
+            }
         }
 
         /// <summary>
@@ -401,6 +543,7 @@ namespace AlastairLundy.Extensions.Collections
         public void Dispose()
         {
             Clear();
+            Disposed = true;
         }
     }
 }
