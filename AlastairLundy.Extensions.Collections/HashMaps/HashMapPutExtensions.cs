@@ -55,16 +55,14 @@ namespace AlastairLundy.Extensions.Collections.HashMaps
         {
             ICollection keys = hashtable.Keys;
             ICollection values = hashtable.Values;
-
-            bool sameSize = keys.Count == values.Count;
-
+            
             TKey[] keyArray = new TKey[keys.Count];
             TValue[] valArray = new TValue[values.Count];
 
             values.CopyTo(valArray, 0);
             keys.CopyTo(keyArray, 0);
 
-            if (sameSize)
+            if (keys.Count == values.Count)
             {
                 for (int index = 0; index < keys.Count; index++)
                 {
