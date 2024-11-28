@@ -58,7 +58,6 @@ namespace AlastairLundy.Extensions.Collections
 
         Dictionary<TKey, TValue> ToDictionary();
 
-
         bool ContainsKey(TKey key);
         bool ContainsValue(TValue value);
         bool ContainsKeyValuePair(KeyValuePair<TKey, TValue> pair);
