@@ -115,7 +115,7 @@ namespace AlastairLundy.Extensions.Collections.ICollections
         /// <param name="collection">The collection to be searched.</param>
         /// <param name="item">The item to get the indexes of.</param>
         /// <returns>The indexes of an object in the collection.</returns>
-        public static IEnumerable<int> IndexesOf(this ICollection collection, object item)
+        public static ICollection<int> IndexesOf(this ICollection collection, object item)
         {
             List<int> indexes = new List<int>();
             indexes.Clear();
@@ -227,7 +227,7 @@ namespace AlastairLundy.Extensions.Collections.ICollections
         /// <param name="item">The item to get the indexes of.</param>
         /// <typeparam name="T">The type of the object in the collection.</typeparam>
         /// <returns>The indexes of the specified item in the collection.</returns>
-        public static IEnumerable<int> IndexesOf<T>(this ICollection<T> collection, T item)
+        public static ICollection<int> IndexesOf<T>(this ICollection<T> collection, T item)
         {
             List<int> indexes = new List<int>();
             indexes.Clear();
