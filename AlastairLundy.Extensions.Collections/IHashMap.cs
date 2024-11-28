@@ -23,6 +23,7 @@
    */
 
 
+using System.Collections;
 using System.Collections.Generic;
 
 namespace AlastairLundy.Extensions.Collections
@@ -44,6 +45,7 @@ namespace AlastairLundy.Extensions.Collections
 
         IEnumerable<TKey> Keys();
         IEnumerable<TValue> Values();
+        IEnumerable<KeyValuePair<TKey, TValue>> KeyValuePairs();
         
         bool Remove(TKey key);
         bool Remove(KeyValuePair<TKey, TValue> pair);

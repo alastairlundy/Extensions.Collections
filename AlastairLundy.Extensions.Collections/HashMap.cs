@@ -230,6 +230,20 @@ namespace AlastairLundy.Extensions.Collections
         }
 
         /// <summary>
+        /// Returns an IEnumerable of Key Value Pairs in the HashMap.
+        /// </summary>
+        /// <returns>An IEnumerable of KeyValuePairs in the HashMap.</returns>
+        public IEnumerable<KeyValuePair<TKey, TValue>> KeyValuePairs()
+        {
+            if (Disposed == false)
+            {
+                return _dictionary.ToList();
+            }
+
+            return new List<KeyValuePair<TKey, TValue>>();
+        }
+
+        /// <summary>
         /// Removes the Key and the value associated with it from the HashMap.
         /// </summary>
         /// <param name="key">The Key to be removed.</param>
