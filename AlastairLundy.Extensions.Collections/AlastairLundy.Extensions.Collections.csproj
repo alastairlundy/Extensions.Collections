@@ -3,7 +3,8 @@
     <PropertyGroup>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>5.5.0-preview.3</Version>
+        <Version>5.5.0</Version>
+        <PackageVersion>5.5.0</PackageVersion>
         <Title>AlastairLundy.Extensions.Collections</Title>
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) 2024 Alastair Lundy</Copyright>
@@ -11,10 +12,30 @@
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-        <PackageReleaseNotes>### Changes since 5.5.0 Preview 2
+        <PackageReleaseNotes>## Changes since 5.4.0
+
+### Additions
+* Added ``ContainsSeparator`` extension method
+* Added ``ToString()`` extension method for IEnumerables
+* Added replacement methods for string and char IndexesOf extension methods
+* Added ``KeyValuePairs()`` to IHashMap&lt;TKey, TValue&gt; and HashMap&lt;TKey, TValue&gt;
+
+### Changes
+* General code optimizations
+* Updated dependency on SystemExtensions to 5.4.0 from 5.2.0
 * Optimized ``FrequencyOf`` code to use LINQ
+* Simplified string enumerable indexes of code
+* Cleaned up IndexesOf extension methods
+* Simplified IsTrue and IsFalse code
+* Implemented IDisposable in HashMap and prevent usage after Disposal
+* Remove inheritance of IDisposable from IBigCollection&lt;T&gt;
+* Fixed issues with ICollection extension methods not returning ICollections
+
+### Deprecations and Removals
 * Deprecated ``CharIndexesOf`` and ``StringIndexesOf`` extension methods
-* Added ``ContainsSeparator`` extension method </PackageReleaseNotes>
+* Deprecated ``IsAll`` and ``IsAny`` extension methods - These will be removed in a future version
+* Deprecated the ``ForEach`` extension methods - This will be removed in a future version
+* Deprecated ``IEnumerable&lt;int&gt; IndexesOf&lt;T&gt;(this IEnumerable&lt;string&gt; source, char expected)``</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <AssemblyName>AlastairLundy.Extensions.Collections</AssemblyName>
         <RootNamespace>AlastairLundy.Extensions.Collections</RootNamespace>
