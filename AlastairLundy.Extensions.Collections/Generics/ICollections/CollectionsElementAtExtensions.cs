@@ -93,7 +93,7 @@ namespace AlastairLundy.Extensions.Collections.ICollections
             {
                 return null;
             }
-            else if (int.Parse(output.ToString()) == -1)
+            else if (int.Parse(output.ToString()!) == -1)
             {
                 return null;
             }
