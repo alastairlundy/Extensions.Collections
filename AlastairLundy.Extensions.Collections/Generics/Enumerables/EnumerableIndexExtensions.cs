@@ -101,7 +101,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
         // ReSharper disable once UnusedMember.Global
         public static IEnumerable<int> IndexesOf<T>(this IEnumerable<string> source, string expected)
         {
-            return source.IndexesOf(expected, false).Select(i => i.indexWithinEnumerable);
+            return source.IndexesOf(expected, StringComparison.OrdinalIgnoreCase).Select(i => i.indexWithinEnumerable);
         }
         
         /// <summary>
@@ -125,7 +125,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
         /// <param name="ignoreCase">Whether to ignore the case of the expected string.</param>
         /// <returns>The indexes if the string is found; an empty IEnumerable otherwise.</returns>
         public static IEnumerable<(int indexWithinEnumerable, int indexWithinString)> IndexesOf(this IEnumerable<string> source,
-            string expected, bool ignoreCase = true)
+            string expected, StringComparison stringComparison = StringComparison.Ordinal)
         {
             List<(int, int)> indexes = new List<(int, int)>();
 
@@ -138,7 +138,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
                     IEnumerable<int> tempIndexes =
                         // ReSharper disable once RedundantNameQualifier
                         AlastairLundy.Extensions.System.Strings.Indexes.IndexesOfExtensions.IndexesOf(
-                            enumerable[enumerableIndex], expected, ignoreCase);
+                            enumerable[enumerableIndex], expected, stringComparison);
 
                     tempIndexes = tempIndexes.Where(i => i != -1);
                     
