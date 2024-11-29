@@ -89,7 +89,11 @@ namespace AlastairLundy.Extensions.Collections.ICollections
                 internalIndex++;
             }
 
-            if (output == null || int.Parse(output.ToString()) == -1)
+            if (output == null)
+            {
+                return null;
+            }
+            else if (int.Parse(output.ToString()) == -1)
             {
                 return null;
             }
