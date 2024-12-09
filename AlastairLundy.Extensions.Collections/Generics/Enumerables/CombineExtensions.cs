@@ -34,14 +34,14 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
         /// <summary>
         /// Combines an IEnumerable with another IEnumerable and returns the newly combined IEnumerable.
         /// </summary>
-        /// <param name="enumerableOne">The IEnumerable to be added to.</param>
+        /// <param name="source">The IEnumerable to be added to.</param>
         /// <param name="enumerableTwo">The IEnumerable to be added.</param>
         /// <typeparam name="T">The type of the value.</typeparam>
         /// <returns>The newly created IEnumerable.</returns>
         /// <exception cref="OverflowException">Thrown if the size of the new IEnumerable is larger than the max size for IEnumerables.</exception>
-        public static IEnumerable<T> Combine<T>(this IEnumerable<T> enumerableOne, IEnumerable<T> enumerableTwo)
+        public static IEnumerable<T> Combine<T>(this IEnumerable<T> source, IEnumerable<T> enumerableTwo)
         {   
-            T[] arrayOne = enumerableOne as T[] ?? enumerableOne.ToArray();
+            T[] arrayOne = source as T[] ?? source.ToArray();
             T[] arrayTwo = enumerableTwo as T[] ?? enumerableTwo.ToArray();
             
 #if NET6_0_OR_GREATER
@@ -66,29 +66,29 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
         /// <summary>
         /// Combines an IEnumerable with another IEnumerable and provides the newly combined IEnumerable.
         /// </summary>
-        /// <param name="enumerableOne">The first IEnumerable to be added.</param>
+        /// <param name="source">The first IEnumerable to be added.</param>
         /// <param name="enumerableTwo">The second IEnumerable to be added.</param>
         /// <param name="destinationEnumerable">The combined IEnumerable.</param>
         /// <typeparam name="T">The type of the value.</typeparam>
-        public static void Combine<T>(this IEnumerable<T> enumerableOne, IEnumerable<T> enumerableTwo, out IEnumerable<T> destinationEnumerable)
+        public static void Combine<T>(this IEnumerable<T> source, IEnumerable<T> enumerableTwo, out IEnumerable<T> destinationEnumerable)
         {
-            destinationEnumerable = enumerableOne.Combine(enumerableTwo);
+            destinationEnumerable = source.Combine(enumerableTwo);
         }
 
         /// <summary>
         /// Attempts to combine an IEnumerable with another IEnumerable and provides the newly combined IEnumerable.
         /// Returns whether combining the IEnumerables was successful or not.
         /// </summary>
-        /// <param name="enumerableOne">The first IEnumerable to be added.</param>
+        /// <param name="source">The first IEnumerable to be added.</param>
         /// <param name="enumerableTwo">The second IEnumerable to be added.</param>
         /// <param name="destinationEnumerable">The combined IEnumerable if successful; is null otherwise.</param>
         /// <typeparam name="T">The type of the value.</typeparam>
         /// <returns>True if combining the IEnumerables was successful; returns false otherwise.</returns>
-        public static bool TryCombine<T>(this IEnumerable<T> enumerableOne, IEnumerable<T> enumerableTwo, out IEnumerable<T>? destinationEnumerable)
+        public static bool TryCombine<T>(this IEnumerable<T> source, IEnumerable<T> enumerableTwo, out IEnumerable<T>? destinationEnumerable)
         {
             try
             {
-                destinationEnumerable = enumerableOne.Combine(enumerableTwo);
+                destinationEnumerable = source.Combine(enumerableTwo);
                 return true;
             }
             catch
