@@ -22,8 +22,10 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AlastairLundy.Extensions.Collections.HashMaps
 {
@@ -32,15 +34,25 @@ namespace AlastairLundy.Extensions.Collections.HashMaps
         /// <summary>
         /// Adds the Key Value Pairs in a Dictionary to a HashMap.
         /// </summary>
-        /// <param name="hashMap">The HashMap to have Key Value Pairs added to it.</param>
-        /// <param name="dictionary">The Dictionary to get the Key Value Pairs from.</param>
+        /// <param name="source">The HashMap to have Key Value Pairs added to it.</param>
+        /// <param name="dictionaryToAdd">The Dictionary to get the Key Value Pairs from.</param>
         /// <typeparam name="TKey">The type of Key in the HashMap and Dictionary.</typeparam>
         /// <typeparam name="TValue">The type of Value in the HashMap and Dictionary.</typeparam>
-        public static void PutDictionary<TKey, TValue>(this HashMap<TKey, TValue> hashMap, Dictionary<TKey, TValue> dictionary)
+        public static void PutDictionary<TKey, TValue>(this HashMap<TKey, TValue> source, Dictionary<TKey, TValue> dictionaryToAdd)
         {
-            foreach (KeyValuePair<TKey, TValue> pair in dictionary)
+            
+            foreach (KeyValuePair<TKey, TValue> pair in dictionaryToAdd)
             {
-                hashMap.Put(pair);
+                if (source.Count == int.MaxValue)
+                {
+                    throw new OverflowException($"{nameof(source)}  has reached the maximum size of {int.MaxValue} and cannot be added to.");
+                }
+                else if (dictionaryToAdd.Count == int.MaxValue)
+                {
+                    throw new OverflowException($"{nameof(dictionaryToAdd)}  has reached the maximum size of {int.MaxValue} and cannot be added to {nameof(source)}.");
+                }
+                
+                source.Put(pair);
             }
         }
         
@@ -49,10 +61,11 @@ namespace AlastairLundy.Extensions.Collections.HashMaps
         /// </summary>
         /// <typeparam name="TKey">The type of the Keys used.</typeparam>
         /// <typeparam name="TValue">The type of the Values used.</typeparam>
-        /// <param name="hashMap">The HashMap to be added to.</param>
+        /// <param name="source">The HashMap to be added to.</param>
         /// <param name="hashtable">The table to have items added to the HashMap</param>
-        public static void PutHashTable<TKey, TValue>(this HashMap<TKey, TValue> hashMap, Hashtable hashtable)
+        public static void PutHashTable<TKey, TValue>(this HashMap<TKey, TValue> source, Hashtable hashtable)
         {
+            
             ICollection keys = hashtable.Keys;
             ICollection values = hashtable.Values;
             
@@ -66,7 +79,16 @@ namespace AlastairLundy.Extensions.Collections.HashMaps
             {
                 for (int index = 0; index < keys.Count; index++)
                 {
-                    hashMap.Put(keyArray[index], valArray[index]);
+                    if (source.Count == int.MaxValue)
+                    {
+                        throw new OverflowException($"{nameof(source)}  has reached the maximum size of {int.MaxValue} and cannot be added to.");
+                    }
+                    else if (hashtable.Count == int.MaxValue)
+                    {
+                        throw new OverflowException($"{nameof(hashtable)}  has reached the maximum size of {int.MaxValue} and cannot be added to {nameof(source)}.");
+                    }       
+                    
+                    source.Put(keyArray[index], valArray[index]);
                 }
             }
         }
@@ -76,13 +98,24 @@ namespace AlastairLundy.Extensions.Collections.HashMaps
         /// </summary>
         /// <typeparam name="TKey">The type of the Keys used.</typeparam>
         /// <typeparam name="TValue">The type of the Values used.</typeparam>
-        /// <param name="hashMap">The HashMap to be added to.</param>
+        /// <param name="source">The HashMap to be added to.</param>
         /// <param name="enumerable">The IEnumerable of items to add to the HashMap.</param>
-        public static void PutEnumerable<TKey, TValue>(this HashMap<TKey, TValue> hashMap, IEnumerable<KeyValuePair<TKey, TValue>> enumerable)
+        public static void PutEnumerable<TKey, TValue>(this HashMap<TKey, TValue> source, IEnumerable<KeyValuePair<TKey, TValue>> enumerable)
         {
-            foreach(KeyValuePair<TKey, TValue> pair in enumerable)
+            KeyValuePair<TKey, TValue>[] keyValuePairs = enumerable as KeyValuePair<TKey, TValue>[] ?? enumerable.ToArray();
+            
+            foreach(KeyValuePair<TKey, TValue> pair in keyValuePairs)
             {
-                hashMap.Put(pair);
+                if (source.Count == int.MaxValue)
+                {
+                    throw new OverflowException($"{nameof(source)} has reached the maximum size of {int.MaxValue} and cannot be added to.");
+                }
+                else if (keyValuePairs.Length == int.MaxValue)
+                {
+                    throw new OverflowException($"{nameof(enumerable)} has reached the maximum size of {int.MaxValue} and cannot be added to {nameof(source)}.");
+                }
+                
+                source.Put(pair);
             }
         }
     }
