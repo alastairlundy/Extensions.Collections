@@ -51,8 +51,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
             if((arrayOne.Length + arrayTwo.Length) > int.MaxValue)
 #endif
             {
-
-                throw new OverflowException();
+                throw new OverflowException($"{nameof(source)} contains the maximum size of {int.MaxValue} and cannot be added to.");
             }
             
             T[] newArray = new T[arrayOne.Length + arrayTwo.Length];
