@@ -137,7 +137,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
                 {
                     IEnumerable<int> tempIndexes =
                         // ReSharper disable once RedundantNameQualifier
-                        AlastairLundy.Extensions.System.Strings.Indexes.IndexesOfExtensions.IndexesOf(
+                        AlastairLundy.Extensions.Strings.Indexes.IndexesOfExtensions.IndexesOf(
                             enumerable[enumerableIndex], expected, stringComparison);
 
                     tempIndexes = tempIndexes.Where(i => i != -1);
@@ -171,7 +171,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
                 {
                     IEnumerable<int> tempIndexes =
                         // ReSharper disable once RedundantNameQualifier
-                        AlastairLundy.Extensions.System.Strings.Indexes.IndexesOfExtensions.IndexesOf(
+                        AlastairLundy.Extensions.Strings.Indexes.IndexesOfExtensions.IndexesOf(
                             enumerable[enumerableIndex], expected, ignoreCase);
 
                     tempIndexes = tempIndexes.Where(i => i != -1);

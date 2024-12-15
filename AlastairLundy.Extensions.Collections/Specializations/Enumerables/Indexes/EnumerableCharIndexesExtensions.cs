@@ -27,7 +27,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using AlastairLundy.Extensions.Collections.IEnumerables;
-using AlastairLundy.Extensions.System.Strings.Indexes;
 
 namespace AlastairLundy.Extensions.Collections.Specializations.Indexes
 {
@@ -47,7 +46,7 @@ namespace AlastairLundy.Extensions.Collections.Specializations.Indexes
         
             foreach (string str in strings)
             {
-                int[] tempResults = str.IndexesOf(expected, ignoreCase).ToArray();
+                int[] tempResults = AlastairLundy.Extensions.Strings.Indexes.IndexesOfExtensions.IndexesOf(str, expected, ignoreCase).ToArray();
 
                 tempResults = tempResults.DeDuplicate().ToArray();
                 
