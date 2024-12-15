@@ -28,8 +28,6 @@ using System.Linq;
 
 using AlastairLundy.Extensions.Collections.IEnumerables;
 
-using AlastairLundy.Extensions.System.Strings.Indexes;
-
 namespace AlastairLundy.Extensions.Collections.Specializations.Indexes
 {
     public static class EnumerableStringIndexesExtensions
@@ -49,7 +47,7 @@ namespace AlastairLundy.Extensions.Collections.Specializations.Indexes
         
             for (int stringIndex = 0; stringIndex < enumerable.Length; stringIndex++)
             {
-                int[] tempResults = enumerable[stringIndex].IndexesOf(expected, ignoreCase).ToArray();
+                int[] tempResults = AlastairLundy.Extensions.Strings.Indexes.IndexesOfExtensions.IndexesOf(enumerable[stringIndex], expected, ignoreCase).ToArray();
                 
                 if (tempResults.Length > 0 && tempResults.Length != 1 && tempResults[0] != -1)
                 {
