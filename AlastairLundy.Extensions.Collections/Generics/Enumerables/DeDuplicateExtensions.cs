@@ -67,7 +67,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
 
             if (frequency.Keys.Count == 0 || frequency.Keys.Count < 1)
             {
-                throw new ArgumentException();
+                throw new KeyNotFoundException("Cannot deduplicate an empty enumerable.");
             }
             
             return frequency.Keys.ToArray();
