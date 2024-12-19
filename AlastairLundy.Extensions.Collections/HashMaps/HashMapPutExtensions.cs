@@ -40,7 +40,6 @@ namespace AlastairLundy.Extensions.Collections.HashMaps
         /// <typeparam name="TValue">The type of Value in the HashMap and Dictionary.</typeparam>
         public static void PutDictionary<TKey, TValue>(this HashMap<TKey, TValue> source, Dictionary<TKey, TValue> dictionaryToAdd)
         {
-            
             foreach (KeyValuePair<TKey, TValue> pair in dictionaryToAdd)
             {
                 if (source.Count == int.MaxValue)
