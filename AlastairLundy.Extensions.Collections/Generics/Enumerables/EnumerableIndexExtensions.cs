@@ -25,6 +25,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
+using AlastairLundy.Extensions.Strings.Indexes;
+
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable SuggestVarOrType_BuiltInTypes
 
@@ -109,10 +112,8 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
             {
                 if (enumerable[enumerableIndex].Contains(expected))
                 {
-                    IEnumerable<int> tempIndexes =
-                        // ReSharper disable once RedundantNameQualifier
-                        AlastairLundy.Extensions.Strings.Indexes.IndexesOfExtensions.IndexesOf(
-                            enumerable[enumerableIndex], expected, stringComparison);
+                    //NOTE: This invokes StringExtensions' IndexesOf method.
+                    IEnumerable<int> tempIndexes = enumerable[enumerableIndex].IndexesOf(expected, stringComparison);
 
                     tempIndexes = tempIndexes.Where(i => i != -1);
                     
@@ -143,11 +144,9 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
             {
                 if (enumerable[enumerableIndex].ToLower().Equals(expected.ToString().ToLower()))
                 {
-                    IEnumerable<int> tempIndexes =
-                        // ReSharper disable once RedundantNameQualifier
-                        AlastairLundy.Extensions.Strings.Indexes.IndexesOfExtensions.IndexesOf(
-                            enumerable[enumerableIndex], expected, ignoreCase);
-
+                    //NOTE: This invokes StringExtensions' IndexesOf method.
+                    IEnumerable<int> tempIndexes = enumerable[enumerableIndex].IndexesOf(expected, ignoreCase);
+                    
                     tempIndexes = tempIndexes.Where(i => i != -1);
                     
                     indexes.AddRange(tempIndexes.Select(item => (enumerableIndex, item)));
