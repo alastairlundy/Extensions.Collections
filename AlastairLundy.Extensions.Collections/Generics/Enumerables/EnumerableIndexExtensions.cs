@@ -90,32 +90,6 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
                 return new[]{-1};
             }
         }
-
-        /// <summary>
-        /// Gets the indexes of the specified string within an IEnumerable of strings.
-        /// </summary>
-        /// <param name="source">The IEnumerable of strings to be searched.</param>
-        /// <param name="expected">The string to look for.</param>
-        /// <returns>The indexes if the string is found; an empty IEnumerable otherwise.</returns>
-        [Obsolete("Using this method with Strings is discouraged and may not produce the result you intended. You probably meant to call: IndexesOf(IEnumerable<string>, string, bool) instead.", false)]
-        // ReSharper disable once UnusedMember.Global
-        public static IEnumerable<int> IndexesOf<T>(this IEnumerable<string> source, string expected)
-        {
-            return source.IndexesOf(expected, StringComparison.OrdinalIgnoreCase).Select(i => i.indexWithinEnumerable);
-        }
-        
-        /// <summary>
-        /// Gets the indexes of the specified char within an IEnumerable of strings.
-        /// </summary>
-        /// <param name="source">The IEnumerable of strings to be searched.</param>
-        /// <param name="expected">The char to look for.</param>
-        /// <returns>The indexes if the char is found; an empty IEnumerable otherwise.</returns>
-        [Obsolete("Using this method with Chars is discouraged and may not produce the result you intended. You probably meant to call: IndexesOf(IEnumerable<string>, string, bool) instead.", false)]
-        // ReSharper disable once UnusedMember.Global
-        public static IEnumerable<int> IndexesOf<T>(this IEnumerable<string> source, char expected)
-        {
-            return source.IndexesOf(expected, false).Select(i => i.indexWithinEnumerable);
-        }
         
         /// <summary>
         /// Gets the indexes of the specified string within an IEnumerable of strings.
