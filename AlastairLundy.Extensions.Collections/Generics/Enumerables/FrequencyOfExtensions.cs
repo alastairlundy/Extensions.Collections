@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -39,6 +40,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
         /// <param name="obj">The object to be searched for.</param>
         /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
         /// <returns>The number of times the object appears in the IEnumerable.</returns>
+        [Obsolete("This method is deprecated and will be removed in a future version. Use LINQ's Count method instead.")]
         public static int FrequencyOf<T>(this IEnumerable<T> source, T obj)
         {
             return source.Count(x => x != null && x.Equals(obj));
