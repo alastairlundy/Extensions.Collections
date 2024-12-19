@@ -96,7 +96,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
         /// </summary>
         /// <param name="source">The IEnumerable of strings to be searched.</param>
         /// <param name="expected">The string to look for.</param>
-        /// <param name="ignoreCase">Whether to ignore the case of the expected string.</param>
+        /// <param name="stringComparison">Whether to ignore the case of the expected string.</param>
         /// <returns>The indexes if the string is found; an empty IEnumerable otherwise.</returns>
         public static IEnumerable<(int indexWithinEnumerable, int indexWithinString)> IndexesOf(this IEnumerable<string> source,
             string expected, StringComparison stringComparison = StringComparison.Ordinal)
