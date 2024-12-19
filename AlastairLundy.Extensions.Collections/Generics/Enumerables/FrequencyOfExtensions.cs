@@ -41,7 +41,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
         /// <returns>The number of times the object appears in the IEnumerable.</returns>
         public static int FrequencyOf<T>(this IEnumerable<T> source, T obj)
         {
-            return source.Where(x => x != null && x.Equals(obj)).Count();
+            return source.Count(x => x != null && x.Equals(obj));
         }
         
         /// <summary>
