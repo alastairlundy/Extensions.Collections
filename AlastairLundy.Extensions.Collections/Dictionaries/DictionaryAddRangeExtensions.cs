@@ -41,8 +41,7 @@ namespace AlastairLundy.Extensions.Collections.Dictionaries
         public static void AddRange<TKey, TValue>(this Dictionary<TKey, TValue> source,
             IEnumerable<KeyValuePair<TKey, TValue>> pairsToAdd)
         {
-        
-            foreach (var pair in pairsToAdd)
+            foreach (KeyValuePair<TKey, TValue> pair in pairsToAdd)
             {
                 if (source.Count == int.MaxValue)
                 {
