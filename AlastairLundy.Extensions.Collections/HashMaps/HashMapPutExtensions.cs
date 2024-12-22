@@ -65,7 +65,6 @@ namespace AlastairLundy.Extensions.Collections.HashMaps
         [Obsolete("This code is deprecated and will be removed in a future version. Please use PutDictionary instead.")]
         public static void PutHashTable<TKey, TValue>(this HashMap<TKey, TValue> source, Hashtable hashtable)
         {
-            
             ICollection keys = hashtable.Keys;
             ICollection values = hashtable.Values;
             
