@@ -28,6 +28,7 @@ using System.Collections.Generic;
 namespace AlastairLundy.Extensions.Collections
 {
     // ReSharper disable once TypeParameterCanBeVariant
+    [Obsolete("This interface is obsolete and will be removed in a future version")]
     public interface IBigCollection<T> : IEnumerable<T>
     {
         ulong Count { get; }
