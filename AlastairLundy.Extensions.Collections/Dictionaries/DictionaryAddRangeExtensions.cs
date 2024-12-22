@@ -38,7 +38,7 @@ namespace AlastairLundy.Extensions.Collections.Dictionaries
         /// <typeparam name="TKey">The type representing the Keys.</typeparam>
         /// <typeparam name="TValue">The type representing the Values.</typeparam>
         /// <exception cref="OverflowException"></exception>
-        public static void AddRange<TKey, TValue>(this Dictionary<TKey, TValue> source,
+        public static void AddRange<TKey, TValue>(this IDictionary<TKey, TValue> source,
             IEnumerable<KeyValuePair<TKey, TValue>> pairsToAdd)
         {
             foreach (KeyValuePair<TKey, TValue> pair in pairsToAdd)
@@ -60,7 +60,7 @@ namespace AlastairLundy.Extensions.Collections.Dictionaries
         /// <typeparam name="TKey">The type representing the Keys.</typeparam>
         /// <typeparam name="TValue">The type representing the Values.</typeparam>
         /// <exception cref="OverflowException"></exception>
-        public static void AddRange<TKey, TValue>(this Dictionary<TKey, TValue> source,
+        public static void AddRange<TKey, TValue>(this IDictionary<TKey, TValue> source,
             Dictionary<TKey, TValue> dictionaryToAdd)
         {
             if (source.Count == int.MaxValue)

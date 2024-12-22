@@ -55,7 +55,7 @@ namespace AlastairLundy.Extensions.Collections.Dictionaries
 
             throw new ValueNotFoundException(nameof(dictionary), nameof(value));
         }
-        
+
         /// <summary>
         /// Returns all keys associated with a specified value in a Dictionary.
         /// </summary>
@@ -65,11 +65,11 @@ namespace AlastairLundy.Extensions.Collections.Dictionaries
         /// <typeparam name="TValue">The type of Value in the Dictionary.</typeparam>
         /// <returns>The keys associated with the specified value in a Dictionary.</returns>
         /// <exception cref="ValueNotFoundException">Thrown if the specified value is not found within the Dictionary.</exception>
-        public static IEnumerable<TKey> GetKeys<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TValue value)
+        public static IEnumerable<TKey> GetKeys<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TValue value)
         {
             List<TKey> list = new();
             
-            if (dictionary.ContainsValue(value))
+            if (dictionary.Values.Contains(value))
             {
                 foreach (KeyValuePair<TKey, TValue> pair in dictionary)
                 {
