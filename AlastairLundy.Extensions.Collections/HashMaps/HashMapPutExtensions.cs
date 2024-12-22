@@ -62,6 +62,7 @@ namespace AlastairLundy.Extensions.Collections.HashMaps
         /// <typeparam name="TValue">The type of the Values used.</typeparam>
         /// <param name="source">The HashMap to be added to.</param>
         /// <param name="hashtable">The table to have items added to the HashMap</param>
+        [Obsolete("This code is deprecated and will be removed in a future version. Please use PutDictionary instead.")]
         public static void PutHashTable<TKey, TValue>(this HashMap<TKey, TValue> source, Hashtable hashtable)
         {
             
