@@ -3,7 +3,7 @@
     <PropertyGroup>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <PackageVersion>5.6.0-preview.2</PackageVersion>
+        <PackageVersion>5.6.0</PackageVersion>
         <Title>AlastairLundy.Extensions.Collections</Title>
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) 2024 Alastair Lundy</Copyright>
@@ -11,10 +11,22 @@
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-        <PackageReleaseNotes>### Changes since 5.6.0 Preview 1
-* Replaced SystemExtensions 5.4.0 with StringsExtensions 5.5.0
-* Removed deprecated code
-* Deprecated ``FrequencyOf`` extension method - This will be removed in a future version.</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 5.5.x
+
+### Additions
+* Added ``AddRange`` extension methods to Dictionary
+* Added ``PutRange`` extension methods to HashMap - This replaces ``PutEnumerable`` and ``PutDictionary``
+
+### General Changes
+* Improved size checking for HashMap ``Put`` extensions
+* Improve exception details for Enumerable ``Combine`` extensions
+* Marked ``IHashMap`` and ``HashMap`` as deprecated - These will be moved to a different library in a future versions
+* Marked ``IBigCollection`` as deprecated - This will be removed in a future version
+* Marked ``PutEnumerable``, ``PutHashTable``, and ``PutDictionary`` as deprecated - These will be removed in a future version.
+* Deprecated FrequencyOf extension method - This will be removed in a future version
+
+### Removals
+* Removed code that was deprecated in prior versions</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <AssemblyName>AlastairLundy.Extensions.Collections</AssemblyName>
         <RootNamespace>AlastairLundy.Extensions.Collections</RootNamespace>
