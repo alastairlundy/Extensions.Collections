@@ -12,9 +12,8 @@ Extended Security Support covers all accepted security vulnerabilities of Modera
 | ------- | ------------------ |----|
 | 5.6.x   | Until Collections Extensions 6.1 | N/A |
 | 5.5.x   | Until Collections Extensions 6.0 | N/A |
-| 5.4.x   | Until Collections Extensions 5.6 | Until Collections Extensions 6.0 |
-| 5.3.x   | :x: | Until Collections Extensions 5.6 |
-| < 5.3.x | :x: | :x: |
+| 5.4.x   | :x: | Until Collections Extensions 6.0 |
+| < 5.4.x | :x: | :x: |
 
 ### Security Vulnerabilities
 If you wish to report a potential security vulnerability please go to the security tab on this GitHub project and create a new Security Vulnerability report. 
