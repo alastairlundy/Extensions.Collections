@@ -39,6 +39,7 @@ namespace AlastairLundy.Extensions.Collections
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
+    [Obsolete("This interface is obsolete and will be removed in a future version")]
     public class HashMap<TKey, TValue> : IHashMap<TKey, TValue>, IEquatable<HashMap<TKey, TValue>>, IDisposable
     {
         // ReSharper disable once InconsistentNaming

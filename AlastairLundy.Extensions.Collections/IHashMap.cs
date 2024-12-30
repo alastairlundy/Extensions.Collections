@@ -23,10 +23,12 @@
    */
 
 
+using System;
 using System.Collections.Generic;
 
 namespace AlastairLundy.Extensions.Collections
 {
+    [Obsolete("This interface is obsolete and will be removed in a future version")]
     public interface IHashMap<TKey, TValue>
     {
         int Count { get; }
