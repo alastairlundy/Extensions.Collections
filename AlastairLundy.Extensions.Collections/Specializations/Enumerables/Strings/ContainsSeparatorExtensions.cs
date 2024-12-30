@@ -35,7 +35,7 @@ public static class ContainsSeparatorExtensions
     /// <param name="args">The IEnumerable to be searched.</param>
     /// <param name="separator">The separator to look for.</param>
     /// <returns>true if the separator character is found in the IEnumerable; returns false otherwise.</returns>
-    public static bool ContainsSeparator(IEnumerable<string> args, char separator)
+    public static bool ContainsSeparator(this IEnumerable<string> args, char separator)
     {
         return ContainsSeparator(args, separator.ToString());
     }
