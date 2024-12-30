@@ -84,33 +84,5 @@ namespace AlastairLundy.Extensions.Collections.Dictionaries
 
             throw new ValueNotFoundException(nameof(dictionary), nameof(value));
         }
-        
-        /// <summary>
-        /// Gets the Key associated with the specified value to a HashMap.
-        /// </summary>
-        /// <typeparam name="TKey">The type of the Keys used.</typeparam>
-        /// <typeparam name="TValue">The type of the Values used.</typeparam>
-        /// <param name="hashMap">The HashMap to be added to.</param>
-        /// <param name="value">The value to use to return the desired keys.</param>
-        /// <returns>The key associated with the value in the HashMap. If more than one Key is associated with the value, only the first key is returned.</returns>
-        /// <exception cref="ValueNotFoundException">Thrown if the specified value is not found within the HashMap.</exception>
-        public static TKey GetKey<TKey, TValue>(this HashMap<TKey, TValue> hashMap, TValue value)
-        {
-            return hashMap.ToDictionary().GetKey(value);
-        }
-        
-        /// <summary>
-        /// Returns all keys associated with a specified value in a HashMap.
-        /// </summary>
-        /// <typeparam name="TKey">The type of Key in the HashMap.</typeparam>
-        /// <typeparam name="TValue">The type of Value in the HashMap.</typeparam>
-        /// <param name="hashMap">The HashMap to be searched.</param>
-        /// <param name="value">The value to search for.</param>
-        /// <exception cref="ValueNotFoundException">Thrown if the specified value is not found within the HashMap.</exception>
-        /// <returns>The keys associated with the specified value in the HashMap.</returns>
-        public static IEnumerable<TKey> GetKeys<TKey, TValue>(this HashMap<TKey, TValue> hashMap, TValue value)
-        {
-            return hashMap.ToDictionary().GetKeys(value);
-        }
     }
 }

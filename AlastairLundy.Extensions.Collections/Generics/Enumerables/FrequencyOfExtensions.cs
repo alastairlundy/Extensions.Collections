@@ -34,19 +34,6 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
     public static class FrequencyOfExtensions
     {
         /// <summary>
-        ///  Calculates the number of times an object appears in an IEnumerable.
-        /// </summary>
-        /// <param name="source">The IEnumerable to be searched.</param>
-        /// <param name="obj">The object to be searched for.</param>
-        /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
-        /// <returns>The number of times the object appears in the IEnumerable.</returns>
-        [Obsolete("This method is deprecated and will be removed in a future version. Use LINQ's Count method instead.")]
-        public static int FrequencyOf<T>(this IEnumerable<T> source, T obj)
-        {
-            return source.Count(x => x != null && x.Equals(obj));
-        }
-        
-        /// <summary>
         /// Calculates the number of times each distinct object appears in an IEnumerable.
         /// </summary>
         /// <param name="source">The IEnumerable to be searched.</param>
