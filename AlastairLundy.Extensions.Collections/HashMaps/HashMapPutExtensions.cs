@@ -38,7 +38,21 @@ namespace AlastairLundy.Extensions.Collections.HashMaps
         /// <param name="dictionaryToAdd">The Dictionary to get the Key Value Pairs from.</param>
         /// <typeparam name="TKey">The type of Key in the HashMap and Dictionary.</typeparam>
         /// <typeparam name="TValue">The type of Value in the HashMap and Dictionary.</typeparam>
-        public static void PutDictionary<TKey, TValue>(this HashMap<TKey, TValue> source, IDictionary<TKey, TValue> dictionaryToAdd)
+        [Obsolete("This interface is obsolete and will be removed in a future version")]
+        public static void PutDictionary<TKey, TValue>(this HashMap<TKey, TValue> source,
+            IDictionary<TKey, TValue> dictionaryToAdd)
+        {
+            
+        }
+
+        /// <summary>
+        /// Adds the Key Value Pairs in a Dictionary to a HashMap.
+        /// </summary>
+        /// <param name="source">The HashMap to have Key Value Pairs added to it.</param>
+        /// <param name="dictionaryToAdd">The Dictionary to get the Key Value Pairs from.</param>
+        /// <typeparam name="TKey">The type of Key in the HashMap and Dictionary.</typeparam>
+        /// <typeparam name="TValue">The type of Value in the HashMap and Dictionary.</typeparam>
+        public static void PutRange<TKey, TValue>(this HashMap<TKey, TValue> source, IDictionary<TKey, TValue> dictionaryToAdd)
         {
             foreach (KeyValuePair<TKey, TValue> pair in dictionaryToAdd)
             {
@@ -91,7 +105,7 @@ namespace AlastairLundy.Extensions.Collections.HashMaps
                 }
             }
         }
-        
+
         /// <summary>
         /// Adds items in an IEnumerable to a HashMap
         /// </summary>
@@ -99,7 +113,21 @@ namespace AlastairLundy.Extensions.Collections.HashMaps
         /// <typeparam name="TValue">The type of the Values used.</typeparam>
         /// <param name="source">The HashMap to be added to.</param>
         /// <param name="enumerable">The IEnumerable of items to add to the HashMap.</param>
-        public static void PutEnumerable<TKey, TValue>(this HashMap<TKey, TValue> source, IEnumerable<KeyValuePair<TKey, TValue>> enumerable)
+        [Obsolete("This interface is obsolete and will be removed in a future version")]
+        public static void PutEnumerable<TKey, TValue>(this HashMap<TKey, TValue> source,
+            IEnumerable<KeyValuePair<TKey, TValue>> enumerable)
+        {
+            source.PutRange(enumerable);
+        }
+
+        /// <summary>
+        /// Adds items in an IEnumerable to a HashMap
+        /// </summary>
+        /// <typeparam name="TKey">The type of the Keys used.</typeparam>
+        /// <typeparam name="TValue">The type of the Values used.</typeparam>
+        /// <param name="source">The HashMap to be added to.</param>
+        /// <param name="enumerable">The IEnumerable of items to add to the HashMap.</param>
+        public static void PutRange<TKey, TValue>(this HashMap<TKey, TValue> source, IEnumerable<KeyValuePair<TKey, TValue>> enumerable)
         {
             KeyValuePair<TKey, TValue>[] keyValuePairs = enumerable as KeyValuePair<TKey, TValue>[] ?? enumerable.ToArray();
             
