@@ -1,7 +1,7 @@
 ﻿/*
         MIT License
        
-       Copyright (c) 2024 Alastair Lundy
+       Copyright (c) 2024-2025 Alastair Lundy
        
        Permission is hereby granted, free of charge, to any person obtaining a copy
        of this software and associated documentation files (the "Software"), to deal
@@ -41,12 +41,12 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
         /// <returns>A Dictionary containing objects and the number of times each one appears in the IEnumerable.</returns>
         public static Dictionary<T, int> FrequencyOfAll<T>(this IEnumerable<T> source) where T : notnull
         {
-            Dictionary<T, int> items = new();
+            Dictionary<T, int> items = new Dictionary<T, int>();
 
             foreach (T item in source)
             {
 #if NET6_0_OR_GREATER
-                if (!items.TryAdd(item, 1))
+                if (items.TryAdd(item, 1) == false)
 #else
                 if (items.ContainsKey(item))
 #endif

@@ -1,7 +1,7 @@
 ﻿/*
         MIT License
        
-       Copyright (c) 2024 Alastair Lundy
+       Copyright (c) 2024-2025 Alastair Lundy
        
        Permission is hereby granted, free of charge, to any person obtaining a copy
        of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-    
+    // ReSharper disable MemberCanBePrivate.Global
+
 namespace AlastairLundy.Extensions.Collections.IEnumerables
 {
     /// <summary>
@@ -41,17 +42,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
         /// <returns>True if the IEnumerable contains duplicate objects; false otherwise.</returns>
         public static bool ContainsDuplicates<T>(this IEnumerable<T> source) where T : notnull
         {
-            Dictionary<T, int> frequency = source.FrequencyOfAll();
-
-            foreach (int frequencyValue in frequency.Values)
-            {
-                if (frequencyValue > 1)
-                {
-                    return true;
-                }
-            }
-
-            return false;   
+            return source.FrequencyOfAll().Any(x => x.Value > 1);
         }
         
         /// <summary>
