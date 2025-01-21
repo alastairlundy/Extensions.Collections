@@ -40,7 +40,7 @@ namespace AlastairLundy.Extensions.Collections.Dictionaries
         /// <typeparam name="TValue">The type of Value in the Dictionary.</typeparam>
         /// <returns>The key associated with the specified value in a Dictionary.</returns>
         /// <exception cref="ValueNotFoundException">Thrown if the Dictionary does not contain the specified value.</exception>
-        public static TKey GetKey<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TValue value)
+        public static TKey GetKeyByValue<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TValue value)
         {
             if (dictionary.ContainsValue(value))
             {
@@ -65,9 +65,9 @@ namespace AlastairLundy.Extensions.Collections.Dictionaries
         /// <typeparam name="TValue">The type of Value in the Dictionary.</typeparam>
         /// <returns>The keys associated with the specified value in a Dictionary.</returns>
         /// <exception cref="ValueNotFoundException">Thrown if the specified value is not found within the Dictionary.</exception>
-        public static IEnumerable<TKey> GetKeys<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TValue value)
+        public static IEnumerable<TKey> GetKeysByValue<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TValue value)
         {
-            List<TKey> list = new();
+            List<TKey> list = new List<TKey>();
             
             if (dictionary.Values.Contains(value))
             {
