@@ -24,9 +24,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable UnusedType.Global
 
 namespace AlastairLundy.Extensions.Collections.Dictionaries
+    // ReSharper disable once ArrangeNamespaceBody
 {
     public static class DictionaryAddRangeExtensions
     {
@@ -37,7 +39,7 @@ namespace AlastairLundy.Extensions.Collections.Dictionaries
         /// <param name="pairsToAdd">The items to be added.</param>
         /// <typeparam name="TKey">The type representing the Keys.</typeparam>
         /// <typeparam name="TValue">The type representing the Values.</typeparam>
-        /// <exception cref="OverflowException"></exception>
+        /// <exception cref="OverflowException">Thrown if the dictionary is unable to store all the Key Value Pairs to be added.</exception>
         public static void AddRange<TKey, TValue>(this IDictionary<TKey, TValue> source,
             IEnumerable<KeyValuePair<TKey, TValue>> pairsToAdd)
         {
@@ -56,12 +58,12 @@ namespace AlastairLundy.Extensions.Collections.Dictionaries
         /// Appends the contents of one Dictionary to the current dictionary.
         /// </summary>
         /// <param name="source">The dictionary to add items to.</param>
-        /// <param name="dictionaryToAdd"></param>
+        /// <param name="dictionaryToAdd">The dictionary to be added to the existing dictionary.</param>
         /// <typeparam name="TKey">The type representing the Keys.</typeparam>
         /// <typeparam name="TValue">The type representing the Values.</typeparam>
-        /// <exception cref="OverflowException"></exception>
+        /// <exception cref="OverflowException">Thrown if the dictionary is unable to store all the dictionary values to be added.</exception>
         public static void AddRange<TKey, TValue>(this IDictionary<TKey, TValue> source,
-            Dictionary<TKey, TValue> dictionaryToAdd)
+            IDictionary<TKey, TValue> dictionaryToAdd)
         {
             if (source.Count == int.MaxValue)
             {
@@ -72,7 +74,15 @@ namespace AlastairLundy.Extensions.Collections.Dictionaries
                 throw new OverflowException($"{nameof(dictionaryToAdd)} contains the maximum size of {int.MaxValue} and cannot be added to {nameof(source)}.");
             }
         
-            source.AddRange(dictionaryToAdd.ToArray());
+            foreach (KeyValuePair<TKey, TValue> pair in dictionaryToAdd)
+            {
+                if (source.Count == int.MaxValue)
+                {
+                    throw new OverflowException($"{nameof(source)} contains the maximum size of {int.MaxValue} and cannot be added to.");
+                }
+            
+                source.Add(pair.Key, pair.Value);
+            }
         }
     }
 }
