@@ -25,7 +25,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AlastairLundy.Extensions.Collections.Specializations.Strings;
+namespace AlastairLundy.Extensions.Collections.Strings;
 
 public static class ContainsSeparatorExtensions
 {

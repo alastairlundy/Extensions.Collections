@@ -25,9 +25,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+
 // ReSharper disable SuggestVarOrType_SimpleTypes
 
-namespace AlastairLundy.Extensions.Collections.Specializations.Strings;
+namespace AlastairLundy.Extensions.Collections.Strings;
 
 public static class ToStringObjectExtensions
 {
