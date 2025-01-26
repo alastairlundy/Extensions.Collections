@@ -26,9 +26,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace AlastairLundy.Extensions.Collections.ICollections
+namespace AlastairLundy.Extensions.Collections.Generics
 {
     public static class CollectionIndexExtensions
     {

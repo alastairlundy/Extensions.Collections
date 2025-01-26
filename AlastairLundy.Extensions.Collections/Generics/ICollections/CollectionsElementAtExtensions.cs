@@ -26,7 +26,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace AlastairLundy.Extensions.Collections.ICollections
+namespace AlastairLundy.Extensions.Collections.Generics
 {
     public static class CollectionsElementAtExtensions
     {

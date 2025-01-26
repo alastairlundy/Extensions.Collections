@@ -31,7 +31,7 @@ using AlastairLundy.Extensions.Strings.Indexes;
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable SuggestVarOrType_BuiltInTypes
 
-namespace AlastairLundy.Extensions.Collections.IEnumerables
+namespace AlastairLundy.Extensions.Collections.Generics
 {
     public static class EnumerableIndexExtensions
     {
@@ -121,7 +121,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
                 }
             }
             
-            indexes = indexes.DeDuplicate().ToList();
+            indexes = indexes.Distinct().ToList();
             
             return indexes;
         }
@@ -153,7 +153,7 @@ namespace AlastairLundy.Extensions.Collections.IEnumerables
                 }
             }
             
-            indexes = indexes.DeDuplicate().ToList();
+            indexes = indexes.Distinct().ToList();
             
             return indexes;
         }

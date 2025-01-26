@@ -25,9 +25,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-    // ReSharper disable MemberCanBePrivate.Global
 
-namespace AlastairLundy.Extensions.Collections.IEnumerables
+// ReSharper disable MemberCanBePrivate.Global
+
+namespace AlastairLundy.Extensions.Collections.Generics
 {
     /// <summary>
     /// 

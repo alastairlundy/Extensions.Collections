@@ -25,10 +25,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using AlastairLundy.Extensions.Collections.Localizations;
 
-namespace AlastairLundy.Extensions.Collections.IEnumerables
+namespace AlastairLundy.Extensions.Collections.Generics
 {
     public static class EnumerableReplaceExtensions
     {
