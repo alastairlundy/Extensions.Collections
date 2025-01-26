@@ -45,53 +45,5 @@ namespace AlastairLundy.Extensions.Collections.Generics
         {
             return source.FrequencyOfAll().Any(x => x.Value > 1);
         }
-        
-        /// <summary>
-        /// Returns an IEnumerable with duplicates removed.
-        /// </summary>
-        /// <param name="source">The IEnumerable to be searched for duplicates.</param>
-        /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
-        /// <returns>An IEnumerable with duplicate objects removed.</returns>
-        /// <exception cref="NullReferenceException">Thrown if no objects exist in the IEnumerable.</exception>
-        public static IEnumerable<T> DeDuplicate<T>(this IEnumerable<T> source) where T : notnull
-        {
-            Dictionary<T, int> frequency = source.FrequencyOfAll();
-
-            if (frequency.Keys.Count == 0 || frequency.Keys.Count < 1)
-            {
-                throw new KeyNotFoundException("Cannot deduplicate an empty enumerable.");
-            }
-            
-            return frequency.Keys.ToArray();
-        }
-
-        /// <summary>
-        /// Attempts to remove duplicates from an IEnumerable and returns whether it has succeeded or not.
-        /// </summary>
-        /// <param name="source">The IEnumerable to be searched for duplicates.</param>
-        /// <param name="destinationEnumerable">The IEnumerable with duplicates removed, if any duplicates were found.</param>
-        /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
-        /// <returns>True if duplicates of an object were removed from the specified IEnumerable; false otherwise.</returns>
-        public static bool TryDeDuplicate<T>(this IEnumerable<T> source, out IEnumerable<T> destinationEnumerable) where T : notnull
-        {
-            T[] toBeDeDuplicated = source as T[] ?? source.ToArray();
-
-            try
-            {
-                if (!ContainsDuplicates(toBeDeDuplicated))
-                {
-                    destinationEnumerable = toBeDeDuplicated;
-                    return false;
-                }
-
-                destinationEnumerable = DeDuplicate(toBeDeDuplicated);
-                return true;
-            }
-            catch
-            {
-                destinationEnumerable = toBeDeDuplicated;
-                return false;
-            }
-        }
     }
 }
