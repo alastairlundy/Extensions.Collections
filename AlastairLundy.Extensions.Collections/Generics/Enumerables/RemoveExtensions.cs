@@ -54,17 +54,7 @@ namespace AlastairLundy.Extensions.Collections.Generics
             T[] itemsToBeRemovedArr = itemsToBeRemoved as T[] ?? itemsToBeRemoved.ToArray();
             T[] oldItems = source as T[] ?? source.ToArray();
 
-            List<T> newItems = new List<T>();
-
-            foreach (T item in oldItems)
-            {
-                if (!itemsToBeRemovedArr.Contains(item))
-                {
-                    newItems.Add(item);
-                }
-            }
-        
-            return newItems.ToArray();
+            return oldItems.Where(x => itemsToBeRemovedArr.Contains(x) == false);
         }
     }
 }
