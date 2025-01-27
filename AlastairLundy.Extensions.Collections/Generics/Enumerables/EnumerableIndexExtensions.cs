@@ -94,68 +94,6 @@ namespace AlastairLundy.Extensions.Collections.Generics
             }
         }
         
-        /// <summary>
-        /// Gets the indexes of the specified string within an IEnumerable of strings.
-        /// </summary>
-        /// <param name="source">The IEnumerable of strings to be searched.</param>
-        /// <param name="expected">The string to look for.</param>
-        /// <param name="stringComparison">Whether to ignore the case of the expected string.</param>
-        /// <returns>The indexes if the string is found; an empty IEnumerable otherwise.</returns>
-        public static IEnumerable<(int indexWithinEnumerable, int indexWithinString)> IndexesOf(this IEnumerable<string> source,
-            string expected, StringComparison stringComparison = StringComparison.Ordinal)
-        {
-            List<(int, int)> indexes = new List<(int, int)>();
-
-            string[] enumerable = source as string[] ?? source.ToArray();
-            
-            for(int enumerableIndex = 0; enumerableIndex < enumerable.Length; enumerableIndex++)
-            {
-                if (enumerable[enumerableIndex].Contains(expected))
-                {
-                    //NOTE: This invokes StringExtensions' IndexesOf method.
-                    IEnumerable<int> tempIndexes = enumerable[enumerableIndex].IndexesOf(expected, stringComparison);
-
-                    tempIndexes = tempIndexes.Where(i => i != -1);
-                    
-                    indexes.AddRange(tempIndexes.Select(item => (enumerableIndex, item)));
-                }
-            }
-            
-            indexes = indexes.Distinct().ToList();
-            
-            return indexes;
-        }
         
-        /// <summary>
-        /// Gets the indexes of the specified char within an IEnumerable of strings.
-        /// </summary>
-        /// <param name="source">The IEnumerable of strings to be searched.</param>
-        /// <param name="expected">The char to look for.</param>
-        /// <param name="ignoreCase">Whether to ignore the case of the expected char.</param>
-        /// <returns>The indexes if the char is found; an empty IEnumerable otherwise.</returns>
-        public static IEnumerable<(int indexWithinEnumerable, int indexWithinString)> IndexesOf(this IEnumerable<string> source,
-            char expected, bool ignoreCase = true)
-        {
-            List<(int, int)> indexes = new List<(int, int)>();
-
-            string[] enumerable = source as string[] ?? source.ToArray();
-            
-            for(int enumerableIndex = 0; enumerableIndex < enumerable.Length; enumerableIndex++)
-            {
-                if (enumerable[enumerableIndex].ToLower().Equals(expected.ToString().ToLower()))
-                {
-                    //NOTE: This invokes StringExtensions' IndexesOf method.
-                    IEnumerable<int> tempIndexes = enumerable[enumerableIndex].IndexesOf(expected, ignoreCase);
-                    
-                    tempIndexes = tempIndexes.Where(i => i != -1);
-                    
-                    indexes.AddRange(tempIndexes.Select(item => (enumerableIndex, item)));
-                }
-            }
-            
-            indexes = indexes.Distinct().ToList();
-            
-            return indexes;
-        }
     }
 }
