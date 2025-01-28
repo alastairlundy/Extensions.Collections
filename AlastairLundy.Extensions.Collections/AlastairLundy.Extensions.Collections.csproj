@@ -3,7 +3,7 @@
     <PropertyGroup>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <PackageVersion>5.6.0</PackageVersion>
+        <PackageVersion>6.0.0-alpha.1</PackageVersion>
         <Title>AlastairLundy.Extensions.Collections</Title>
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) 2024-2025 Alastair Lundy</Copyright>
@@ -11,22 +11,16 @@
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-        <PackageReleaseNotes>## Changes since 5.5.x
-
-### Additions
-* Added ``AddRange`` extension methods to Dictionary
-* Added ``PutRange`` extension methods to HashMap - This replaces ``PutEnumerable`` and ``PutDictionary``
-
-### General Changes
-* Improved size checking for HashMap ``Put`` extensions
-* Improve exception details for Enumerable ``Combine`` extensions
-* Marked ``IHashMap`` and ``HashMap`` as deprecated - These will be moved to a different library in a future versions
-* Marked ``IBigCollection`` as deprecated - This will be removed in a future version
-* Marked ``PutEnumerable``, ``PutHashTable``, and ``PutDictionary`` as deprecated - These will be removed in a future version.
-* Deprecated FrequencyOf extension method - This will be removed in a future version
-
-### Removals
-* Removed code that was deprecated in prior versions</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 5.6.0
+* Improved performance of IEnumerable ``Remove`` extension methods
+* Improved performance of an IDictionary ``AddRange`` extension method
+* Removed deprecated code
+* Added explicit .NET 9 TFM
+* Removed string indexing extension methods
+* Removed dependency on SystemExtensions
+* Adjusted namespaces
+* Added IDictionary ``GetValueOrDefault&lt;TKey, TValue&gt;(this IDictionary dictionary, TKey key, TValue defaultValue)`` extension method
+* Renamed IEnumerable ``GetKey`` method to ``GetKeyByValue`` and ``GetKeys`` to ``GetKeysByValue``</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <AssemblyName>AlastairLundy.Extensions.Collections</AssemblyName>
         <RootNamespace>AlastairLundy.Extensions.Collections</RootNamespace>
