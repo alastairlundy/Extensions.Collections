@@ -25,7 +25,7 @@
         <AssemblyName>AlastairLundy.Extensions.Collections</AssemblyName>
         <RootNamespace>AlastairLundy.Extensions.Collections</RootNamespace>
         <Description>Extensions to C# IEnumerables, ICollections, and more.</Description>
-        <LangVersion>default</LangVersion>
+        <LangVersion>13</LangVersion>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <TargetFrameworks>net8.0;net9.0;netstandard2.1;netstandard2.0</TargetFrameworks>
         <IncludeSymbols>true</IncludeSymbols>
