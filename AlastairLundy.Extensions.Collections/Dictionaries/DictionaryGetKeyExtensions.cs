@@ -40,7 +40,7 @@ namespace AlastairLundy.Extensions.Collections.Dictionaries
         /// <typeparam name="TValue">The type of Value in the Dictionary.</typeparam>
         /// <returns>The key associated with the specified value in a Dictionary.</returns>
         /// <exception cref="ValueNotFoundException">Thrown if the Dictionary does not contain the specified value.</exception>
-        public static TKey GetKeyByValue<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TValue value)
+        public static TKey GetKeyByValue<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TValue value) where TKey : notnull
         {
             if (dictionary.ContainsValue(value))
             {
