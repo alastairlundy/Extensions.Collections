@@ -38,7 +38,7 @@ public static class CollectionIndexExtensions
         /// <param name="item">The item to get the index of.</param>
         /// <param name="index">The index position of an item to search for.</param>
         /// <returns>True if an index can be found for an item in a collection; false otherwise.</returns>
-        public static bool TryIndexOf(this ICollection collection, object item, out int? index)
+        public static bool TryGetIndexOf(this ICollection collection, object item, out int? index)
         {
             try
             {
@@ -59,7 +59,7 @@ public static class CollectionIndexExtensions
         /// <param name="item">The item to attempt to get the indexes of.</param>
         /// <param name="indexes">the indexes of an object in a collection if found; null otherwise.</param>
         /// <returns>True if one or more indexes can be found for an item in a collection; false otherwise.</returns>
-        public static bool TryIndexesOf(this ICollection collection, object item, out IEnumerable<int>? indexes)
+        public static bool TryGetIndexesOf(this ICollection collection, object item, out IEnumerable<int>? indexes)
         {
             try
             {
