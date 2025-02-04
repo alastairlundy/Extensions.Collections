@@ -23,10 +23,11 @@
    */
 
 using System.Collections.Generic;
+
 // ReSharper disable RedundantBoolCompare
 // ReSharper disable RedundantIfElseBlock
 
-namespace AlastairLundy.Extensions.Collections.Dictionaries;
+namespace AlastairLundy.Extensions.Collections.Generics;
 
 public static class DictionaryGetValueExtensions
 {
