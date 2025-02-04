@@ -24,13 +24,17 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+
+// ReSharper disable RedundantBoolCompare
+// ReSharper disable RedundantToStringCallForValueType
 
 // ReSharper disable SuggestVarOrType_SimpleTypes
 
-namespace AlastairLundy.Extensions.Collections.Strings;
+namespace AlastairLundy.Extensions.Collections.Generics;
 
-public static class ToStringObjectExtensions
+public static class EnumerableToStringObjectExtensions
 {
     /// <summary>
     /// Converts an IEnumerable of objects of Type T to a string separated by a separator string.
@@ -49,8 +53,24 @@ public static class ToStringObjectExtensions
             {
                 throw new NullReferenceException($"Item {nameof(item)} in {nameof(source)} was null");
             }
-            
-            stringBuilder.Append(item.ToString());
+
+            if (typeof(T) == typeof(string))
+            {
+                stringBuilder.Append(item);
+            }
+            else
+            {
+                bool overridesToString = typeof(T).GetMethods().Any(x => x.Name.Equals(nameof(ToString), StringComparison.Ordinal) && x.IsVirtual == false);
+
+                if (overridesToString == true)
+                {
+                    stringBuilder.Append(item.ToString()); 
+                }
+                else
+                {
+                    stringBuilder.Append(item);
+                }
+            }
 
             if (sourceItemSeparator == Environment.NewLine)
             {
