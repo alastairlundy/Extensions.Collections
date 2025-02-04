@@ -24,10 +24,11 @@
 
 using System;
 using System.Collections.Generic;
+
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedType.Global
 
-namespace AlastairLundy.Extensions.Collections.Dictionaries
+namespace AlastairLundy.Extensions.Collections.Generics
     // ReSharper disable once ArrangeNamespaceBody
 {
     public static class DictionaryAddRangeExtensions
