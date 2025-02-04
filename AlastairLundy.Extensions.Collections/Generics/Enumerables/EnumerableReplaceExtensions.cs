@@ -22,42 +22,14 @@
        SOFTWARE.
    */
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using AlastairLundy.Extensions.Collections.Localizations;
+// ReSharper disable RedundantBoolCompare
 
 namespace AlastairLundy.Extensions.Collections.Generics
 {
     public static class EnumerableReplaceExtensions
     {
-        /// <summary>
-        /// Replaces the item at a specified index in an IEnumerable with a replacement item.
-        /// </summary>
-        /// <param name="source">The IEnumerable to be modified.</param>
-        /// <param name="index">The index of the item to be replaced.</param>
-        /// <param name="newValue">The replacement item.</param>
-        /// <typeparam name="T">The type of item.</typeparam>
-        /// <returns>The modified IEnumerable with the replacement value at the index provided.</returns>
-        /// <exception cref="IndexOutOfRangeException">Thrown if the index provided is less than 0 or greater than the size of the IEnumerable.</exception>
-        public static IEnumerable<T> Replace<T>(this IEnumerable<T> source, int index, T newValue)
-        {
-            T[] enumerable = source.ToArray();
-
-            if (index < enumerable.Length && index >= 0)
-            {
-                enumerable[index] = newValue;
-            }
-            else
-            {
-                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange_Enumerable
-                    .Replace("{x1}", index.ToString())
-                    .Replace("{x2}", enumerable.Length.ToString()));
-            }
-
-            return enumerable;
-        }
-    
         /// <summary>
         /// Replaces all occurrences of an item in an IEnumerable with a replacement item.
         /// </summary>
@@ -74,7 +46,7 @@ namespace AlastairLundy.Extensions.Collections.Generics
             {
                 for (int index = 0; index < enumerable.Length; index++)
                 {
-                    if (enumerable[index]!.Equals(oldValue))
+                    if (enumerable[index]!.Equals(oldValue) == true)
                     {
                         enumerable[index] = newValue;
                     }
