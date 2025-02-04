@@ -33,35 +33,6 @@ namespace AlastairLundy.Extensions.Collections.Strings;
 public static class ToStringObjectExtensions
 {
     /// <summary>
-    /// Converts an IEnumerable of strings to a string separated by a separator string.
-    /// </summary>
-    /// <param name="source">The enumerable to be turned into a string.</param>
-    /// <param name="sourceItemSeparator">The string to separate the items in the source enumerable.</param>
-    /// <returns>the string containing all the strings in the source enumerable separated by the separator.</returns>
-    public static string ToString(this IEnumerable<string> source, string sourceItemSeparator)
-    {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        foreach (string item in source)
-        {
-            stringBuilder.Append(item);
-
-            if (sourceItemSeparator == Environment.NewLine)
-            {
-                stringBuilder.AppendLine();
-            }
-            else
-            {
-                stringBuilder.Append(sourceItemSeparator);
-            }
-        }
-
-        stringBuilder = stringBuilder.Remove(stringBuilder.Length, stringBuilder.Length - sourceItemSeparator.Length);
-        
-        return stringBuilder.ToString();
-    }
-
-    /// <summary>
     /// Converts an IEnumerable of objects of Type T to a string separated by a separator string.
     /// </summary>
     /// <param name="source">The enumerable to be turned into a string.</param>
