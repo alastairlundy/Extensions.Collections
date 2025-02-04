@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -39,7 +40,7 @@ namespace AlastairLundy.Extensions.Collections.Generics
         /// <param name="index">the index of an object in a collection if found; null otherwise.</param>
         /// <typeparam name="T">The type of the object in the collection.</typeparam>
         /// <returns>True if an index can be found for an item in a collection; false otherwise.</returns>
-        public static bool TryIndexOf<T>(this ICollection<T> collection, T item, out int? index)
+        public static bool TryGetIndexOf<T>(this ICollection<T> collection, T item, out int? index)
         {
             try
             {
@@ -61,7 +62,7 @@ namespace AlastairLundy.Extensions.Collections.Generics
         /// <param name="indexes">the indexes of an object in a collection if found; null otherwise.</param>
         /// <typeparam name="T">The type of the object in the collection.</typeparam>
         /// <returns>True if one or more indexes can be found for an item in a collection; false otherwise.</returns>
-        public static bool TryIndexesOf<T>(this ICollection<T> collection, T item, out IEnumerable<int>? indexes)
+        public static bool TryGetIndexesOf<T>(this ICollection<T> collection, T item, out IEnumerable<int>? indexes)
         {
             try
             {
@@ -118,7 +119,7 @@ namespace AlastairLundy.Extensions.Collections.Generics
         /// <param name="item">The item to get the indexes of.</param>
         /// <typeparam name="T">The type of the object in the collection.</typeparam>
         /// <returns>The indexes of the specified item in the collection.</returns>
-        public static ICollection<int> IndexesOf<T>(this ICollection<T> collection, T item)
+        public static IEnumerable<int> IndexesOf<T>(this ICollection<T> collection, T item)
         {
             List<int> indexes = new List<int>();
             indexes.Clear();
