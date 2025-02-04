@@ -3,7 +3,7 @@
     <PropertyGroup>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <PackageVersion>6.0.0-alpha.1</PackageVersion>
+        <PackageVersion>6.0.0-alpha.2</PackageVersion>
         <Title>AlastairLundy.Extensions.Collections</Title>
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) 2024-2025 Alastair Lundy</Copyright>
@@ -11,16 +11,16 @@
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-        <PackageReleaseNotes>## Changes since 5.6.0
-* Improved performance of IEnumerable ``Remove`` extension methods
-* Improved performance of an IDictionary ``AddRange`` extension method
-* Removed deprecated code
-* Added explicit .NET 9 TFM
-* Removed string indexing extension methods
-* Removed dependency on SystemExtensions
-* Adjusted namespaces
-* Added IDictionary ``GetValueOrDefault&lt;TKey, TValue&gt;(this IDictionary dictionary, TKey key, TValue defaultValue)`` extension method
-* Renamed IEnumerable ``GetKey`` method to ``GetKeyByValue`` and ``GetKeys`` to ``GetKeysByValue``</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes since 6.0.0 Alpha 1
+* Moved Dictionary extensions to ``AlastairLundy.Extensions.Collections.Generics`` namespace and move file location to sub folder of Generics
+* Moved non Generic ICollection extension methods to non generics namespace
+* Removed redundant ``Replace`` enumerable extension method overload
+* Removed redundant ``ToString`` enumerable extension method overload - The generic method is still available
+* Clarified C# language version used to be C# 13
+* Renamed ``TryElementAt(this ICollection collection, int index, out object? value)`` ICollection non generic method to ``TryGetElementAt(this ICollection collection, int index, out object? value)``
+* Renamed ``TryIndexesOf`` collection generic method to ``TryGetIndexesOf``
+* * Renamed ``TryIndexesOf`` collection non-generic method to ``TryGetIndexesOf``
+* Changed return type of ``IndexesOf`` in generic Collection extension and non-generic Collection extensions from ``ICollection&lt;int&gt;`` to ``IEnumerable&lt;int&gt;``</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <AssemblyName>AlastairLundy.Extensions.Collections</AssemblyName>
         <RootNamespace>AlastairLundy.Extensions.Collections</RootNamespace>

@@ -74,7 +74,7 @@ namespace AlastairLundy.Extensions.Collections.Generics
             {
                 throw new OverflowException($"{nameof(dictionaryToAdd)} contains the maximum size of {int.MaxValue} and cannot be added to {nameof(source)}.");
             }
-        
+         
             foreach (KeyValuePair<TKey, TValue> pair in dictionaryToAdd)
             {
                 if (source.Count == int.MaxValue)
