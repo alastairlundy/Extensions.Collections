@@ -55,7 +55,7 @@ namespace AlastairLundy.Extensions.Collections.Strings
             // ReSharper disable once RedundantIfElseBlock
             else
             {
-                throw new ArgumentException();
+                throw new ArgumentException($"Type {nameof(T)} does not override virtual ToString method.");
             }
         }
     }
