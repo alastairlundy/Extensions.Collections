@@ -37,7 +37,7 @@ namespace AlastairLundy.Extensions.Collections.ICollections
         /// <param name="index">The index position to search an element for.</param>
         /// <param name="value">The value at the index position if one is found; null otherwise.</param>
         /// <returns>True if an item is found at the specified index position; false otherwise.</returns>
-        public static bool TryElementAt(this ICollection collection, int index, out object? value)
+        public static bool TryGetElementAt(this ICollection collection, int index, out object? value)
         {
             try
             {
