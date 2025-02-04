@@ -26,9 +26,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace AlastairLundy.Extensions.Collections.Generics
+namespace AlastairLundy.Extensions.Collections.ICollections
 {
-    public static class CollectionsElementAtExtensions
+    public static class CollectionElementAtExtensions
     {
         /// <summary>
         /// Attempts to retrieve the item at the specified index.
