@@ -50,7 +50,7 @@ namespace AlastairLundy.Extensions.Collections.Strings
                     list.AddRange(enumerable.Select(o => o?.ToString())!);
                 }
 
-                return list.ToArray();
+                return list;
             }
             // ReSharper disable once RedundantIfElseBlock
             else
