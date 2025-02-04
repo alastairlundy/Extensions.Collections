@@ -40,7 +40,10 @@ namespace AlastairLundy.Extensions.Collections.Strings
         /// <exception cref="ArgumentException">Thrown if the object of type T doesn't implement a ToString method.</exception>
         public static IEnumerable<string> ToStringEnumerable<T>(this IEnumerable<T> source)
         {
-            bool typeOverridesToString = typeof(T).GetMethods().Any(m => m.Name == "ToString" && m.IsVirtual == false);
+            bool typeOverridesToString = typeof(T).GetMethods().
+                Any(m => m is { Name: "ToString", IsStatic: false }
+                         && m.GetParameters().Length == 0
+                         && m.IsVirtual == false);
             
             if (typeOverridesToString == true)
             {
