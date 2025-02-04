@@ -115,7 +115,7 @@ public static class CollectionIndexExtensions
         /// <param name="collection">The collection to be searched.</param>
         /// <param name="item">The item to get the indexes of.</param>
         /// <returns>The indexes of an object in the collection.</returns>
-        public static ICollection<int> IndexesOf(this ICollection collection, object item)
+        public static IEnumerable<int> IndexesOf(this ICollection collection, object item)
         {
             List<int> indexes = new List<int>();
             indexes.Clear();
