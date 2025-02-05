@@ -33,7 +33,7 @@ namespace AlastairLundy.Extensions.Collections.Generics
     /// <summary>
     /// 
     /// </summary>
-    public static class DeDuplicateExtensions
+    public static class EnumerableDeDuplicateExtensions
     {
         /// <summary>
         /// Returns whether an IEnumerable contains duplicate instances of an object.

@@ -27,7 +27,7 @@ using System.Linq;
 
 namespace AlastairLundy.Extensions.Collections.Generics
 {
-    public static class RemoveExtensions
+    public static class EnumerableRemoveExtensions
     {
     
         /// <summary>

@@ -29,7 +29,7 @@ namespace AlastairLundy.Extensions.Collections.Generics
     /// <summary>
     /// A class to assist in counting the number of times an object or objects appear in an IEnumerable.
     /// </summary>
-    public static class FrequencyOfExtensions
+    public static class EnumerableFrequencyOfExtensions
     {
         /// <summary>
         /// Calculates the number of times each distinct object appears in an IEnumerable.

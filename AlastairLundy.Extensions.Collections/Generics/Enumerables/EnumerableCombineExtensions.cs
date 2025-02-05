@@ -28,7 +28,7 @@ using System.Linq;
 
 namespace AlastairLundy.Extensions.Collections.Generics
 {
-    public static class CombineExtensions
+    public static class EnumerableCombineExtensions
     {
         
         /// <summary>
