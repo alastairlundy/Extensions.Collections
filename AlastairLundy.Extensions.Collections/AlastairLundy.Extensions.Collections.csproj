@@ -57,6 +57,7 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>Resources.resx</DependentUpon>
       </Compile>
+      <Compile Remove="CollectionExtensions.Tests\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -64,10 +65,19 @@
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       </EmbeddedResource>
+      <EmbeddedResource Remove="CollectionExtensions.Tests\**" />
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="CollectionExtensions.Tests\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Text\StringBuilders\" />
     </ItemGroup>
 
 </Project>
