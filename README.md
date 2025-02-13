@@ -15,11 +15,11 @@ This can be added to any .NET Standard 2.0, .NET Standard 2.1, or .NET 8 compati
 ### Compatibility 
 
 
-| Collections Extensions Version series | .NET Targets supported                           | 
-|---------------------------------------|--------------------------------------------------|
-| >= 6.0.0 |                      .NET Standard 2.0, .NET Standard 2.1, .NET 8, and .NET 9 |
-| >= 5.4.0 && < 6.0.0                   | .NET Standard 2.0, .NET Standard 2.1, and .NET 8 |
-| < 5.4.0                               | .NET 8                                           |
+| Collections Extensions Version series | .NET Targets supported                                   | 
+|---------------------------------------|----------------------------------------------------------|
+| >= 6.0.0                              | .NET Standard 2.0, .NET Standard 2.1, .NET 8, and .NET 9 |
+| >= 5.4.0 && < 6.0.0                   | .NET Standard 2.0, .NET Standard 2.1, and .NET 8         |
+| < 5.4.0                               | .NET 8                                                   |
 
 ## License
 This project is licensed under the MIT license.
