@@ -60,7 +60,8 @@ public static class EnumerableToStringObjectExtensions
             }
             else
             {
-                bool overridesToString = typeof(T).GetMethods().Any(x => x.Name.Equals(nameof(ToString), StringComparison.Ordinal) && x.IsVirtual == false);
+                bool overridesToString = typeof(T).GetMethods().Any(x =>
+                    x.Name.Equals(nameof(ToString), StringComparison.Ordinal) && x.IsVirtual == false);
 
                 if (overridesToString == true)
                 {
