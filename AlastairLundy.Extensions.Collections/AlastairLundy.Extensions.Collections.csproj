@@ -3,7 +3,7 @@
     <PropertyGroup>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <PackageVersion>6.0.0-alpha.2</PackageVersion>
+        <PackageVersion>6.0.0-rc.1</PackageVersion>
         <Title>AlastairLundy.Extensions.Collections</Title>
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) 2024-2025 Alastair Lundy</Copyright>
@@ -11,16 +11,8 @@
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-        <PackageReleaseNotes>### Changes since 6.0.0 Alpha 1
-* Moved Dictionary extensions to ``AlastairLundy.Extensions.Collections.Generics`` namespace and move file location to sub folder of Generics
-* Moved non Generic ICollection extension methods to non generics namespace
-* Removed redundant ``Replace`` enumerable extension method overload
-* Removed redundant ``ToString`` enumerable extension method overload - The generic method is still available
-* Clarified C# language version used to be C# 13
-* Renamed ``TryElementAt(this ICollection collection, int index, out object? value)`` ICollection non generic method to ``TryGetElementAt(this ICollection collection, int index, out object? value)``
-* Renamed ``TryIndexesOf`` collection generic method to ``TryGetIndexesOf``
-* * Renamed ``TryIndexesOf`` collection non-generic method to ``TryGetIndexesOf``
-* Changed return type of ``IndexesOf`` in generic Collection extension and non-generic Collection extensions from ``ICollection&lt;int&gt;`` to ``IEnumerable&lt;int&gt;``</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes since 6.0.0 Alpha 2
+* Renamed some files and classes for clarity</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <AssemblyName>AlastairLundy.Extensions.Collections</AssemblyName>
         <RootNamespace>AlastairLundy.Extensions.Collections</RootNamespace>
@@ -74,10 +66,6 @@
 
     <ItemGroup>
       <None Remove="CollectionExtensions.Tests\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Text\StringBuilders\" />
     </ItemGroup>
 
 </Project>
