@@ -42,8 +42,7 @@ namespace AlastairLundy.Extensions.Collections.Strings
         {
             bool typeOverridesToString = typeof(T).GetMethods().
                 Any(m => m is { Name: "ToString", IsStatic: false }
-                         && m.GetParameters().Length == 0
-                         && m.IsVirtual == false);
+                         && m.GetParameters().Length == 0);
             
             if (typeOverridesToString == true)
             {
