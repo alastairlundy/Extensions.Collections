@@ -48,17 +48,15 @@ public static class ContainsSeparatorExtensions
     /// <returns>true if the separator character string is found in the IEnumerable; returns false otherwise.</returns>
     public static bool ContainsSeparator(this IEnumerable<string> args, string separator)
     {
-        bool output = false;
-
         string[] enumerable = args as string[] ?? args.ToArray();
         
-        output = enumerable.Any(arg => arg.Contains(separator));
+        bool output = enumerable.Any(arg => arg.Contains(separator));
 
-        if (enumerable.Any(arg => arg.Split(' ').Length > 0))
+        if (enumerable.Any(arg => arg.Split(' ').Length > 1))
         {
-            foreach (string arg in enumerable.Where(arg => arg.Split(' ').Length > 0))
+            foreach (string arg in enumerable.Where(arg => arg.Split(' ').Length > 1))
             {
-                if (arg.Split(' ').Length > 0)
+                if (arg.Split(' ').Length > 1)
                 {
                     if (arg.Split(' ').Any(s => s.Equals(separator)))
                     {
