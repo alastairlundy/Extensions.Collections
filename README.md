@@ -38,6 +38,27 @@ Collections Extensions is compatible with the following .NET versions and Target
 
 ## Examples
 
+### Extension Methods
+
+#### Dictionary Extensions
+
+##### AddRange
+Sometimes it may be desirable to initialize a dictionary with or without values AND then later add a dictionary or an IEnumerable of KeyValuePair objects tot the existing dictionary.
+
+The IDictionary ``AddRange`` extension methods simplify this.
+```csharp
+// Initialize a dictionary here.
+Dictionary<string, string> output = new Dictionary<string, string>();
+
+List<KeyValuePair<string, string>> keyValuePairList = new List<KeyValuePair<string, string>>();
+keyValuePairList.Add(new KeyValuePair("drums", "Your ears will hate you later."));
+keyValuePairList.Add(new KeyValuePair("bass_guitar", "For when you're all about that bass."));
+keyValuePairList.Add(new KeyValuePair("grand_piano", "A luxurious Grand Piano that probably costs a fortune"));
+
+//Later on we can add an IEnumerable of KeyValuePair objects or even another dictionary.
+output.AddRange(keyValuePairList);
+```
+
 ## How to Build CollectionExtensions's code
 
 ### Requirements
@@ -69,7 +90,7 @@ Releases that add new non-breaking changes should increment the Minor version. M
 Releases that add major breaking changes or significantly affect the API should increment the Major version. Major version releases should not be released with excessive frequency and should be released when there is a genuine need for the API to change significantly for the improvement of the project.
 
 ### Building for Testing
-You can build for testing by building the desired project within your IDE or VS Code, or manually by entering the following command: ``dotnet build -c Debug``.
+You can build for testing by building the project within your IDE or VS Code, or manually by entering the following command: ``dotnet build -c Debug``.
 
 If you encounter any bugs or issues, try running the tests project and setting breakpoints in the affected code where appropriate. Failing that, please [report the issue](https://github.com/alastairlundy/CollectionExtensions/issues/new/) if one doesn't already exist for the bug(s).
 
@@ -81,7 +102,7 @@ Before building a release build, ensure you apply the relevant changes to the ``
 You should ensure the project builds under debug settings before producing a release build.
 
 #### Producing Release Builds
-To manually build a project for release, enter ``dotnet build -c Release /p:ContinuousIntegrationBuild=true`` for a release with [SourceLink](https://github.com/dotnet/sourcelink) enabled or just ``dotnet build -c Release`` for a build without sourcelink.
+To manually build for release, enter ``dotnet build -c Release /p:ContinuousIntegrationBuild=true`` for a release with [SourceLink](https://github.com/dotnet/sourcelink) enabled or just ``dotnet build -c Release`` for a build without sourcelink.
 
 Builds should generally always include Source Link and symbol packages if intended for wider distribution.
 
