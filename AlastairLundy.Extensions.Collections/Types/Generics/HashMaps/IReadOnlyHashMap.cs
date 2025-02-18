@@ -46,15 +46,15 @@ namespace AlastairLundy.Extensions.Collections.Generics.HashMaps
         IEnumerable<TValue> Values();
         
         /// <summary>
-        /// 
+        /// Returns an IEnumerable of Key Value Pairs in the HashMap.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>An IEnumerable of KeyValuePairs in the HashMap.</returns>
         IEnumerable<KeyValuePair<TKey, TValue>> KeyValuePairs();
     
         /// <summary>
-        /// 
+        /// Returns the contents of the HashMap instantiated within an IReadonlyDictionary.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The new IReadOnlyDictionary instance.</returns>
         IReadOnlyDictionary<TKey, TValue> ToReadOnlyDictionary();
     }
 }
