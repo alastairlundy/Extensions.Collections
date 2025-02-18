@@ -47,6 +47,12 @@ Sometimes it may be desirable to initialize a dictionary with or without values 
 
 The IDictionary ``AddRange`` extension methods simplify this.
 ```csharp
+using System.Collections.Generic;
+
+using AlastairLundy.Extensions.Collections.Generic;
+    
+    //Class names and other code ommitted.
+
 // Initialize a dictionary here.
 Dictionary<string, string> output = new Dictionary<string, string>();
 
