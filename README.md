@@ -108,21 +108,21 @@ Before building a release build, ensure you apply the relevant changes to the ``
 You should ensure the project builds under debug settings before producing a release build.
 
 #### Producing Release Builds
-To manually build for release, enter ``dotnet build -c Release /p:ContinuousIntegrationBuild=true`` for a release with [SourceLink](https://github.com/dotnet/sourcelink) enabled or just ``dotnet build -c Release`` for a build without sourcelink.
+To manually build for release, enter ``dotnet build -c Release /p:ContinuousIntegrationBuild=true`` for a release with [SourceLink](https://github.com/dotnet/sourcelink) enabled or just ``dotnet build -c Release`` for a build without SourceLink.
 
 Builds should generally always include Source Link and symbol packages if intended for wider distribution.
 
 ## How to Contribute to CollectionExtensions
 Thank you in advance for considering contributing to CollectionExtensions.
 
-Please see the [CONTRIBUTING.md file](CONTRIBUTING.md) for code and localization contributions.
+Please see the [CONTRIBUTING.md file](https://github.com/alastairlundy/CollectionExtensions/blob/main/CONTRIBUTING.md) for code and localization contributions.
 
 If you want to file a bug report or suggest a potential feature to add, please check out the [GitHub issues page](https://github.com/alastairlundy/CollectionExtensions/issues/) to see if a similar or identical issue is already open.
 If there is not already a relevant issue filed, please [file one here](https://github.com/alastairlundy/CollectionExtensions/issues/new) and follow the respective guidance from the appropriate issue template.
 
 Thanks.
 
-## CollectionExtensions's Roadmap
+## CollectionExtensions' Roadmap
 CollectionExtensions aims to make working with Generic Collections and IEnumerables in C# easier.
 
 All stable releases must be stable and should not contain regressions.
