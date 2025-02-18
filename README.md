@@ -23,9 +23,9 @@ This readme refers to the ``AlastairLundy.Extensions.Collections`` project and n
 ## How to install and use Collection Extensions
 Collections Extensions can be installed via the .NET SDK CLI, Nuget via your IDE or code editor's package interface, or via the Nuget website.
 
-| Package Name                             | Nuget Link                                                                                                            | .NET SDK CLI command                                            |
-|------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| AlastairLundy.Extensions.Collections     | [AlastairLundy.Extensions.Collections Nuget](https://nuget.org/packages/AlastairLundy.Extensions.Collections)                                                               | ``dotnet add package AlastairLundy.Extensions.Collections``                                |
+| Package Name                         | Nuget Link                                                                                                    | .NET SDK CLI command                                        |
+|--------------------------------------|---------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------|
+| AlastairLundy.Extensions.Collections | [AlastairLundy.Extensions.Collections Nuget](https://nuget.org/packages/AlastairLundy.Extensions.Collections) | ``dotnet add package AlastairLundy.Extensions.Collections`` |
 
 ### Compatibility 
 Collections Extensions is compatible with the following .NET versions and Target Framework Monikers (TFMs).
