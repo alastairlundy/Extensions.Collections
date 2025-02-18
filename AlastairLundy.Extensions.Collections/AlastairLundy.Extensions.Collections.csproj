@@ -5,6 +5,8 @@
         <Nullable>enable</Nullable>
         <PackageVersion>6.0.0-rc.1</PackageVersion>
         <LangVersion>13</LangVersion>
+        <TargetFrameworks>net8.0;net9.0;netstandard2.1;netstandard2.0</TargetFrameworks>
+        <PackageVersion>6.0.0</PackageVersion>
         <Title>AlastairLundy.Extensions.Collections</Title>
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) 2024-2025 Alastair Lundy</Copyright>
@@ -18,9 +20,7 @@
         <AssemblyName>AlastairLundy.Extensions.Collections</AssemblyName>
         <RootNamespace>AlastairLundy.Extensions.Collections</RootNamespace>
         <Description>Extensions to C# IEnumerables, ICollections, and more.</Description>
-        <LangVersion>13</LangVersion>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <TargetFrameworks>net8.0;net9.0;netstandard2.1;netstandard2.0</TargetFrameworks>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
