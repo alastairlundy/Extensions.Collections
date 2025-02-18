@@ -68,4 +68,8 @@
       <None Remove="CollectionExtensions.Tests\**" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Types\Generics\" />
+    </ItemGroup>
+
 </Project>
