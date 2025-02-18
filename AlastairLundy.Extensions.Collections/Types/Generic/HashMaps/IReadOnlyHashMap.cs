@@ -23,26 +23,38 @@
    */
 
 using System.Collections.Generic;
-using System.Linq;
 
-// ReSharper disable MemberCanBePrivate.Global
-
-namespace AlastairLundy.Extensions.Collections.Generics
+namespace AlastairLundy.Extensions.Collections.Generic.HashMaps
 {
     /// <summary>
-    /// 
+    /// The interface for a Read Only HashMap, that does not permit writing to it after instantiation.
     /// </summary>
-    public static class EnumerableDeDuplicateExtensions
+    /// <typeparam name="TKey"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
+    public interface IReadOnlyHashMap<TKey, TValue> : IHashMapBase<TKey, TValue>
     {
         /// <summary>
-        /// Returns whether an IEnumerable contains duplicate instances of an object.
+        /// Gets an IEnumerable of all Keys in the HashMap.
         /// </summary>
-        /// <param name="source">The IEnumerable to be searched.</param>
-        /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
-        /// <returns>True if the IEnumerable contains duplicate objects; false otherwise.</returns>
-        public static bool ContainsDuplicates<T>(this IEnumerable<T> source) where T : notnull
-        {
-            return source.FrequencyOfAll().Any(x => x.Value > 1);
-        }
+        /// <returns>The IEnumerable of Keys in the HashMap.</returns>
+        IEnumerable<TKey> Keys();
+        
+        /// <summary>
+        /// Gets an IEnumerable of all Values in the HashMap.
+        /// </summary>
+        /// <returns>The IEnumerable of Values in the HashMap.</returns>
+        IEnumerable<TValue> Values();
+        
+        /// <summary>
+        /// Returns an IEnumerable of Key Value Pairs in the HashMap.
+        /// </summary>
+        /// <returns>An IEnumerable of KeyValuePairs in the HashMap.</returns>
+        IEnumerable<KeyValuePair<TKey, TValue>> KeyValuePairs();
+    
+        /// <summary>
+        /// Returns the contents of the HashMap instantiated within an IReadonlyDictionary.
+        /// </summary>
+        /// <returns>The new IReadOnlyDictionary instance.</returns>
+        IReadOnlyDictionary<TKey, TValue> ToReadOnlyDictionary();
     }
 }

@@ -26,9 +26,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+
 // ReSharper disable UnusedType.Global
 
-namespace AlastairLundy.Extensions.Collections.Generics.HashMaps
+namespace AlastairLundy.Extensions.Collections.Generic.HashMaps
 {
     /// <summary>
     /// 

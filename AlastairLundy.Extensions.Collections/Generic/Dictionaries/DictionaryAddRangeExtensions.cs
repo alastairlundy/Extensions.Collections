@@ -28,7 +28,7 @@ using System.Collections.Generic;
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedType.Global
 
-namespace AlastairLundy.Extensions.Collections.Generics
+namespace AlastairLundy.Extensions.Collections.Generic
     // ReSharper disable once ArrangeNamespaceBody
 {
     public static class DictionaryAddRangeExtensions

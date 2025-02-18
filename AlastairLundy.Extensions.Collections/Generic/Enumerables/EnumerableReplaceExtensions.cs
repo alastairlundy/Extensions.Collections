@@ -23,42 +23,38 @@
    */
 
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable RedundantBoolCompare
-// ReSharper disable RedundantIfElseBlock
 
-namespace AlastairLundy.Extensions.Collections.Generics;
-
-public static class DictionaryGetValueExtensions
+namespace AlastairLundy.Extensions.Collections.Generic
 {
-    /// <summary>
-    /// Returns the value associated with a Key if found or a default value if not found.
-    /// </summary>
-    /// <param name="dictionary">The dictionary to be searched.</param>
-    /// <param name="key">The key to search for.</param>
-    /// <param name="defaultValue">The value to be returned if the key is not found.</param>
-    /// <typeparam name="TKey">The type of Key stored in the dictionary.</typeparam>
-    /// <typeparam name="TValue">The type of Value stored in the dictionary.</typeparam>
-    /// <returns>the value associated with the specified Key if found; the specified default value otherwise.</returns>
-    public static TValue GetValueOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key,
-        TValue defaultValue)
+    public static class EnumerableReplaceExtensions
     {
-        try
+        /// <summary>
+        /// Replaces all occurrences of an item in an IEnumerable with a replacement item.
+        /// </summary>
+        /// <param name="source">The IEnumerable to be modified.</param>
+        /// <param name="oldValue">The value to be replaced.</param>
+        /// <param name="newValue">The replacement value.</param>
+        /// <typeparam name="T">The type of value.</typeparam>
+        /// <returns>The modified IEnumerable if the IEnumerable contains the value to be replaced; Otherwise the original IEnumerable is returned.</returns>
+        public static IEnumerable<T> Replace<T>(this IEnumerable<T> source, T oldValue, T newValue)
         {
-            bool containsKey = dictionary.TryGetValue(key, out TValue? value);
+            T[] enumerable = source.ToArray();
 
-            if (containsKey == true && value is not null)
+            if (enumerable.Contains(oldValue))
             {
-                return value;
+                for (int index = 0; index < enumerable.Length; index++)
+                {
+                    if (enumerable[index]!.Equals(oldValue) == true)
+                    {
+                        enumerable[index] = newValue;
+                    }
+                }
             }
-            else
-            {
-                return defaultValue;
-            }
-        }
-        catch
-        {
-            return defaultValue;
+
+            return enumerable;
         }
     }
 }

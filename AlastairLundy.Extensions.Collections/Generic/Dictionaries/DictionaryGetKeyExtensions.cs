@@ -25,7 +25,7 @@
 
 using System.Collections.Generic;
 
-namespace AlastairLundy.Extensions.Collections.Generics
+namespace AlastairLundy.Extensions.Collections.Generic
 {
     public static class DictionaryGetKeyExtensions
     {

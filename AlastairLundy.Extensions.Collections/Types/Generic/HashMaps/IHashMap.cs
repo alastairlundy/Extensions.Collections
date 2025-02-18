@@ -25,7 +25,7 @@
 
 using System.Collections.Generic;
 
-namespace AlastairLundy.Extensions.Collections.Generics.HashMaps
+namespace AlastairLundy.Extensions.Collections.Generic.HashMaps
 {
     public interface IHashMap<TKey, TValue> : IReadOnlyHashMap<TKey, TValue>,
         IHashMapBase<TKey, TValue>

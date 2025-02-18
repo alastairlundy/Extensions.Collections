@@ -21,13 +21,14 @@
        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
        SOFTWARE.
    */
+
 using System.Collections.Generic;
 using System.Linq;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable SuggestVarOrType_BuiltInTypes
 
-namespace AlastairLundy.Extensions.Collections.Generics
+namespace AlastairLundy.Extensions.Collections.Generic
 {
     public static class EnumerableIndexExtensions
     {

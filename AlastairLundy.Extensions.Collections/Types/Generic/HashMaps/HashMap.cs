@@ -26,12 +26,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+
 // ReSharper disable ClassNeverInstantiated.Global
 
 // ReSharper disable RedundantIfElseBlock
 // ReSharper disable RedundantBoolCompare
 
-namespace AlastairLundy.Extensions.Collections.Generics.HashMaps
+namespace AlastairLundy.Extensions.Collections.Generic.HashMaps
 {
     /// <summary>
     /// A class to store keys and values that tries to mimic how Java's HashMap works.

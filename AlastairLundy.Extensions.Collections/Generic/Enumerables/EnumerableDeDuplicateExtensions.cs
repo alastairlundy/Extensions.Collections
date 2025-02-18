@@ -23,24 +23,26 @@
    */
 
 using System.Collections.Generic;
+using System.Linq;
 
-namespace AlastairLundy.Extensions.Collections.Generics.HashMaps;
+// ReSharper disable MemberCanBePrivate.Global
 
-/// <summary>
-/// The basic interface that ALL HashMap type objects should implement.
-/// </summary>
-/// <typeparam name="TKey">The type representing Keys in the HashMap.</typeparam>
-/// <typeparam name="TValue">The type representing Values in the HashMap.</typeparam>
-public interface IHashMapBase<TKey, TValue>
+namespace AlastairLundy.Extensions.Collections.Generic
 {
-    int Count { get; }
-
-    TValue GetValue(TKey key);
-    TValue GetValueOrDefault(TKey key, TValue defaultValue);
-    
-    IDictionary<TKey, TValue> ToDictionary();
-    
-    bool ContainsKey(TKey key);
-    bool ContainsValue(TValue value);
-    bool ContainsKeyValuePair(KeyValuePair<TKey, TValue> pair);
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class EnumerableDeDuplicateExtensions
+    {
+        /// <summary>
+        /// Returns whether an IEnumerable contains duplicate instances of an object.
+        /// </summary>
+        /// <param name="source">The IEnumerable to be searched.</param>
+        /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
+        /// <returns>True if the IEnumerable contains duplicate objects; false otherwise.</returns>
+        public static bool ContainsDuplicates<T>(this IEnumerable<T> source) where T : notnull
+        {
+            return source.FrequencyOfAll().Any(x => x.Value > 1);
+        }
+    }
 }

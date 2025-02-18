@@ -24,37 +24,36 @@
 
 using System.Collections.Generic;
 
-namespace AlastairLundy.Extensions.Collections.Generics.HashMaps
+namespace AlastairLundy.Extensions.Collections.Generic
 {
     /// <summary>
-    /// The interface for a Read Only HashMap, that does not permit writing to it after instantiation.
+    /// A class to assist in counting the number of times an object or objects appear in an IEnumerable.
     /// </summary>
-    /// <typeparam name="TKey"></typeparam>
-    /// <typeparam name="TValue"></typeparam>
-    public interface IReadOnlyHashMap<TKey, TValue> : IHashMapBase<TKey, TValue>
+    public static class EnumerableFrequencyOfExtensions
     {
         /// <summary>
-        /// Gets an IEnumerable of all Keys in the HashMap.
+        /// Calculates the number of times each distinct object appears in an IEnumerable.
         /// </summary>
-        /// <returns>The IEnumerable of Keys in the HashMap.</returns>
-        IEnumerable<TKey> Keys();
-        
-        /// <summary>
-        /// Gets an IEnumerable of all Values in the HashMap.
-        /// </summary>
-        /// <returns>The IEnumerable of Values in the HashMap.</returns>
-        IEnumerable<TValue> Values();
-        
-        /// <summary>
-        /// Returns an IEnumerable of Key Value Pairs in the HashMap.
-        /// </summary>
-        /// <returns>An IEnumerable of KeyValuePairs in the HashMap.</returns>
-        IEnumerable<KeyValuePair<TKey, TValue>> KeyValuePairs();
-    
-        /// <summary>
-        /// Returns the contents of the HashMap instantiated within an IReadonlyDictionary.
-        /// </summary>
-        /// <returns>The new IReadOnlyDictionary instance.</returns>
-        IReadOnlyDictionary<TKey, TValue> ToReadOnlyDictionary();
+        /// <param name="source">The IEnumerable to be searched.</param>
+        /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
+        /// <returns>A Dictionary containing objects and the number of times each one appears in the IEnumerable.</returns>
+        public static Dictionary<T, int> FrequencyOfAll<T>(this IEnumerable<T> source) where T : notnull
+        {
+            Dictionary<T, int> items = new Dictionary<T, int>();
+
+            foreach (T item in source)
+            {
+#if NET6_0_OR_GREATER
+                if (items.TryAdd(item, 1) == false)
+#else
+                if (items.ContainsKey(item))
+#endif
+                {
+                    items[item] += 1;
+                }
+            }
+
+            return items;
+        }
     }
 }

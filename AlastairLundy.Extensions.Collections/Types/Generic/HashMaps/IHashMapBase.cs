@@ -24,36 +24,23 @@
 
 using System.Collections.Generic;
 
-namespace AlastairLundy.Extensions.Collections.Generics
+namespace AlastairLundy.Extensions.Collections.Generic.HashMaps;
+
+/// <summary>
+/// The basic interface that ALL HashMap type objects should implement.
+/// </summary>
+/// <typeparam name="TKey">The type representing Keys in the HashMap.</typeparam>
+/// <typeparam name="TValue">The type representing Values in the HashMap.</typeparam>
+public interface IHashMapBase<TKey, TValue>
 {
-    /// <summary>
-    /// A class to assist in counting the number of times an object or objects appear in an IEnumerable.
-    /// </summary>
-    public static class EnumerableFrequencyOfExtensions
-    {
-        /// <summary>
-        /// Calculates the number of times each distinct object appears in an IEnumerable.
-        /// </summary>
-        /// <param name="source">The IEnumerable to be searched.</param>
-        /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
-        /// <returns>A Dictionary containing objects and the number of times each one appears in the IEnumerable.</returns>
-        public static Dictionary<T, int> FrequencyOfAll<T>(this IEnumerable<T> source) where T : notnull
-        {
-            Dictionary<T, int> items = new Dictionary<T, int>();
+    int Count { get; }
 
-            foreach (T item in source)
-            {
-#if NET6_0_OR_GREATER
-                if (items.TryAdd(item, 1) == false)
-#else
-                if (items.ContainsKey(item))
-#endif
-                {
-                    items[item] += 1;
-                }
-            }
-
-            return items;
-        }
-    }
+    TValue GetValue(TKey key);
+    TValue GetValueOrDefault(TKey key, TValue defaultValue);
+    
+    IDictionary<TKey, TValue> ToDictionary();
+    
+    bool ContainsKey(TKey key);
+    bool ContainsValue(TValue value);
+    bool ContainsKeyValuePair(KeyValuePair<TKey, TValue> pair);
 }

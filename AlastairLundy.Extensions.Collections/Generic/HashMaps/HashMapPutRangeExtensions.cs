@@ -26,9 +26,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using AlastairLundy.Extensions.Collections.Generics.HashMaps;
+using AlastairLundy.Extensions.Collections.Generic.HashMaps;
 
-namespace AlastairLundy.Extensions.Collections.Generics
+namespace AlastairLundy.Extensions.Collections.Generic
 {
     public static class HashMapPutRangeExtensions
     {
