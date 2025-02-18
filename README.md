@@ -18,7 +18,7 @@ This readme refers to the ``AlastairLundy.Extensions.Collections`` project and n
 
 ## Features
 * IDictionary ``AddRange`` extensions
-* HashMap types - Provides a Java like HashMap that uses a Dictionary under the hood.
+* HashMap types - Provides a Java like HashMap in .NET that uses a C# Dictionary under the hood.
 
 ## How to install and use Collection Extensions
 Collections Extensions can be installed via the .NET SDK CLI, Nuget via your IDE or code editor's package interface, or via the Nuget website.
