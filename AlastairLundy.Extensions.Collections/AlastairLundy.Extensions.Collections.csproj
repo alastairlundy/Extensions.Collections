@@ -25,6 +25,10 @@
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    </PropertyGroup>
+
     <ItemGroup>
         <Content Include="..\LICENSE.txt">
             <Link>LICENSE.txt</Link>
