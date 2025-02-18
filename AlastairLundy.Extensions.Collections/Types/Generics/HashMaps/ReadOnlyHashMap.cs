@@ -79,36 +79,40 @@ namespace AlastairLundy.Extensions.Collections.Generics.HashMaps
         }
     
         /// <summary>
-        /// 
+        /// Returns the value associated with the specified key.
         /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        /// <exception cref="KeyNotFoundException"></exception>
+        /// <param name="key">The key to be checked.</param>
+        /// <returns>The value associated with the specified key if the key is in the HashMap.</returns>
+        /// <exception cref="KeyNotFoundException">Thrown if the key has not been found in the HashMap.</exception>
         public TValue GetValue(TKey key)
         {
-#if NETSTANDARD2_0 || NETSTANDARD2_1
-            if (_dictionary.TryGetValue(key, out TValue value))
-#else
-                if (_dictionary.TryGetValue(key, out TValue? value))
-#endif
+            if (ContainsKey(key))
             {
-                return value;
+                return _dictionary[key];
             }
-        
-            throw new KeyNotFoundException(nameof(key));
+            
+            throw new KeyNotFoundException();
         }
 
         /// <summary>
-        /// 
+        /// Returns the value associated with the specified key (if the key exists) or the specified default value.
         /// </summary>
-        /// <param name="key"></param>
-        /// <param name="defaultValue"></param>
-        /// <returns></returns>
+        /// <param name="key">The key to be checked.</param>
+        /// <param name="defaultValue">The specified value to be returned if the key has not been found.</param>
+        /// <returns>The value associated with the key if the key has been found in the HashMap; defaultValue otherwise.</returns>
         public TValue GetValueOrDefault(TKey key, TValue defaultValue)
         {
             try
             {
-                return GetValue(key);
+                if (ContainsKey(key))
+                {
+                    return GetValue(key);
+                }
+                // ReSharper disable once RedundantIfElseBlock
+                else
+                {
+                    return defaultValue;
+                }
             }
             catch
             {
@@ -117,50 +121,49 @@ namespace AlastairLundy.Extensions.Collections.Generics.HashMaps
         }
 
         /// <summary>
-        /// 
+        /// Returns an IEnumerable of Keys in the HashMap.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>An IEnumerable of Keys in the HashMap.</returns>
         public IEnumerable<TKey> Keys()
         {
             return _dictionary.Keys;
         }
 
         /// <summary>
-        /// 
+        /// Returns an IEnumerable of Values in the HashMap.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>An IEnumerable of Values in the HashMap.</returns>
         public IEnumerable<TValue> Values()
         {
             return _dictionary.Values;
         }
 
         /// <summary>
-        /// 
+        /// Returns an IEnumerable of Key Value Pairs in the HashMap.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>An IEnumerable of KeyValuePairs in the HashMap.</returns>
         public IEnumerable<KeyValuePair<TKey, TValue>> KeyValuePairs()
         {
-            return _dictionary;
+            return _dictionary.ToList();
         }
 
         /// <summary>
-        /// 
+        /// Returns the contents of the HashMap instantiated within an IReadonlyDictionary.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The new IReadOnlyDictionary instance.</returns>
         public IReadOnlyDictionary<TKey, TValue> ToReadOnlyDictionary()
         {
             return new ReadOnlyDictionary<TKey, TValue>(_dictionary);
         }
 
         /// <summary>
-        /// 
+        /// Returns the contents of the HashMap's internal Dictionary.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The HashMap's internal dictionary.</returns>
         public IDictionary<TKey, TValue> ToDictionary()
         {
-            return new Dictionary<TKey, TValue>(_dictionary);
+            return _dictionary;
         }
-
         /// <summary>
         /// Returns whether the HasMap contains a Key or not.
         /// </summary>
@@ -230,9 +233,9 @@ namespace AlastairLundy.Extensions.Collections.Generics.HashMaps
         }
 
         /// <summary>
-        /// 
+        /// Computes the hashcode for the ReadOnlyHashMap.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The computed hashcode.</returns>
         public override int GetHashCode()
         {
             return _dictionary.GetHashCode();
