@@ -43,13 +43,20 @@ public static class DictionaryGetValueExtensions
     public static TValue GetValueOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key,
         TValue defaultValue)
     {
-        bool containsKey = dictionary.TryGetValue(key, out TValue? value);
-
-        if (containsKey == true && value is not null)
+        try
         {
-            return value;
+            bool containsKey = dictionary.TryGetValue(key, out TValue? value);
+
+            if (containsKey == true && value is not null)
+            {
+                return value;
+            }
+            else
+            {
+                return defaultValue;
+            }
         }
-        else
+        catch
         {
             return defaultValue;
         }
