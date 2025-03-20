@@ -25,6 +25,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+// ReSharper disable UnusedType.Global
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace AlastairLundy.Extensions.Collections.ICollections
 {
@@ -93,7 +95,8 @@ namespace AlastairLundy.Extensions.Collections.ICollections
             {
                 return null;
             }
-            else if (int.Parse(output.ToString()!) == -1)
+
+            if (int.Parse(output.ToString()!) == -1)
             {
                 return null;
             }

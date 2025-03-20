@@ -207,14 +207,7 @@ namespace AlastairLundy.Extensions.Collections.Generic.HashMaps
         /// <returns>True if the item has been successfully removed from the HashMap; false otherwise.</returns>
         public bool Remove(TKey key)
         {
-            if (ContainsKey(key))
-            {
-                return _dictionary.Remove(key);
-            }
-            else
-            {
-                return false;
-            }
+            return ContainsKey(key) && _dictionary.Remove(key);
         }
 
         /// <summary>
@@ -363,7 +356,7 @@ namespace AlastairLundy.Extensions.Collections.Generic.HashMaps
             }
             else
             {
-                List<bool> equalityChecks = new List<bool>();
+                List<bool> equalityChecks = [];
                 
                 foreach (KeyValuePair<TKey, TValue> pair in _dictionary)
                 {

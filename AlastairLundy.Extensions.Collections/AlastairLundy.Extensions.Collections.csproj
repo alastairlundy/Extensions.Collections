@@ -117,7 +117,6 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>Resources.resx</DependentUpon>
       </Compile>
-      <Compile Remove="CollectionExtensions.Tests\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -126,10 +125,6 @@
         <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       </EmbeddedResource>
       <EmbeddedResource Remove="CollectionExtensions.Tests\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="CollectionExtensions.Tests\**" />
     </ItemGroup>
 
     <ItemGroup>
