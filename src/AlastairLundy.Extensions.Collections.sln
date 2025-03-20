@@ -4,6 +4,8 @@ VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionExtensions.Tests", "CollectionExtensions.Tests\CollectionExtensions.Tests.csproj", "{372365E5-11A9-49DF-8DCB-72A37EA96EF2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlastairLundy.Extensions.Collections", "AlastairLundy.Extensions.Collections\AlastairLundy.Extensions.Collections.csproj", "{97AA5A79-817A-4C06-9A01-F082E7041F7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,6 +16,10 @@ Global
 		{372365E5-11A9-49DF-8DCB-72A37EA96EF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{372365E5-11A9-49DF-8DCB-72A37EA96EF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{372365E5-11A9-49DF-8DCB-72A37EA96EF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97AA5A79-817A-4C06-9A01-F082E7041F7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97AA5A79-817A-4C06-9A01-F082E7041F7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97AA5A79-817A-4C06-9A01-F082E7041F7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97AA5A79-817A-4C06-9A01-F082E7041F7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
