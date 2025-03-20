@@ -12,7 +12,7 @@ This readme refers to the ``AlastairLundy.Extensions.Collections`` project and n
     * [Compatibility](#compatibility)
 * [Examples](#examples)
 * [Contributing to CollectionExtensions](#how-to-contribute-to-CollectionExtensions)
-* [Roadmap](#collectionextensionss-roadmap)
+* [Roadmap](#collectionextensions-roadmap)
 * [License](#license)
 * [Acknowledgements](#acknowledgements)
 
@@ -27,7 +27,7 @@ Collections Extensions can be installed via the .NET SDK CLI, Nuget via your IDE
 |--------------------------------------|---------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------|
 | AlastairLundy.Extensions.Collections | [AlastairLundy.Extensions.Collections Nuget](https://nuget.org/packages/AlastairLundy.Extensions.Collections) | ``dotnet add package AlastairLundy.Extensions.Collections`` |
 
-### Compatibility 
+### Compatibility
 Collections Extensions is compatible with the following .NET versions and Target Framework Monikers (TFMs).
 
 | Collections Extensions Version series | .NET Targets supported                                   | 
