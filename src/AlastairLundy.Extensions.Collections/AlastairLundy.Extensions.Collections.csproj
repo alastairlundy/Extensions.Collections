@@ -90,7 +90,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Content Include="..\README.md">
+        <Content Include="..\..\README.md">
           <Link>README.md</Link>
             <PackagePath>README.md</PackagePath>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
