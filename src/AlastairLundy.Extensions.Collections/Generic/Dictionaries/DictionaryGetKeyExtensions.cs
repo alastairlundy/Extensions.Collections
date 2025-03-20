@@ -42,14 +42,16 @@ namespace AlastairLundy.Extensions.Collections.Generic
         /// <exception cref="ValueNotFoundException">Thrown if the Dictionary does not contain the specified value.</exception>
         public static TKey GetKeyByValue<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TValue value) where TKey : notnull
         {
-            if (dictionary.ContainsValue(value))
+            if (dictionary.ContainsValue(value) == false)
             {
-                foreach (KeyValuePair<TKey, TValue> pair in dictionary)
+                throw new ValueNotFoundException(nameof(dictionary), nameof(value));
+            }
+            
+            foreach (KeyValuePair<TKey, TValue> pair in dictionary)
+            {
+                if (pair.Value != null && pair.Value.Equals(value))
                 {
-                    if (pair.Value != null && pair.Value.Equals(value))
-                    {
-                        return pair.Key;
-                    }
+                    return pair.Key;
                 }
             }
 
@@ -67,22 +69,23 @@ namespace AlastairLundy.Extensions.Collections.Generic
         /// <exception cref="ValueNotFoundException">Thrown if the specified value is not found within the Dictionary.</exception>
         public static IEnumerable<TKey> GetKeysByValue<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TValue value)
         {
-            List<TKey> list = new List<TKey>();
-            
-            if (dictionary.Values.Contains(value))
-            {
-                foreach (KeyValuePair<TKey, TValue> pair in dictionary)
-                {
-                    if (pair.Value != null && pair.Value.Equals(value))
-                    {
-                        list.Add(pair.Key);
-                    }
-                }
+            List<TKey> list = [];
 
-                return list.ToArray();
+            if (dictionary.Values.Contains(value) == false)
+            {
+                throw new ValueNotFoundException(nameof(dictionary), nameof(value));
+            }
+            
+            foreach (KeyValuePair<TKey, TValue> pair in dictionary)
+            {
+                if (pair.Value != null && pair.Value.Equals(value))
+                {
+                    list.Add(pair.Key);
+                }
             }
 
-            throw new ValueNotFoundException(nameof(dictionary), nameof(value));
+            return list.ToArray();
+
         }
     }
 }

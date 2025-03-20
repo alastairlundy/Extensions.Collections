@@ -24,11 +24,12 @@
 
 
 using System.Collections.Generic;
+// ReSharper disable UnusedMemberInSuper.Global
+// ReSharper disable UnusedMember.Global
 
 namespace AlastairLundy.Extensions.Collections.Generic.HashMaps
 {
-    public interface IHashMap<TKey, TValue> : IReadOnlyHashMap<TKey, TValue>,
-        IHashMapBase<TKey, TValue>
+    public interface IHashMap<TKey, TValue> : IReadOnlyHashMap<TKey, TValue>
     {
         bool IsEmpty { get; }
         

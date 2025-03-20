@@ -120,7 +120,7 @@ namespace AlastairLundy.Extensions.Collections.Generic
         /// <returns>The indexes of the specified item in the collection.</returns>
         public static IEnumerable<int> IndexesOf<T>(this ICollection<T> collection, T item)
         {
-            List<int> indexes = new List<int>();
+            List<int> indexes = [];
             indexes.Clear();
             int index = 0;
             

@@ -398,3 +398,5 @@ FodyWeavers.xsd
 *.sln.iml
 /.idea
 /AlastairLundy.Extensions.Collections/.idea
+/src/.idea
+/src/AlastairLundy.Extensions.Collections/.idea

@@ -146,15 +146,8 @@ namespace AlastairLundy.Extensions.Collections.Generic.HashMaps
         {
             try
             {
-                if (ContainsKey(key))
-                {
-                    return GetValue(key);
-                }
-                // ReSharper disable once RedundantIfElseBlock
-                else
-                {
-                    return defaultValue;
-                }
+                return ContainsKey(key) ? GetValue(key) :
+                    defaultValue;
             }
             catch
             {
@@ -214,14 +207,7 @@ namespace AlastairLundy.Extensions.Collections.Generic.HashMaps
         /// <returns>True if the item has been successfully removed from the HashMap; false otherwise.</returns>
         public bool Remove(TKey key)
         {
-            if (ContainsKey(key))
-            {
-                return _dictionary.Remove(key);
-            }
-            else
-            {
-                return false;
-            }
+            return ContainsKey(key) && _dictionary.Remove(key);
         }
 
         /// <summary>
@@ -264,20 +250,20 @@ namespace AlastairLundy.Extensions.Collections.Generic.HashMaps
         /// <exception cref="KeyNotFoundException">Thrown if the specified Key isn't found in the HashMap.</exception>
         public bool Replace(TKey key, TValue value)
         {
-            if (ContainsKey(key))
+            if (ContainsKey(key) == false)
             {
-                try
-                {
-                    _dictionary[key] = value;
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
+                throw new KeyNotFoundException(nameof(key));
             }
-
-            throw new KeyNotFoundException(nameof(key));
+            
+            try
+            {
+                _dictionary[key] = value;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -290,25 +276,26 @@ namespace AlastairLundy.Extensions.Collections.Generic.HashMaps
         /// <exception cref="KeyNotFoundException">Thrown if the specified Key isn't found in the HashMap.</exception>
         public bool Replace(TKey key, TValue oldValue, TValue newValue)
         {
-            if (ContainsKey(key))
+            if (ContainsKey(key) == false)
             {
-                if (ContainsKeyValuePair(new KeyValuePair<TKey, TValue>(key, oldValue)))
+                throw new KeyNotFoundException();
+            }
+            
+            if (ContainsKeyValuePair(new KeyValuePair<TKey, TValue>(key, oldValue)))
+            {
+                try
                 {
-                    try
-                    {
-                        _dictionary[key] = newValue;
-                        return true;
-                    }
-                    catch
-                    {
-                        return false;
-                    }
+                    _dictionary[key] = newValue;
+                    return true;
                 }
-
-                return false;
+                catch
+                {
+                    return false;
+                }
             }
 
-            throw new KeyNotFoundException();
+            return false;
+
         }
 
         /// <summary>
@@ -369,7 +356,7 @@ namespace AlastairLundy.Extensions.Collections.Generic.HashMaps
             }
             else
             {
-                List<bool> equalityChecks = new List<bool>();
+                List<bool> equalityChecks = [];
                 
                 foreach (KeyValuePair<TKey, TValue> pair in _dictionary)
                 {
