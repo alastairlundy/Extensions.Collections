@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 
 namespace AlastairLundy.Extensions.Collections.Generic.HashMaps;
@@ -31,6 +32,7 @@ namespace AlastairLundy.Extensions.Collections.Generic.HashMaps;
 /// </summary>
 /// <typeparam name="TKey">The type representing Keys in the HashMap.</typeparam>
 /// <typeparam name="TValue">The type representing Values in the HashMap.</typeparam>
+[Obsolete(DeprecationMessages.DeprecationV7UsePrimitivesLib)]
 public interface IHashMapBase<TKey, TValue>
 {
     int Count { get; }
