@@ -65,7 +65,8 @@ namespace AlastairLundy.Extensions.Collections.Primitives.BigCollections
             long sourceLength = source.LongCount();
 
             GenericArrayList<T> array = _items[_currentArrayList];
-            _length = 
+
+            array.AddRange(source);
         }
 
         protected void AddRangeToArrayList(int arrayNumber, IEnumerable<T> source)
