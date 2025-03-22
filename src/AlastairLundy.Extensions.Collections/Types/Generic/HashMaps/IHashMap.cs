@@ -28,8 +28,8 @@ using System.Collections.Generic;
 
 namespace AlastairLundy.Extensions.Collections.Generic.HashMaps
 {
-    public interface IHashMap<TKey, TValue> : IReadOnlyHashMap<TKey, TValue>,
     [Obsolete(DeprecationMessages.DeprecationV7UsePrimitivesLib)]
+    public interface IHashMap<TKey, TValue> : IReadOnlyHashMap<TKey, TValue>, IHashMapBase<TKey, TValue>
     {
         bool IsEmpty { get; }
         
