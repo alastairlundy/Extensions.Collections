@@ -34,29 +34,29 @@ namespace AlastairLundy.Extensions.Collections.Primitives.BigCollections
 {
     public class BigArray<T> : IEnumerable<T>
     {
-        protected long length;
-        protected bool isFixedSize;
-        protected bool isReadOnly;
+        private readonly long _length;
+        private readonly bool _isFixedSize;
+        private readonly bool _isReadOnly;
 
-        protected long rank;
+        private readonly long _rank;
 
-        protected int currentArrayList;
+        private readonly int _currentArrayList;
     
-        private List<GenericArrayList<T>> items;
+        private readonly List<GenericArrayList<T>> _items;
     
         public BigArray()
         {
-            length = 0;
-            currentArrayList = 0;
-            isFixedSize = false;
-            items = new List<GenericArrayList<T>();
+            _length = 0;
+            _currentArrayList = 0;
+            _isFixedSize = false;
+            _items = new List<GenericArrayList<T>();
         }
 
         public BigArray(IEnumerable<T> source)
         {
-            length = 0;
-            isFixedSize = false;
-            items = new List<GenericArrayList<T>>();
+            _length = 0;
+            _isFixedSize = false;
+            _items = new List<GenericArrayList<T>>();
         
             AddRange(source);
         }
@@ -65,27 +65,27 @@ namespace AlastairLundy.Extensions.Collections.Primitives.BigCollections
         {
             long sourceLength = source.LongCount();
 
-            GenericArrayList<T> array = items[currentArrayList];
-            length = 
+            GenericArrayList<T> array = _items[_currentArrayList];
+            _length = 
         }
 
         protected void AddRangeToArrayList(int arrayNumber, IEnumerable<T> source)
         {
             foreach (T item in source)
             {
-                items[arrayNumber].Add(item);   
+                _items[arrayNumber].Add(item);   
             }
         }
     
-        public bool IsFixedSize => isFixedSize;
-        public bool IsReadOnly => isReadOnly;
+        public bool IsFixedSize => _isFixedSize;
+        public bool IsReadOnly => _isReadOnly;
         public bool IsSynchronized { get; protected set; }
 
-        public long Length => length;
+        public long Length => _length;
 
         public long MaxLength { get; } = long.MaxValue;
 
-        public long Rank => rank;
+        public long Rank => _rank;
 
         public static BigReadOnlyCollection<T> AsReadOnly()
         {
@@ -135,10 +135,12 @@ namespace AlastairLundy.Extensions.Collections.Primitives.BigCollections
         private BigArray<T> _array;
 
         private long _position = -1;
+        private long _rank = 0;
     
         internal BigArrayEnumerator(BigArray<T> array)
         {
             _array = array;
+            _rank = array.Rank;
         }
     
         public void Dispose()
@@ -164,7 +166,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.BigCollections
             {
                 try
                 {
-                    return _array[_position];
+                    return _array[_rank][_position];
                 }
                 catch(Exception exception)
                 {
