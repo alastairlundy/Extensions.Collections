@@ -26,6 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+
 using AlastairLundy.Extensions.Collections.Primitives.Exceptions;
 
 // ReSharper disable ClassNeverInstantiated.Global
