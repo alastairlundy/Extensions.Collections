@@ -24,10 +24,11 @@
 
 using System;
 using System.Collections.Generic;
+
 // ReSharper disable ArrangeNamespaceBody
 // ReSharper disable UnusedMember.Global
 
-namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
+namespace AlastairLundy.Extensions.Collections.Primitives.Generics
 {
 
     public interface IGenericArrayList<T> : IList<T>, ICloneable

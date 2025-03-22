@@ -29,7 +29,7 @@ using System.Linq;
 
 // ReSharper disable UnusedType.Global
 
-namespace AlastairLundy.Extensions.Collections.Primitives.Generics.HashMaps
+namespace AlastairLundy.Extensions.Collections.Primitives.Generics
 {
     /// <summary>
     /// 

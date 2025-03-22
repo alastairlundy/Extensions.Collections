@@ -33,7 +33,7 @@ using AlastairLundy.Extensions.Collections.Primitives.Exceptions;
 // ReSharper disable RedundantIfElseBlock
 // ReSharper disable RedundantBoolCompare
 
-namespace AlastairLundy.Extensions.Collections.Primitives.Generics.HashMaps
+namespace AlastairLundy.Extensions.Collections.Primitives.Generics
 {
     /// <summary>
     /// A class to store keys and values that tries to mimic how Java's HashMap works.

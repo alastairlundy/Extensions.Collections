@@ -24,7 +24,7 @@
 
 using System.Collections.Generic;
 
-namespace AlastairLundy.Extensions.Collections.Primitives.Generics.HashMaps
+namespace AlastairLundy.Extensions.Collections.Primitives.Generics
 {
     /// <summary>
     /// The interface for a Read Only HashMap, that does not permit writing to it after instantiation.

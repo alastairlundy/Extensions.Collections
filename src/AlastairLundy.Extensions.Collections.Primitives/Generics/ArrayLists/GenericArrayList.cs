@@ -33,7 +33,7 @@ using System.Linq;
 // ReSharper disable RedundantBoolCompare
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
+namespace AlastairLundy.Extensions.Collections.Primitives.Generics
 {
     /// <summary>
     /// 
