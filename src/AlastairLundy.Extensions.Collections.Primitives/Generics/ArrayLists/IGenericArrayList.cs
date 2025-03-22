@@ -40,6 +40,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         int Capacity { get; }
     
         void AddRange(ICollection<T> collection);
+        void AddRange(IEnumerable<T> collection);
      
         int BinarySearch(int index, int count, T value, IComparer<T> comparer); 
         int BinarySearch(T value, IComparer<T> comparer);
