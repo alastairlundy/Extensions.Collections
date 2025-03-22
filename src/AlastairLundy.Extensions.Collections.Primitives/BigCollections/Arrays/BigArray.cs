@@ -28,7 +28,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using AlastairLundy.Extensions.Collections.Primitives.Generics;
-using AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists;
 
 namespace AlastairLundy.Extensions.Collections.Primitives.BigCollections
 {
@@ -49,7 +48,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.BigCollections
             _length = 0;
             _currentArrayList = 0;
             _isFixedSize = false;
-            _items = new List<GenericArrayList<T>();
+            _items = new List<GenericArrayList<T>>();
         }
 
         public BigArray(IEnumerable<T> source)
@@ -135,12 +134,10 @@ namespace AlastairLundy.Extensions.Collections.Primitives.BigCollections
         private BigArray<T> _array;
 
         private long _position = -1;
-        private long _rank = 0;
     
         internal BigArrayEnumerator(BigArray<T> array)
         {
             _array = array;
-            _rank = array.Rank;
         }
     
         public void Dispose()
@@ -166,7 +163,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.BigCollections
             {
                 try
                 {
-                    return _array[_rank][_position];
+                    return _array[_position];
                 }
                 catch(Exception exception)
                 {
