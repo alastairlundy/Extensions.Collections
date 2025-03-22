@@ -36,7 +36,7 @@ using System.Linq;
 namespace AlastairLundy.Extensions.Collections.Primitives.Generics
 {
     /// <summary>
-    /// 
+    /// Like an ArrayList, but uses generics.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class GenericArrayList<T> : IGenericArrayList<T>
