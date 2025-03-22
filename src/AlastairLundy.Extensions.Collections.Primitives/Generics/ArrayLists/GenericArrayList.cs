@@ -952,7 +952,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
 
         public void Sort()
         {
-            
+            Array.Sort(_items);
         }
 
         public void Sort(IComparer<T> comparer)
