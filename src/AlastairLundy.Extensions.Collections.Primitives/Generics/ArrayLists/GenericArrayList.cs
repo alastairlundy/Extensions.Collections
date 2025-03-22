@@ -303,6 +303,32 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
             }
         }
 
+        public void AddRange(IEnumerable<T> collection)
+        {
+            if (IsFixedSize)
+            {
+                return;
+            }
+
+            if (IsSynchronized)
+            {
+                lock (_items.SyncRoot)
+                {
+                    foreach (T item in collection)
+                    {
+                        Add(item);
+                    }
+                }
+            }
+            else
+            {
+                foreach (T item in collection)
+                {
+                    Add(item);
+                }
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
