@@ -27,6 +27,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
+// ReSharper disable ConvertToAutoProperty
+// ReSharper disable MergeIntoPattern
 
 // ReSharper disable RedundantBoolCompare
 // ReSharper disable MemberCanBePrivate.Global
@@ -49,9 +51,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
     
         private readonly bool _isReadOnly;
         private readonly bool _isFixedSize;
-    
-        private readonly bool _isSynchronized;
-
+        
         protected GenericArrayList(bool isReadOnly, bool isFixedSize, bool isSynchronized, int capacity)
         {
             _capacity = capacity;
@@ -60,16 +60,9 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
         
             _isReadOnly = isReadOnly;
             _isFixedSize = isFixedSize;
-            _isSynchronized = isSynchronized;
-
-            if (IsSynchronized)
-            {
-
-            }
-            else
-            {
-                _items = new KeyValuePair<T, bool>[capacity];
-            }
+            IsSynchronized = isSynchronized;
+            
+            _items = new KeyValuePair<T, bool>[capacity];
         }
     
         protected GenericArrayList(bool isReadOnly, bool isFixedSize, bool isSynchronized, int capacity, ICollection<T> items)
@@ -80,16 +73,11 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
         
             _isReadOnly = isReadOnly;
             _isFixedSize = isFixedSize;
-            _isSynchronized = isSynchronized;
+            IsSynchronized = isSynchronized;
 
-            if (_isFixedSize)
-            {
+            _items = new KeyValuePair<T, bool>[capacity];
             
-            }
-            else
-            {
-                _items = new KeyValuePair<T, bool>[capacity];
-            }
+            AddRange(items);
         }
     
         /// <summary>
@@ -104,7 +92,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
         
             _isReadOnly = false;
             _isFixedSize = false;
-            _isSynchronized = false;
+            IsSynchronized = false;
         }
 
         /// <summary>
@@ -120,7 +108,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
             _count = collection.Count;
             _isReadOnly = false;
             _isFixedSize = false;
-            _isSynchronized = false;
+            IsSynchronized = false;
         }
     
         /// <summary>
@@ -136,7 +124,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
         
             _isReadOnly = false;
             _isFixedSize = false;
-            _isSynchronized = false;
+            IsSynchronized = false;
         }
 
         /// <summary>
@@ -145,6 +133,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
         /// <param name="isFixedSize"></param>
         public GenericArrayList(bool isFixedSize)
         {
+            IsSynchronized = false;
             _isFixedSize = isFixedSize;
             _items = new KeyValuePair<T, bool>[DefaultInitialCapacity];
             _capacity = DefaultInitialCapacity;
@@ -273,18 +262,45 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int Count => _count;
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public int Capacity => _capacity;
     
-        
+    
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="collection"></param>
         public void AddRange(ICollection<T> collection)
         {
             if (IsFixedSize)
             {
                 return;
             }
-            
-            
+
+            if (IsSynchronized)
+            {
+                lock (_items.SyncRoot)
+                {
+                    foreach (T item in collection)
+                    {
+                        Add(item);
+                    }
+                }
+            }
+            else
+            {
+                foreach (T item in collection)
+                {
+                    Add(item);
+                }
+            }
         }
 
         public int BinarySearch(int index, int count, T value, IComparer<T> comparer)
@@ -294,7 +310,29 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
 
         public int BinarySearch(T value, IComparer<T> comparer)
         {
-       
+            if (Count != Capacity)
+            {
+                TrimToSize();
+            }
+            
+            Sort();
+
+            bool found = false;
+
+            int midpoint = ((Count - 1) + 0) / 2;
+
+            while (found == false)
+            {
+                T midPointKey = _items[midpoint].Key;
+                
+                if (midPointKey is not null && midPointKey.Equals(value))
+                {
+                    
+                    found = true;
+                }
+            }
+            
+            
         }
 
         /// <summary>
@@ -331,7 +369,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
         [Pure]
         public IGenericArrayList<T> FixedSize(IGenericArrayList<T> source)
         {
-            return new GenericArrayList<T>(false, true, false, source.Count, source);
+            return new GenericArrayList<T>(source.IsReadOnly, true, source.IsSynchronized, source.Count, source);
         }
 
         /// <summary>
@@ -342,9 +380,17 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
         [Pure]
         public IList<T> FixedSize(IList<T> source)
         {
-            return new GenericArrayList<T>(false, true, false, source.Count, source);
+            return new GenericArrayList<T>(source.IsReadOnly, true, false, source.Count, source);
         }
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="IndexOutOfRangeException"></exception>
         public IGenericArrayList<T> GetRange(int index, int count)
         {
             if (count > Count || count < 1)
@@ -360,15 +406,45 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
 
             int  limit = index + count;
 
-            for (int i = index; i < limit; i++)
+            if (IsSynchronized)
             {
-                if (_items[i].Value == true)
+                lock (_items.SyncRoot)
                 {
-                    list.Add(_items[i].Key);       
+                    for (int i = index; i < limit; i++)
+                    {
+                        if (limit >= Count)
+                        {
+                            limit = Count;
+                        }
+
+                        if (_items[i].Value == true)
+                        {
+                            list.Add(_items[i].Key);
+                        }
+                        else
+                        {
+                            limit++;
+                        }
+                    }
                 }
-                else
+            }
+            else
+            {
+                for (int i = index; i < limit; i++)
                 {
-                    limit++;
+                    if (limit >= Count)
+                    {
+                        limit = Count;
+                    }
+                
+                    if (_items[i].Value == true)
+                    {
+                        list.Add(_items[i].Key);       
+                    }
+                    else
+                    {
+                        limit++;
+                    }
                 }
             }
             
@@ -387,20 +463,46 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
             {
                 throw new IndexOutOfRangeException();
             }
-            
-            for (int index = startIndex; index < Count; index++)
+
+            if (IsSynchronized)
             {
-                KeyValuePair<T, bool> pair = _items[index];
-            
-                if (pair.Value == false && pair.Key != null && pair.Key.Equals(value))
+                lock (_items.SyncRoot)
                 {
-                    return index;
+                    for (int index = startIndex; index < Count; index++)
+                    {
+                        KeyValuePair<T, bool> pair = _items[index];
+            
+                        if (pair.Value == false && pair.Key is not null && pair.Key.Equals(value))
+                        {
+                            return index;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int index = startIndex; index < Count; index++)
+                {
+                    KeyValuePair<T, bool> pair = _items[index];
+            
+                    if (pair.Value == false && pair.Key is not null && pair.Key.Equals(value))
+                    {
+                        return index;
+                    }
                 }
             }
         
             return -1;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        /// <exception cref="IndexOutOfRangeException"></exception>
         public int IndexOf(T? value, int startIndex, int count)
         {
             int index = -1;
@@ -410,12 +512,33 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
                 throw new IndexOutOfRangeException();
             }
 
-            for (int i = startIndex; i < Count + count; i++)
+            if (IsSynchronized)
             {
-                if (_items[i].Key!.Equals(value))
+                lock (_items.SyncRoot)
                 {
-                    index = i;
-                    break;
+                    for (int i = startIndex; i < Count + count; i++)
+                    {
+                        T key = _items[i].Key;
+                
+                        if (key is not null && key.Equals(value))
+                        {
+                            index = i;
+                            break;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = startIndex; i < Count + count; i++)
+                {
+                    T key = _items[i].Key;
+                
+                    if (key is not null && key.Equals(value))
+                    {
+                        index = i;
+                        break;
+                    }
                 }
             }
 
@@ -433,10 +556,23 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
             {
                 throw new IndexOutOfRangeException();
             }
-            
-            foreach (T item in collection)
+
+            if (IsSynchronized)
             {
-                Insert(index, item);
+                lock (_items.SyncRoot)
+                {
+                    foreach (T item in collection)
+                    {
+                        Insert(index, item);
+                    }
+                }
+            }
+            else
+            {
+                foreach (T item in collection)
+                {
+                    Insert(index, item);
+                }
             }
         }
 
@@ -450,6 +586,13 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
             return LastIndexOf(value, _items.Length - 1);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="startIndex"></param>
+        /// <returns></returns>
+        /// <exception cref="IndexOutOfRangeException"></exception>
         public int LastIndexOf(T value, int startIndex)
         {
             int lastIndex = -1;
@@ -458,33 +601,131 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
             {
                 throw new IndexOutOfRangeException();
             }
-        
-            for (int index = startIndex; _items.Length > startIndex; index--)
-            {
-                KeyValuePair<T, bool> item = _items[index];
 
-                if (item.Value == false && item.Key != null && item.Key.Equals(value))
+            if (IsSynchronized)
+            {
+                lock (_items.SyncRoot)
                 {
-                    if (index > lastIndex)
+                    for (int index = startIndex; _items.Length > startIndex; index--)
                     {
-                        lastIndex = index;
+                        KeyValuePair<T, bool> item = _items[index];
+
+                        if (item.Value == false && item.Key != null && item.Key.Equals(value))
+                        {
+                            if (index > lastIndex)
+                            {
+                                lastIndex = index;
+                            }
+                        }
                     }
                 }
+            }
+            else
+            {
+                for (int index = startIndex; _items.Length > startIndex; index--)
+                {
+                    KeyValuePair<T, bool> item = _items[index];
+
+                    if (item.Value == false && item.Key != null && item.Key.Equals(value))
+                    {
+                        if (index > lastIndex)
+                        {
+                            lastIndex = index;
+                        }
+                    }
+                }   
             }
 
             return lastIndex;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        /// <exception cref="IndexOutOfRangeException"></exception>
         public int LastIndexOf(T value, int startIndex, int count)
         {
             if (startIndex > Count || startIndex < 0 || count < 1 || count > Count)
             {
                 throw new IndexOutOfRangeException();
             }
+
+            int limit = startIndex + Count + 1;
+
+            int lastIndex = -1;
+
+            if (IsSynchronized)
+            {
+                lock (_items.SyncRoot)
+                {
+                    for (int i = startIndex; i < limit; i++)
+                    {
+                        if (_items[i].Value == false && limit < Count)
+                        {
+                            limit++;
+                        }
+                        else if (limit >= Count)
+                        {
+                            limit = Count;
+                        }
+                        else if (i >= Count)
+                        {
+                            break;
+                        }
+
+                        if (_items[i].Value == true)
+                        {
+                            T key = _items[i].Key;
+                    
+                            if (key is not null && key.Equals(value))
+                            {
+                                lastIndex = i;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = startIndex; i < limit; i++)
+                {
+                    if (_items[i].Value == false && limit < Count)
+                    {
+                        limit++;
+                    }
+                    else if (limit >= Count)
+                    {
+                        limit = Count;
+                    }
+                    else if (i >= Count)
+                    {
+                        break;
+                    }
+
+                    if (_items[i].Value == true)
+                    {
+                        T key = _items[i].Key;
+                    
+                        if (key is not null && key.Equals(value))
+                        {
+                            lastIndex = i;
+                        }
+                    }
+                }
+            }
             
-            
+            return lastIndex;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public IGenericArrayList<T> ReadOnly(IGenericArrayList<T> source)
         {
             return new GenericArrayList<T>(true, source.IsFixedSize, source.IsSynchronized, source.Capacity, source);
@@ -514,39 +755,171 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
             return new GenericArrayList<T>(true, isFixedSize, isSynchronized, source.Count, source);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="count"></param>
+        /// <exception cref="IndexOutOfRangeException"></exception>
         public void RemoveRange(int index, int count)
         {
             if (index > Count || index < 0 || count < 1 || count > Count)
             {
                 throw new IndexOutOfRangeException();
             }
-            
-            for (int i = 0; i < count; i++)
+
+            if (IsSynchronized)
             {
-                RemoveAt(index);
+                lock (_items.SyncRoot)
+                {
+                    for (int i = 0; i < count; i++)
+                    {
+                        RemoveAt(index);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    RemoveAt(index);
+                }
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public IGenericArrayList<T> Repeat(T value, int count)
         {
-        
+            GenericArrayList<T> list = new();
+
+            if (count < 0 || count >= int.MaxValue)
+            {
+                throw new ArgumentOutOfRangeException(nameof(count));
+            }
+
+            if (IsSynchronized)
+            {
+                lock (_items.SyncRoot)
+                {
+                    for (int i = 0; i < count; i++)
+                    {
+                        list.Add(value);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    list.Add(value);
+                }
+            }
+            
+            return list;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Reverse()
         {
-        
+            KeyValuePair<T, bool>[] newItems = new KeyValuePair<T, bool>[Count];
+
+            if (IsSynchronized)
+            {
+                lock (_items.SyncRoot)
+                {
+                    for (int i = 0; i < Count; i++)
+                    {
+                        if (Count - (i + 1) >= 0)
+                        {
+                            newItems[Count - (i + 1)] = _items[i];
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < Count; i++)
+                {
+                    if (Count - (i + 1) >= 0)
+                    {
+                        newItems[Count - (i + 1)] = _items[i];
+                    }
+                }
+            }
+            
+            Array.Copy(newItems, 0, _items, 0, Count);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="count"></param>
+        /// <exception cref="IndexOutOfRangeException"></exception>
         public void Reverse(int index, int count)
         {
             if (index > Count || index < 0 || count < 1 || count > Count)
             {
                 throw new IndexOutOfRangeException();
             }
+
+            List<KeyValuePair<T, bool>> newItems = new();
+
+            int reversedCount = 0;
+
+            if (IsSynchronized)
+            {
+                lock (_items.SyncRoot)
+                {
+                    for (int i = 0; i < Count; i++)
+                    {
+                        if (i < index || i > (index + count))
+                        {
+                            newItems.Add(_items[i]);
+                        }
+                        else if(i >= index && i <= index + count && reversedCount <= count)
+                        {
+                            newItems.Insert(i, _items[(index + count) - reversedCount]);
+                    
+                            reversedCount++;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < Count; i++)
+                {
+                    if (i < index || i > (index + count))
+                    {
+                        newItems.Add(_items[i]);
+                    }
+                    else if(i >= index && i <= index + count && reversedCount <= count)
+                    {
+                        newItems.Insert(i, _items[(index + count) - reversedCount]);
+                    
+                        reversedCount++;
+                    }
+                }
+            }
             
-            
+            Array.Copy(newItems.ToArray(), 0, _items, 0, Count);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="collection"></param>
+        /// <exception cref="IndexOutOfRangeException"></exception>
         public void SetRange(int index, ICollection<T> collection)
         {
             if (index > Count || index < 0 || collection.Count < 1 || collection.Count > Count)
@@ -555,11 +928,25 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
             }
 
             int i = index;
-            
-            foreach (T item in collection)
+
+            if (IsSynchronized)
             {
-                Insert(i, item);
-                i++;
+                lock (_items.SyncRoot)
+                {
+                    foreach (T item in collection)
+                    {
+                        Insert(i, item);
+                        i++;
+                    }
+                }
+            }
+            else
+            {
+                foreach (T item in collection)
+                {
+                    Insert(i, item);
+                    i++;
+                }
             }
         }
 
@@ -570,7 +957,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
 
         public void Sort(IComparer<T> comparer)
         {
-        
+            
         }
 
         public void Sort(int index, int count, IComparer<T> comparer)
@@ -583,14 +970,26 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
             
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public IGenericArrayList<T> Synchronized(IGenericArrayList<T> source)
         {
-        
+            return new GenericArrayList<T>(source.IsReadOnly, source.IsFixedSize, true, source.Capacity, source);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public IList<T> Synchronized(IList<T> source)
         {
-        
+            bool isFixedSize = source is T[];
+
+            return new GenericArrayList<T>(source.IsReadOnly, isFixedSize, true, source.Count, source); 
         }
 
     
@@ -613,7 +1012,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
         }
 
         public bool IsFixedSize => _isFixedSize;
-        public bool IsSynchronized => _items.IsSynchronized;
+        public bool IsSynchronized { get; protected set; }
         public bool IsReadOnly => _isReadOnly;
     
         /// <summary>
@@ -623,11 +1022,31 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
         /// <returns></returns>
         public int IndexOf(T item)
         {
-            for (int i = 0; i < Count; i++)
+            if (IsSynchronized)
             {
-                if (_items[i].Key != null && _items[i].Key.Equals(item))
+                lock (_items.SyncRoot)
                 {
-                    return i;
+                    for (int i = 0; i < Count; i++)
+                    {
+                        T key = _items[i].Key;
+                
+                        if (key is not null && key.Equals(item))
+                        {
+                            return i;
+                        }
+                    }
+                }   
+            }
+            else
+            {
+                for (int i = 0; i < Count; i++)
+                {
+                    T key = _items[i].Key;
+                
+                    if (key is not null && key.Equals(item))
+                    {
+                        return i;
+                    }
                 }
             }
         
@@ -672,9 +1091,22 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
             if (Count < int.MaxValue)
 #endif
             {
-                for (int i = Count + 1; i >= indexStart ; i--)
+                if (IsSynchronized)
                 {
-                    _items[i] = _items[i - 1];
+                    lock (_items.SyncRoot)
+                    {
+                        for (int i = Count + 1; i >= indexStart ; i--)
+                        {
+                            _items[i] = _items[i - 1];
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = Count + 1; i >= indexStart ; i--)
+                    {
+                        _items[i] = _items[i - 1];
+                    }
                 }
             }
         }
@@ -718,15 +1150,33 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
                 if (_items[index].Value == true)
                 {
                     int i = index;
-                
-                    while (i < Count)
-                    {
-                        if (_items[i].Value == false)
-                        {
-                            return _items[i].Key;
-                        }
 
-                        i++;
+                    if (IsSynchronized)
+                    {
+                        lock (_items.SyncRoot)
+                        {
+                            while (i < Count)
+                            {
+                                if (_items[i].Value == false)
+                                {
+                                    return _items[i].Key;
+                                }
+
+                                i++;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        while (i < Count)
+                        {
+                            if (_items[i].Value == false)
+                            {
+                                return _items[i].Key;
+                            }
+
+                            i++;
+                        }
                     }
                 
                     return _items[i].Key;
