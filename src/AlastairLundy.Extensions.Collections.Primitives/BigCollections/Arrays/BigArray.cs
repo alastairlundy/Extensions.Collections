@@ -43,6 +43,8 @@ namespace AlastairLundy.Extensions.Collections.Primitives.BigCollections
     
         private readonly List<GenericArrayList<T>> _items;
     
+        public object SyncRoot { get; }
+        
         public BigArray()
         {
             _length = 0;
@@ -58,6 +60,17 @@ namespace AlastairLundy.Extensions.Collections.Primitives.BigCollections
             _items = new List<GenericArrayList<T>>();
         
             AddRange(source);
+        }
+
+        public BigArray(bool isReadOnly, bool isFixedSize, bool isSynchronized, long initialCapacity, IEnumerable<T> source)
+        {
+            _isFixedSize = isFixedSize;
+            _isReadOnly = isReadOnly;
+            IsSynchronized = isSynchronized;
+            
+            _items = new List<GenericArrayList<T>>();
+            
+           
         }
 
         protected void AddRange(IEnumerable<T> source)
