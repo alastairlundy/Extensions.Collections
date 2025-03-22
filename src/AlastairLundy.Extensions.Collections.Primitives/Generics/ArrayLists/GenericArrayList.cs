@@ -303,11 +303,38 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="count"></param>
+        /// <param name="value"></param>
+        /// <param name="comparer"></param>
+        /// <returns></returns>
+        /// <exception cref="IndexOutOfRangeException"></exception>
         public int BinarySearch(int index, int count, T value, IComparer<T> comparer)
         {
-       
+            if (Count != Capacity)
+            {
+                TrimToSize();
+            }
+            
+            Sort();
+
+            if (index < 0 || index >= int.MaxValue || count < 0 || count > Count)
+            {
+                throw new IndexOutOfRangeException();
+            }
+
+            return Array.BinarySearch(_items, index, count, value);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="comparer"></param>
+        /// <returns></returns>
         public int BinarySearch(T value, IComparer<T> comparer)
         {
             if (Count != Capacity)
@@ -317,22 +344,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics.ArrayLists
             
             Sort();
 
-            bool found = false;
-
-            int midpoint = ((Count - 1) + 0) / 2;
-
-            while (found == false)
-            {
-                T midPointKey = _items[midpoint].Key;
-                
-                if (midPointKey is not null && midPointKey.Equals(value))
-                {
-                    
-                    found = true;
-                }
-            }
-            
-            
+            return Array.BinarySearch(_items, value, (IComparer)comparer);
         }
 
         /// <summary>
