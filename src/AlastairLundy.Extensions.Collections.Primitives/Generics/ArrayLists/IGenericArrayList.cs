@@ -151,27 +151,27 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         void InsertRange(int index, ICollection<T> collection);
      
         /// <summary>
-        /// Finds the last index of the 
+        /// Finds the last index of the value.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="value">The value to search for.</param>
+        /// <returns>The last index of the value if found; -1 otherwise.</returns>
         int LastIndexOf(T value);
         
         /// <summary>
-        /// 
+        /// Finds the last index of the value.
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="startIndex"></param>
-        /// <returns></returns>
+        /// <param name="value">The value to search for.</param>
+        /// <param name="startIndex">The index to start searching for the value.</param>
+        /// <returns>The last index of the value if found; -1 otherwise.</returns>
         int LastIndexOf(T value, int startIndex);
         
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="startIndex"></param>
+        /// <param name="value">The value to search for.</param>
+        /// <param name="startIndex">The index to start searching for the value.</param>
         /// <param name="count"></param>
-        /// <returns></returns>
+        /// <returns>The last index of the value if found; -1 otherwise.</returns>
         int LastIndexOf(T value, int startIndex, int count);
      
         /// <summary>
