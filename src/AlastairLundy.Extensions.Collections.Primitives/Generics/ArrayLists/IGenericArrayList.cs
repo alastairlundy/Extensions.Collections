@@ -65,21 +65,21 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         void AddRange(IEnumerable<T> enumerable);
         
         /// <summary>
-        /// 
+        /// Performs a binary search on the Generic Array List.
         /// </summary>
-        /// <param name="index"></param>
-        /// <param name="count"></param>
-        /// <param name="value"></param>
-        /// <param name="comparer"></param>
-        /// <returns></returns>
+        /// <param name="index">The starting index of the range to search for.</param>
+        /// <param name="count">The length of the range to search.</param>
+        /// <param name="value">The value to search for.</param>
+        /// <param name="comparer">The comparer implementation to use.</param>
+        /// <returns>The zero based index of the item if found; -1 otherwise.</returns>
         int BinarySearch(int index, int count, T value, IComparer<T> comparer); 
         
         /// <summary>
-        /// 
+        /// Performs a binary search on the Generic Array List.
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="comparer"></param>
-        /// <returns></returns>
+        /// <param name="value">The value to search for.</param>
+        /// <param name="comparer">The comparer implementation to use.</param>
+        /// <returns>The zero based index of the item if found; -1 otherwise.</returns>
         int BinarySearch(T value, IComparer<T> comparer);
 
         /// <summary>
@@ -119,11 +119,11 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         IList<T> FixedSize(IList<T> source);
      
         /// <summary>
-        /// 
+        /// Creates a Generic Array List from a range of items in the current Generic Array List.
         /// </summary>
-        /// <param name="index"></param>
-        /// <param name="count"></param>
-        /// <returns></returns>
+        /// <param name="index">The index to start copying items from.</param>
+        /// <param name="count">The number of items to copy.</param>
+        /// <returns>The new Generic Array List with the copied range of items.</returns>
         IGenericArrayList<T> GetRange(int index, int count);
 
         /// <summary>
@@ -144,14 +144,14 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         int IndexOf(T? value, int startIndex, int count);
 
         /// <summary>
-        /// 
+        /// Inserts a range of items starting a specific index of the collection.
         /// </summary>
-        /// <param name="index"></param>
-        /// <param name="collection"></param>
+        /// <param name="index">The index to start inserting items from.</param>
+        /// <param name="collection">The collection to insert items from.</param>
         void InsertRange(int index, ICollection<T> collection);
      
         /// <summary>
-        /// 
+        /// Finds the last index of the 
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -233,20 +233,20 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         /// Sorts the Generic Array List.
         /// </summary>
         void Sort();
-        
+
         /// <summary>
-        /// 
+        /// Sorts the Generic Array List using an IComparer.
         /// </summary>
         /// <param name="comparer">The comparer implementation to use.</param>
         void Sort(IComparer<KeyValuePair<T, bool>> comparer);
 
         /// <summary>
-        /// 
+        /// Sorts the Generic Array List using an IComparer.
         /// </summary>
-        /// <param name="index"></param>
-        /// <param name="count"></param>
-        /// <param name="comparer"></param>
-        void Sort(int index, int count, IComparer<T> comparer);
+        /// <param name="index">The index to start sorting from.</param>
+        /// <param name="count">The number of items to sort.</param>
+        /// <param name="comparer">The comparer implementation to use.</param>
+        void Sort(int index, int count, IComparer<KeyValuePair<T, bool>> comparer);
         
         /// <summary>
         /// Creates a thread-safe copy of the source Generic Array List.
@@ -263,9 +263,9 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         IList<T> Synchronized(IList<T> source);
      
         /// <summary>
-        /// Returns the 
+        /// Returns the items in the Generic Array List as an array. 
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The array with the contents of the Generic Array List.</returns>
         T[] ToArray();
           
         /// <summary>
