@@ -239,6 +239,16 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="arrayIndex"></param>
+        public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
+        {
+            Array.Copy(_dictionary.ToArray(), 0, array, arrayIndex, _dictionary.Count);
+        }
+
+        /// <summary>
         /// Removes the KeyValuePair from the HashMap.
         /// </summary>
         /// <param name="pair">The KeyValuePair to be removed.</param>
@@ -333,6 +343,26 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         public void Clear()
         {
             _dictionary.Clear();
+        }
+
+        /// <summary>
+        /// /
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public bool Contains(KeyValuePair<TKey, TValue> item)
+        {
+            if (ContainsKey(item.Key) == true)
+            {
+                TValue val = _dictionary[item.Key];
+
+                return val is not null &&
+                       val.Equals(item.Value);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
