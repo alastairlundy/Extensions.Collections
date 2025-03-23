@@ -397,7 +397,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
                 throw new IndexOutOfRangeException();
             }
             
-            Array.Copy(_items, index, array, count, Count);
+            Array.Copy(_items, index, array, arrayIndex, Count);
         }
 
         /// <summary>
