@@ -23,9 +23,11 @@
    */
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+// ReSharper disable MemberCanBePrivate.Global
 
 // ReSharper disable UnusedType.Global
 
@@ -172,7 +174,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         /// <returns>True if the HashMap contains the specified key, and false otherwise.</returns>
         public bool ContainsKey(TKey key)
         {
-            return _dictionary.Keys.Any(k => k.Equals(key));
+            return _dictionary.Keys is not null && _dictionary.Keys.Any(k => k.Equals(key));
         }
 
         /// <summary>
@@ -182,7 +184,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         /// <returns>True if the HashMap contains the specified value; false otherwise.</returns>
         public bool ContainsValue(TValue value)
         {
-            return _dictionary.Values.Any(v => v != null && v.Equals(value));
+            return _dictionary.Values is not null && _dictionary.Values.Any(v => v != null && v.Equals(value));
         }
 
         /// <summary>
@@ -214,6 +216,15 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
+        {
+            return new ReadOnlyHashMapEnumerator<TKey, TValue>(this);
+        }
+
+        /// <summary>
         /// Returns whether this ReadOnlyHashMap is equal to another object.
         /// </summary>
         /// <param name="obj">The object to be compared against.</param>
@@ -240,6 +251,15 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         public override int GetHashCode()
         {
             return _dictionary.GetHashCode();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
