@@ -84,6 +84,9 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         /// </summary>
         public int Count => _dictionary.Count;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsReadOnly { get; protected set; }
 
         /// <summary>

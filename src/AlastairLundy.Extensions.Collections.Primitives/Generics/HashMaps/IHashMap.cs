@@ -148,6 +148,10 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         /// </summary>
         void Clear();
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         Dictionary<TKey, TValue> ToDictionary();
     }
 }
