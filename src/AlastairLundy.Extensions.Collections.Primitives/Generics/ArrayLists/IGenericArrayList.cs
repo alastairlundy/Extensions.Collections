@@ -83,6 +83,13 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         int BinarySearch(T value, IComparer<T> comparer);
 
         /// <summary>
+        /// Performs a binary search on the Generic Array List.
+        /// </summary>
+        /// <param name="value">The value to search for.</param>
+        /// <returns>The zero based index of the item if found; -1 otherwise.</returns>
+        int BinarySearch(T value);
+
+        /// <summary>
         /// Copies the contents of the Generic Array List to an Array.
         /// </summary>
         /// <param name="array">The array to copy to.</param>
@@ -230,9 +237,9 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="comparer"></param>
-        void Sort(IComparer<T> comparer);
-        
+        /// <param name="comparer">The comparer implementation to use.</param>
+        void Sort(IComparer<KeyValuePair<T, bool>> comparer);
+
         /// <summary>
         /// 
         /// </summary>

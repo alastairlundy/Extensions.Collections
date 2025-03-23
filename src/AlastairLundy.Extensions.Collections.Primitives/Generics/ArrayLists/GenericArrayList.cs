@@ -375,6 +375,16 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         }
 
         /// <summary>
+        /// Performs a binary search on the Generic Array List.
+        /// </summary>
+        /// <param name="value">The value to search for.</param>
+        /// <returns>The zero based index of the item if found; -1 otherwise.</returns>
+        public int BinarySearch(T value)
+        {
+            return Array.BinarySearch(_items, value);
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="array"></param>
@@ -1035,11 +1045,23 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         }
 
         public void Sort(IComparer<T> comparer)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="comparer"></param>
+        public void Sort(IComparer<KeyValuePair<T, bool>> comparer)
         {
-            
+            Array.Sort(_items, comparer);   
         }
-
-        public void Sort(int index, int count, IComparer<T> comparer)
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="count"></param>
+        /// <param name="comparer"></param>
+        /// <exception cref="IndexOutOfRangeException"></exception>
+        public void Sort(int index, int count, IComparer<KeyValuePair<T, bool>> comparer)
         {
             if (index > Count || index < 0 || count < 1 || count > Count)
             {
@@ -1047,6 +1069,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
             }
             
             
+            Array.Sort(_items, index, count, comparer);
         }
 
         /// <summary>
