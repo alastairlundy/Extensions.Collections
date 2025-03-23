@@ -1044,7 +1044,6 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
             Array.Sort(_items);
         }
 
-        public void Sort(IComparer<T> comparer)
         /// <summary>
         /// 
         /// </summary>
@@ -1067,7 +1066,6 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
             {
                 throw new IndexOutOfRangeException();
             }
-            
             
             Array.Sort(_items, index, count, comparer);
         }
