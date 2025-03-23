@@ -98,7 +98,10 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         {
             if (ContainsKey(key) == false)
             {
-                _dictionary.Add(key, value);
+                if (IsReadOnly == false)
+                {
+                    _dictionary.Add(key, value);
+                }
             }
 
             throw new ArgumentException(
@@ -111,7 +114,10 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         /// <param name="pair">The KeyValuePair to be added.</param>
         public void Put(KeyValuePair<TKey, TValue> pair)
         {
-            Put(pair.Key, pair.Value);
+            if (IsReadOnly == false)
+            {
+                Put(pair.Key, pair.Value);
+            }
         }
 
         /// <summary>
@@ -479,6 +485,10 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
             return _dictionary.GetHashCode();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
