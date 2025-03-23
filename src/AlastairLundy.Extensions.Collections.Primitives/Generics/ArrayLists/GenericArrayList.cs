@@ -264,7 +264,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         }
 
         /// <summary>
-        /// 
+        /// The number of items in the Generic Array List.
         /// </summary>
         public int Count => _count;
         
