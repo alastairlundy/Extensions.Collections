@@ -27,35 +27,36 @@ using System.Collections;
 
 using AlastairLundy.Extensions.Collections.Primitives.Generics;
 
-namespace AlastairLundy.Extensions.Collections.ICollections;
-
-public static class ToGenericArrayListExtensions
+namespace AlastairLundy.Extensions.Collections.ICollections
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="arrayList"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    /// <exception cref="ArgumentException"></exception>
-    public static GenericArrayList<T> ToGenericArrayList<T>(this ArrayList arrayList)
+    public static class ToGenericArrayListExtensions
     {
-        if (typeof(T) != arrayList.GetType())
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arrayList"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static GenericArrayList<T> ToGenericArrayList<T>(this ArrayList arrayList)
         {
-            throw new ArgumentException($"Type specified of {typeof(T)} does not match array list of type {arrayList.GetType()}.");
-        }
-
-        GenericArrayList<T> output = new();
-
-        foreach (object obj in arrayList)
-        {
-            if (obj is T t)
+            if (typeof(T) != arrayList.GetType())
             {
-                output.Add(t);
+                throw new ArgumentException($"Type specified of {typeof(T)} does not match array list of type {arrayList.GetType()}.");
             }
-        }
+
+            GenericArrayList<T> output = new();
+
+            foreach (object obj in arrayList)
+            {
+                if (obj is T t)
+                {
+                    output.Add(t);
+                }
+            }
         
-        return output;
-    }
+            return output;
+        }
     
+    }
 }

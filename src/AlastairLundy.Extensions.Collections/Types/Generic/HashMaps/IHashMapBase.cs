@@ -25,24 +25,25 @@
 using System;
 using System.Collections.Generic;
 
-namespace AlastairLundy.Extensions.Collections.Generic.HashMaps;
-
-/// <summary>
-/// The basic interface that ALL HashMap type objects should implement.
-/// </summary>
-/// <typeparam name="TKey">The type representing Keys in the HashMap.</typeparam>
-/// <typeparam name="TValue">The type representing Values in the HashMap.</typeparam>
-[Obsolete(DeprecationMessages.DeprecationV7UsePrimitivesLib)]
-public interface IHashMapBase<TKey, TValue>
+namespace AlastairLundy.Extensions.Collections.Generic.HashMaps
 {
-    int Count { get; }
+    /// <summary>
+    /// The basic interface that ALL HashMap type objects should implement.
+    /// </summary>
+    /// <typeparam name="TKey">The type representing Keys in the HashMap.</typeparam>
+    /// <typeparam name="TValue">The type representing Values in the HashMap.</typeparam>
+    [Obsolete(DeprecationMessages.DeprecationV7UsePrimitivesLib)]
+    public interface IHashMapBase<TKey, TValue>
+    {
+        int Count { get; }
 
-    TValue GetValue(TKey key);
-    TValue GetValueOrDefault(TKey key, TValue defaultValue);
+        TValue GetValue(TKey key);
+        TValue GetValueOrDefault(TKey key, TValue defaultValue);
     
-    IDictionary<TKey, TValue> ToDictionary();
+        IDictionary<TKey, TValue> ToDictionary();
     
-    bool ContainsKey(TKey key);
-    bool ContainsValue(TValue value);
-    bool ContainsKeyValuePair(KeyValuePair<TKey, TValue> pair);
+        bool ContainsKey(TKey key);
+        bool ContainsValue(TValue value);
+        bool ContainsKeyValuePair(KeyValuePair<TKey, TValue> pair);
+    }
 }

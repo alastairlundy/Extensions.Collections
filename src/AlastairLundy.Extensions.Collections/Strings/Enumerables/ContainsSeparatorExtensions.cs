@@ -25,47 +25,48 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AlastairLundy.Extensions.Collections.Strings;
-
-public static class ContainsSeparatorExtensions
+namespace AlastairLundy.Extensions.Collections.Strings
 {
-    /// <summary>
-    /// Check to see if an IEnumerable contains a separator character.
-    /// </summary>
-    /// <param name="args">The IEnumerable to be searched.</param>
-    /// <param name="separator">The separator to look for.</param>
-    /// <returns>true if the separator character is found in the IEnumerable; returns false otherwise.</returns>
-    public static bool ContainsSeparator(this IEnumerable<string> args, char separator)
+    public static class ContainsSeparatorExtensions
     {
-        return ContainsSeparator(args, separator.ToString());
-    }
-    
-    /// <summary>
-    /// Check to see if an IEnumerable contains a separator character string.
-    /// </summary>
-    /// <param name="args">The IEnumerable to be searched.</param>
-    /// <param name="separator">The separator to look for.</param>
-    /// <returns>true if the separator character string is found in the IEnumerable; returns false otherwise.</returns>
-    public static bool ContainsSeparator(this IEnumerable<string> args, string separator)
-    {
-        string[] enumerable = args as string[] ?? args.ToArray();
-        
-        bool output = enumerable.Any(arg => arg.Contains(separator));
-
-        if (enumerable.Any(arg => arg.Split(' ').Length > 1))
+        /// <summary>
+        /// Check to see if an IEnumerable contains a separator character.
+        /// </summary>
+        /// <param name="args">The IEnumerable to be searched.</param>
+        /// <param name="separator">The separator to look for.</param>
+        /// <returns>true if the separator character is found in the IEnumerable; returns false otherwise.</returns>
+        public static bool ContainsSeparator(this IEnumerable<string> args, char separator)
         {
-            foreach (string arg in enumerable.Where(arg => arg.Split(' ').Length > 1))
+            return ContainsSeparator(args, separator.ToString());
+        }
+    
+        /// <summary>
+        /// Check to see if an IEnumerable contains a separator character string.
+        /// </summary>
+        /// <param name="args">The IEnumerable to be searched.</param>
+        /// <param name="separator">The separator to look for.</param>
+        /// <returns>true if the separator character string is found in the IEnumerable; returns false otherwise.</returns>
+        public static bool ContainsSeparator(this IEnumerable<string> args, string separator)
+        {
+            string[] enumerable = args as string[] ?? args.ToArray();
+        
+            bool output = enumerable.Any(arg => arg.Contains(separator));
+
+            if (enumerable.Any(arg => arg.Split(' ').Length > 1))
             {
-                if (arg.Split(' ').Length > 1)
+                foreach (string arg in enumerable.Where(arg => arg.Split(' ').Length > 1))
                 {
-                    if (arg.Split(' ').Any(s => s.Equals(separator)))
+                    if (arg.Split(' ').Length > 1)
                     {
-                        return true;
+                        if (arg.Split(' ').Any(s => s.Equals(separator)))
+                        {
+                            return true;
+                        }
                     }
                 }
             }
-        }
         
-        return output;
+            return output;
+        }
     }
 }
