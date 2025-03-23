@@ -366,21 +366,28 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         /// <returns>True if the compared HashMap is equal to this HashMap; false otherwise.</returns>
         public bool Equals(HashMap<TKey, TValue>? hashMap)
         {
-            if (hashMap == null)
+            if (hashMap is null)
             {
                 return false;
             }
-            else
-            {
-                List<bool> equalityChecks = new List<bool>();
-                
-                foreach (KeyValuePair<TKey, TValue> pair in _dictionary)
-                {
-                    equalityChecks.Add(hashMap.GetValue(pair.Key)!.Equals(pair.Value) == true);
-                }
 
-                return equalityChecks.All(b => b == true);
+            List<bool> equalityChecks = new List<bool>();
+
+            foreach (KeyValuePair<TKey, TValue> pair in _dictionary)
+            {
+                TKey key = pair.Key;
+                TValue value = hashMap.GetValue(key);
+
+                if (key is not null && value is not null)
+                {
+                    bool equality = value.Equals(pair.Value) == true;
+
+                    equalityChecks.Add(equality);
+                }
             }
+
+            return equalityChecks.All(b => b == true);
+        }
 
         /// <summary>
         /// 
