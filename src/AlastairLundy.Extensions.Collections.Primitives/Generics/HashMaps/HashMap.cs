@@ -46,7 +46,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         IEquatable<HashMap<TKey, TValue>> where TKey : notnull
     {
         // ReSharper disable once InconsistentNaming
-        protected readonly Dictionary<TKey, TValue> _dictionary;
+        protected readonly IDictionary<TKey, TValue> _dictionary;
 
         /// <summary>
         /// Instantiates the HashMap.
@@ -57,14 +57,22 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         }
 
         /// <summary>
-        /// Instantiates the HashMap with the specified 
+        /// 
         /// </summary>
-        /// <param name="hashMapToBeAdded"></param>
-        public HashMap(HashMap<TKey, TValue> hashMapToBeAdded)
+        /// <param name="hashMap"></param>
+        /// <param name="isReadOnly"></param>
+        public HashMap(HashMap<TKey, TValue> hashMap, bool isReadOnly = false)
         {
-            _dictionary = new Dictionary<TKey, TValue>(hashMapToBeAdded.ToDictionary());
+            if (isReadOnly)
+            {
+                _dictionary = new ReadOnlyDictionary<TKey, TValue>(hashMap.ToDictionary());
+            }
+            else
+            {
+                _dictionary = hashMap.ToDictionary();
+            }
         }
-        
+
         /// <summary>
         /// Returns whether the HashMap is empty or not.
         /// </summary>
@@ -74,6 +82,8 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         /// Returns the number of KeyValuePairs in the HashMap. 
         /// </summary>
         public int Count => _dictionary.Count;
+
+        public bool IsReadOnly { get; protected set; }
 
         /// <summary>
         /// Add a Key and a corresponding Value to the HashMap.
@@ -87,7 +97,8 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
                 _dictionary.Add(key, value);
             }
 
-            throw new ArgumentException($"Existing key {key} found with value {GetValue(key)}. Can't put a Key that already exists.");
+            throw new ArgumentException(
+                $"Existing key {key} found with value {GetValue(key)}. Can't put a Key that already exists.");
         }
 
         /// <summary>
@@ -135,7 +146,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
             {
                 return _dictionary[key];
             }
-            
+
             throw new KeyNotFoundException();
         }
 
@@ -191,7 +202,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         {
             return _dictionary.ToList();
         }
-        
+
         /// <summary>
         /// Returns the contents of the HashMap instantiated within an IReadonlyDictionary.
         /// </summary>
@@ -249,7 +260,8 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         /// <param name="value">The specified value to be removed.</param>
         public void RemoveInstancesOf(TValue value)
         {
-            TKey[] keys = _dictionary.Keys.Where(x => _dictionary[x]!.Equals(value)).ToArray();
+            TKey[] keys = _dictionary.Keys.Where(x => _dictionary[x] is not null && _dictionary[x].Equals(value))
+                .ToArray();
 
             // ReSharper disable once ForCanBeConvertedToForeach
             for (int index = 0; index < keys.Length; index++)
@@ -340,7 +352,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         /// <returns>True if the HashMap contains the specified value; false otherwise.</returns>
         public bool ContainsValue(TValue value)
         {
-            return _dictionary.ContainsValue(value);
+            return _dictionary.Any(x => x.Value is not null && x.Value.Equals(value));
         }
 
         /// <summary>
@@ -351,9 +363,13 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         /// <exception cref="KeyNotFoundException">Thrown if the KeyValuePair is not found within the HashMap.</exception>
         public bool ContainsKeyValuePair(KeyValuePair<TKey, TValue> pair)
         {
-            if (ContainsKey(pair.Key))
+            TKey key = pair.Key;
+
+            if (ContainsKey(pair.Key) && key is not null)
             {
-                return _dictionary[pair.Key]!.Equals(pair.Value);
+                TValue value = _dictionary[key];
+
+                return value is not null && value.Equals(pair.Value);
             }
 
             throw new KeyValuePairNotFoundException(nameof(_dictionary));
