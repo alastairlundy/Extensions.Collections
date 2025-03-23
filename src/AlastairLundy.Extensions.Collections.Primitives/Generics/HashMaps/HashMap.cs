@@ -43,6 +43,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
     /// <typeparam name="TKey">The type representing Keys in the HashMap.</typeparam>
     /// <typeparam name="TValue">The type representing Values in the HashMap.</typeparam>
     public class HashMap<TKey, TValue> : IHashMap<TKey, TValue>,
+        IReadOnlyHashMap<TKey, TValue>,
         IEquatable<HashMap<TKey, TValue>> where TKey : notnull
     {
         // ReSharper disable once InconsistentNaming
