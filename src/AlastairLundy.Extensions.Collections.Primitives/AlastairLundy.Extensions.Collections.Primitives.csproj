@@ -12,6 +12,7 @@
         <RepositoryUrl>https://github.com/alastairlundy/Extensions.Collections</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         
     </PropertyGroup>
