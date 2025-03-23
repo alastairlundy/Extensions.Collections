@@ -27,6 +27,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
+
 // ReSharper disable ConvertToAutoProperty
 // ReSharper disable MergeIntoPattern
 
@@ -1230,74 +1231,6 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         public object Clone()
         {
             return this;
-        }
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    internal class GenericArrayListEnumerator<T> : IEnumerator<T>
-    {
-        private int _position = -1;
-    
-        private readonly GenericArrayList<T> _list;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="list"></param>
-        public GenericArrayListEnumerator(GenericArrayList<T> list)
-        {
-            this._list = list;
-        }
-    
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public bool MoveNext()
-        {
-            _position++;
-        
-            return (_position < _list.Count);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Reset()
-        {
-            _position = -1;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="Exception"></exception>
-        public T Current
-        {
-            get
-            {
-                try
-                {
-                    return _list[_position];
-                }
-                catch(Exception exception)
-                {
-                    throw new Exception(exception.Message);
-                }
-            }
-        }
-
-        object? IEnumerator.Current => Current;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Dispose()
-        {
-            _list.Clear();
         }
     }
 }
