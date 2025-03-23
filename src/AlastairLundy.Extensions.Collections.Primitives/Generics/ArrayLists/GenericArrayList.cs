@@ -53,6 +53,13 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         private readonly bool _isReadOnly;
         private readonly bool _isFixedSize;
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="isReadOnly"></param>
+        /// <param name="isFixedSize"></param>
+        /// <param name="isSynchronized"></param>
+        /// <param name="capacity"></param>
         protected GenericArrayList(bool isReadOnly, bool isFixedSize, bool isSynchronized, int capacity)
         {
             _capacity = capacity;
@@ -66,6 +73,14 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
             _items = new KeyValuePair<T, bool>[capacity];
         }
     
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="isReadOnly"></param>
+        /// <param name="isFixedSize"></param>
+        /// <param name="isSynchronized"></param>
+        /// <param name="capacity"></param>
+        /// <param name="items"></param>
         protected GenericArrayList(bool isReadOnly, bool isFixedSize, bool isSynchronized, int capacity, ICollection<T> items)
         {
             _capacity = capacity;
@@ -144,6 +159,10 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
             _isReadOnly = false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator<T> GetEnumerator()
         {
             return new GenericArrayListEnumerator<T>(this);
@@ -158,6 +177,9 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
             return GetEnumerator();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void CheckIfResizeRequired()
         {
             if (_itemsToRemove >= 10)
@@ -1111,8 +1133,19 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
             Array.Resize(ref _items, _capacity);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsFixedSize => _isFixedSize;
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsSynchronized { get; protected set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsReadOnly => _isReadOnly;
     
         /// <summary>
@@ -1289,6 +1322,10 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
             set => _items[index] = new KeyValuePair<T, bool>(value, false);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public object Clone()
         {
             return this;
