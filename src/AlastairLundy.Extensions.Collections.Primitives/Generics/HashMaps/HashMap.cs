@@ -23,6 +23,7 @@
    */
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -380,6 +381,14 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
 
                 return equalityChecks.All(b => b == true);
             }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
+        {
+            return new HashMapEnumerator<TKey, TValue>(this);
         }
 
         /// <summary>
@@ -393,7 +402,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
             {
                 return false;
             }
-            
+
             if (obj is HashMap<TKey, TValue> map)
             {
                 return Equals(map);
@@ -411,6 +420,11 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         public override int GetHashCode()
         {
             return _dictionary.GetHashCode();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
