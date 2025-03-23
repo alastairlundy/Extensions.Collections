@@ -41,7 +41,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
     public class ReadOnlyHashMap<TKey, TValue> : IReadOnlyHashMap<TKey, TValue>,
         IEquatable<ReadOnlyHashMap<TKey, TValue>> where TKey : notnull
     {
-        private readonly ReadOnlyDictionary<TKey, TValue> _dictionary;
+        private readonly IReadOnlyDictionary<TKey, TValue> _dictionary;
 
         public int Count => _dictionary.Count;
     
@@ -156,16 +156,23 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         /// <returns>The new IReadOnlyDictionary instance.</returns>
         public IReadOnlyDictionary<TKey, TValue> ToReadOnlyDictionary()
         {
-            return new ReadOnlyDictionary<TKey, TValue>(_dictionary);
+            return new ReadOnlyDictionary<TKey, TValue>(ToDictionary());
         }
 
         /// <summary>
         /// Returns the contents of the HashMap's internal Dictionary.
         /// </summary>
         /// <returns>The HashMap's internal dictionary.</returns>
-        public IDictionary<TKey, TValue> ToDictionary()
+        public Dictionary<TKey, TValue> ToDictionary()
         {
-            return _dictionary;
+            Dictionary<TKey, TValue> dictionary = new Dictionary<TKey, TValue>();
+
+            foreach (KeyValuePair<TKey, TValue> pair in _dictionary)
+            {
+                dictionary.Add(pair.Key, pair.Value);
+            }
+
+            return dictionary;
         }
         /// <summary>
         /// Returns whether the HasMap contains a Key or not.
@@ -174,7 +181,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         /// <returns>True if the HashMap contains the specified key, and false otherwise.</returns>
         public bool ContainsKey(TKey key)
         {
-            return _dictionary.Keys is not null && _dictionary.Keys.Any(k => k.Equals(key));
+            return _dictionary.Keys.Any(k => k.Equals(key));
         }
 
         /// <summary>
@@ -184,7 +191,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         /// <returns>True if the HashMap contains the specified value; false otherwise.</returns>
         public bool ContainsValue(TValue value)
         {
-            return _dictionary.Values is not null && _dictionary.Values.Any(v => v != null && v.Equals(value));
+            return _dictionary.Values.Any(v => v != null && v.Equals(value));
         }
 
         /// <summary>

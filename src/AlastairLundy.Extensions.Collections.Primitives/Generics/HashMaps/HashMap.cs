@@ -217,9 +217,9 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         /// Returns the contents of the HashMap's internal Dictionary.
         /// </summary>
         /// <returns>The HashMap's internal dictionary.</returns>
-        public IDictionary<TKey, TValue> ToDictionary()
+        public Dictionary<TKey, TValue> ToDictionary()
         {
-            return _dictionary;
+            return new Dictionary<TKey, TValue>(_dictionary);
         }
 
         /// <summary>
@@ -271,7 +271,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         /// <param name="value">The specified value to be removed.</param>
         public void RemoveInstancesOf(TValue value)
         {
-            TKey[] keys = _dictionary.Keys.Where(x => _dictionary[x] is not null && _dictionary[x].Equals(value))
+            TKey[] keys = _dictionary.Keys.Where(x => x is not null && _dictionary[x]!.Equals(value))
                 .ToArray();
 
             // ReSharper disable once ForCanBeConvertedToForeach

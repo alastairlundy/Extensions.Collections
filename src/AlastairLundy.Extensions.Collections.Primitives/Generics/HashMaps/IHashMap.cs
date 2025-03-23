@@ -147,5 +147,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         /// 
         /// </summary>
         void Clear();
+        
+        Dictionary<TKey, TValue> ToDictionary();
     }
 }

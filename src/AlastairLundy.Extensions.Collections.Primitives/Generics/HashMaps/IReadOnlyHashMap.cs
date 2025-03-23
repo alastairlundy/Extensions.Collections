@@ -57,10 +57,6 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         /// <returns>The new IReadOnlyDictionary instance.</returns>
         IReadOnlyDictionary<TKey, TValue> ToReadOnlyDictionary();
         
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        IDictionary<TKey, TValue> ToDictionary();
+        Dictionary<TKey, TValue> ToDictionary();
     }
 }
