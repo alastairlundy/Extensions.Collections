@@ -989,6 +989,46 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="enumerable"></param>
+        /// <exception cref="IndexOutOfRangeException"></exception>
+        public void SetRange(int index, IEnumerable<T> enumerable)
+        {
+            T[] array = enumerable.ToArray();
+            if (index > Count || index < 0 || array.Length < 1 || array.Length > Count)
+            {
+                throw new IndexOutOfRangeException();
+            }
+
+            int i = index;
+
+            if (IsSynchronized)
+            {
+                lock (_items.SyncRoot)
+                {
+                    foreach (T item in array)
+                    {
+                        Insert(i, item);
+                        i++;
+                    }
+                }
+            }
+            else
+            {
+                foreach (T item in array)
+                {
+                    Insert(i, item);
+                    i++;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public void Sort()
         {
             Array.Sort(_items);
