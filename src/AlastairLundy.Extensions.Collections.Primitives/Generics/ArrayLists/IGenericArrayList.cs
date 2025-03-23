@@ -31,42 +31,169 @@ using System.Collections.Generic;
 namespace AlastairLundy.Extensions.Collections.Primitives.Generics
 {
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public interface IGenericArrayList<T> : IList<T>, ICloneable
     {
+        /// <summary>
+        /// 
+        /// </summary>
         bool IsFixedSize { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         bool IsSynchronized { get; }
     
+        /// <summary>
+        /// 
+        /// </summary>
         int Capacity { get; }
     
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="collection"></param>
         void AddRange(ICollection<T> collection);
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="collection"></param>
         void AddRange(IEnumerable<T> collection);
-     
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="count"></param>
+        /// <param name="value"></param>
+        /// <param name="comparer"></param>
+        /// <returns></returns>
         int BinarySearch(int index, int count, T value, IComparer<T> comparer); 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="comparer"></param>
+        /// <returns></returns>
         int BinarySearch(T value, IComparer<T> comparer);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="array"></param>
         void CopyTo(T[] array);
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="array"></param>
+        /// <param name="arrayIndex"></param>
+        /// <param name="count"></param>
         void CopyTo(int index, T[] array, int arrayIndex, int count);
      
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
         IGenericArrayList<T> FixedSize(IGenericArrayList<T> source);
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
         IList<T> FixedSize(IList<T> source);
      
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
         IGenericArrayList<T> GetRange(int index, int count);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="startIndex"></param>
+        /// <returns></returns>
         int IndexOf(T? value, int startIndex);
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
         int IndexOf(T? value, int startIndex, int count);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="collection"></param>
         void InsertRange(int index, ICollection<T> collection);
      
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         int LastIndexOf(T value);
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="startIndex"></param>
+        /// <returns></returns>
         int LastIndexOf(T value, int startIndex);
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
         int LastIndexOf(T value, int startIndex, int count);
      
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
         IGenericArrayList<T> ReadOnly(IGenericArrayList<T> source);
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
         IList<T> ReadOnly(IList<T> source);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="count"></param>
         void RemoveRange(int index, int count);
      
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
         IGenericArrayList<T> Repeat(T value, int count);
      
         /// <summary>

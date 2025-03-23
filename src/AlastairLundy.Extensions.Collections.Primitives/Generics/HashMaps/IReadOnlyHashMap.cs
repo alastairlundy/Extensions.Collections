@@ -31,7 +31,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    public interface IReadOnlyHashMap<TKey, TValue>
+    public interface IReadOnlyHashMap<TKey, TValue> : IReadOnlyCollection<KeyValuePair<TKey, TValue>>
     {
         /// <summary>
         /// Gets an IEnumerable of all Keys in the HashMap.
@@ -57,6 +57,10 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         /// <returns>The new IReadOnlyDictionary instance.</returns>
         IReadOnlyDictionary<TKey, TValue> ToReadOnlyDictionary();
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         IDictionary<TKey, TValue> ToDictionary();
     }
 }
