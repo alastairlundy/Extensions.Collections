@@ -27,9 +27,9 @@ using System.Collections.Generic;
 
 namespace AlastairLundy.Extensions.Collections.Primitives.BigCollections
 {
-    public class BigReadOnlyCollection<T> : IBigCollection<T>
+    public class BigReadOnlyCollection<T> : IBigReadOnlyCollection<T>
     {
-    
+        
     
         public IEnumerator<T> GetEnumerator()
         {
