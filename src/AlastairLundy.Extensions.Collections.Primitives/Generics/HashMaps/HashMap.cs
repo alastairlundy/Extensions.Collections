@@ -58,7 +58,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         }
 
         /// <summary>
-        /// 
+        /// Initializes the HashMap and sets whether it is read only or not.
         /// </summary>
         /// <param name="hashMap"></param>
         /// <param name="isReadOnly"></param>
