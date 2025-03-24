@@ -349,14 +349,13 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         /// <summary>
         /// Clears the contents of the HashMap.
         /// </summary>
-        /// 
         public void Clear()
         {
             _dictionary.Clear();
         }
 
         /// <summary>
-        /// /
+        /// 
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
