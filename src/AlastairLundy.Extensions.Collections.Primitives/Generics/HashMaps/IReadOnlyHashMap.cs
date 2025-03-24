@@ -58,9 +58,9 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         IReadOnlyDictionary<TKey, TValue> ToReadOnlyDictionary();
         
         /// <summary>
-        /// 
+        /// Converts the contents of the hash map to a dictionary.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A new dictionary containing the same key-value pairs as this hash map.</returns>
         Dictionary<TKey, TValue> ToDictionary();
     }
 }
