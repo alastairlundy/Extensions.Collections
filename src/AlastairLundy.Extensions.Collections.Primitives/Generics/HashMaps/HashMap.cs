@@ -75,7 +75,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         }
 
         /// <summary>
-        /// Returns whether the HashMap is empty or not.
+        /// Whether the HashMap is empty or not.
         /// </summary>
         public bool IsEmpty => Count == 0;
 
@@ -85,7 +85,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
         public int Count => _dictionary.Count;
 
         /// <summary>
-        /// 
+        /// Whether the HashMap is read only or not.
         /// </summary>
         public bool IsReadOnly { get; protected set; }
 
@@ -104,8 +104,7 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
                 }
             }
 
-            throw new ArgumentException(
-                $"Existing key {key} found with value {GetValue(key)}. Can't put a Key that already exists.");
+            _dictionary[key] = value;
         }
 
         /// <summary>
@@ -174,7 +173,6 @@ namespace AlastairLundy.Extensions.Collections.Primitives.Generics
                 {
                     return GetValue(key);
                 }
-                // ReSharper disable once RedundantIfElseBlock
                 else
                 {
                     return defaultValue;
