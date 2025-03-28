@@ -6,6 +6,6 @@
             "This feature is deprecated and will be removed in Extensions.Collections 7.0";
 
         internal const string DeprecationV7UsePrimitivesLib = 
-            "This feature is deprecated and will be removed in Extensions.Collections 7.0 . Use the Extensions.Collections.Primitives library for this functionality when available.";
+            "This feature is deprecated and will be removed in Extensions.Collections 7.0 . Use the Resyslib.Collections library for this functionality when available.";
     }
 }
