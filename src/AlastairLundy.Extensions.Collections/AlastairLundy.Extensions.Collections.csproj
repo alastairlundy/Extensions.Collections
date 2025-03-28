@@ -127,8 +127,4 @@
       <Folder Include="Types\Generic\" />
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\AlastairLundy.Extensions.Collections.Primitives\AlastairLundy.Extensions.Collections.Primitives.csproj" />
-    </ItemGroup>
-
 </Project>
