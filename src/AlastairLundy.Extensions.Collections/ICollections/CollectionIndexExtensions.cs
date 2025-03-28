@@ -28,11 +28,11 @@ using System.Collections.Generic;
 using System.Linq;
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace AlastairLundy.Extensions.Collections.ICollections;
-
-public static class CollectionIndexExtensions
+namespace AlastairLundy.Extensions.Collections.ICollections
 {
-            /// <summary>
+    public static class CollectionIndexExtensions
+    {
+        /// <summary>
         /// Attempts to get the index of a specified element in a collection.
         /// </summary>
         /// <param name="collection">The collection to be searched.</param>
@@ -140,4 +140,5 @@ public static class CollectionIndexExtensions
 
             return indexes;
         }
+    }
 }

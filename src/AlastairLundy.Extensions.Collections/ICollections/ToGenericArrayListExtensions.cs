@@ -22,33 +22,39 @@
        SOFTWARE.
    */
 
-
 using System;
-using System.Collections.Generic;
-// ReSharper disable UnusedMemberInSuper.Global
-// ReSharper disable UnusedMember.Global
+using System.Collections;
 
-namespace AlastairLundy.Extensions.Collections.Generic.HashMaps
+namespace AlastairLundy.Extensions.Collections.ICollections
 {
-    [Obsolete(DeprecationMessages.DeprecationV7UsePrimitivesLib)]
-    public interface IHashMap<TKey, TValue> : IReadOnlyHashMap<TKey, TValue>, IHashMapBase<TKey, TValue>
+    public static class ToGenericArrayListExtensions
     {
-        bool IsEmpty { get; }
+        /*/// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arrayList"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static GenericArrayList<T> ToGenericArrayList<T>(this ArrayList arrayList)
+        {
+            if (typeof(T) != arrayList.GetType())
+            {
+                throw new ArgumentException($"Type specified of {typeof(T)} does not match array list of type {arrayList.GetType()}.");
+            }
+
+            GenericArrayList<T> output = new();
+
+            foreach (object obj in arrayList)
+            {
+                if (obj is T t)
+                {
+                    output.Add(t);
+                }
+            }
         
-        void Put(TKey key, TValue value);
-        void Put(KeyValuePair<TKey, TValue> pair);
-
-        void PutIfAbsent(TKey key, TValue value);
-        void PutIfAbsent(KeyValuePair<TKey, TValue> pair);
-        
-        bool Remove(TKey key);
-        bool Remove(KeyValuePair<TKey, TValue> pair);
-
-        void RemoveInstancesOf(TValue value);
-
-        bool Replace(TKey key, TValue value);
-        bool Replace(TKey key, TValue oldValue, TValue newValue);
-
-        void Clear();
+            return output;
+        }*/
+    
     }
 }

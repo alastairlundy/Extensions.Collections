@@ -32,59 +32,60 @@ using System.Text;
 
 // ReSharper disable SuggestVarOrType_SimpleTypes
 
-namespace AlastairLundy.Extensions.Collections.Generic;
-
-public static class EnumerableToStringObjectExtensions
+namespace AlastairLundy.Extensions.Collections.Generic
 {
-    /// <summary>
-    /// Converts an IEnumerable of objects of Type T to a string separated by a separator string.
-    /// </summary>
-    /// <param name="source">The enumerable to be turned into a string.</param>
-    /// <param name="sourceItemSeparator">The string to separate the items in the source enumerable.</param>
-    /// <typeparam name="T">The type of objects to be enumerated.</typeparam>
-    /// <returns>the string containing all the strings in the source enumerable separated by the separator.</returns>
-    public static string ToString<T>(this IEnumerable<T> source, string sourceItemSeparator)
+    public static class EnumerableToStringObjectExtensions
     {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        foreach (T item in source)
+        /// <summary>
+        /// Converts an IEnumerable of objects of Type T to a string separated by a separator string.
+        /// </summary>
+        /// <param name="source">The enumerable to be turned into a string.</param>
+        /// <param name="sourceItemSeparator">The string to separate the items in the source enumerable.</param>
+        /// <typeparam name="T">The type of objects to be enumerated.</typeparam>
+        /// <returns>the string containing all the strings in the source enumerable separated by the separator.</returns>
+        public static string ToString<T>(this IEnumerable<T> source, string sourceItemSeparator)
         {
-            if (item is null)
-            {
-                throw new NullReferenceException($"Item {nameof(item)} in {nameof(source)} was null");
-            }
+            StringBuilder stringBuilder = new StringBuilder();
 
-            if (typeof(T) == typeof(string))
+            foreach (T item in source)
             {
-                stringBuilder.Append(item);
-            }
-            else
-            {
-                bool overridesToString = typeof(T).GetMethods().Any(x =>
-                    x.Name.Equals(nameof(ToString), StringComparison.Ordinal) && x.IsVirtual == false);
-
-                if (overridesToString == true)
+                if (item is null)
                 {
-                    stringBuilder.Append(item.ToString()); 
+                    throw new NullReferenceException($"Item {nameof(item)} in {nameof(source)} was null");
                 }
-                else
+
+                if (typeof(T) == typeof(string))
                 {
                     stringBuilder.Append(item);
                 }
+                else
+                {
+                    bool overridesToString = typeof(T).GetMethods().Any(x =>
+                        x.Name.Equals(nameof(ToString), StringComparison.Ordinal) && x.IsVirtual == false);
+
+                    if (overridesToString == true)
+                    {
+                        stringBuilder.Append(item.ToString()); 
+                    }
+                    else
+                    {
+                        stringBuilder.Append(item);
+                    }
+                }
+
+                if (sourceItemSeparator == Environment.NewLine)
+                {
+                    stringBuilder.AppendLine();
+                }
+                else
+                {
+                    stringBuilder.Append(sourceItemSeparator);
+                }
             }
 
-            if (sourceItemSeparator == Environment.NewLine)
-            {
-                stringBuilder.AppendLine();
-            }
-            else
-            {
-                stringBuilder.Append(sourceItemSeparator);
-            }
-        }
-
-        stringBuilder = stringBuilder.Remove(stringBuilder.Length, stringBuilder.Length - sourceItemSeparator.Length);
+            stringBuilder = stringBuilder.Remove(stringBuilder.Length, stringBuilder.Length - sourceItemSeparator.Length);
         
-        return stringBuilder.ToString();
+            return stringBuilder.ToString();
+        }
     }
 }

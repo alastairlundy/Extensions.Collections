@@ -36,6 +36,7 @@ namespace AlastairLundy.Extensions.Collections.Generic.HashMaps
     /// </summary>
     /// <typeparam name="TKey">The type representing Keys in the HashMap.</typeparam>
     /// <typeparam name="TValue">The type representing Values in the HashMap.</typeparam>
+    [Obsolete(DeprecationMessages.DeprecationV7UsePrimitivesLib)]
     public class ReadOnlyHashMap<TKey, TValue> : IReadOnlyHashMap<TKey, TValue>,
         IEquatable<ReadOnlyHashMap<TKey, TValue>> where TKey : notnull
     {
