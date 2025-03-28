@@ -25,13 +25,11 @@
 using System;
 using System.Collections;
 
-using AlastairLundy.Extensions.Collections.Primitives.Generics;
-
 namespace AlastairLundy.Extensions.Collections.ICollections
 {
     public static class ToGenericArrayListExtensions
     {
-        /// <summary>
+        /*/// <summary>
         /// 
         /// </summary>
         /// <param name="arrayList"></param>
@@ -56,7 +54,7 @@ namespace AlastairLundy.Extensions.Collections.ICollections
             }
         
             return output;
-        }
+        }*/
     
     }
 }
