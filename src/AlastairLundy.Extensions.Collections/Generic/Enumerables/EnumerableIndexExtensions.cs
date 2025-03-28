@@ -87,7 +87,7 @@ namespace AlastairLundy.Extensions.Collections.Generic
             }
             else
             {
-                return new[]{-1};
+                return [-1];
             }
         }
     }

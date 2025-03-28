@@ -106,15 +106,8 @@ namespace AlastairLundy.Extensions.Collections.Generic.HashMaps
         {
             try
             {
-                if (ContainsKey(key))
-                {
-                    return GetValue(key);
-                }
-                // ReSharper disable once RedundantIfElseBlock
-                else
-                {
-                    return defaultValue;
-                }
+                return ContainsKey(key) ? GetValue(key) :
+                    defaultValue;
             }
             catch
             {
@@ -206,12 +199,7 @@ namespace AlastairLundy.Extensions.Collections.Generic.HashMaps
         /// <returns>True if the compared HashMap is equal to this ReadOnlyHashMap; false otherwise.</returns>
         public bool Equals(ReadOnlyHashMap<TKey, TValue>? other)
         {
-            if (other is null)
-            {
-                return false;
-            }
-        
-            return _dictionary.Equals(other._dictionary);
+            return other is not null && _dictionary.Equals(other._dictionary);
         }
 
         /// <summary>
@@ -226,12 +214,8 @@ namespace AlastairLundy.Extensions.Collections.Generic.HashMaps
                 return false;
             }
 
-            if (obj.GetType() != GetType())
-            {
-                return false;
-            }
- 
-            return Equals((ReadOnlyHashMap<TKey, TValue>)obj);
+            return obj.GetType() == GetType() &&
+                   Equals((ReadOnlyHashMap<TKey, TValue>)obj);
         }
 
         /// <summary>

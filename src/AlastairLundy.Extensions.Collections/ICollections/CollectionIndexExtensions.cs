@@ -26,6 +26,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace AlastairLundy.Extensions.Collections.ICollections
 {
@@ -117,7 +118,7 @@ namespace AlastairLundy.Extensions.Collections.ICollections
         /// <returns>The indexes of an object in the collection.</returns>
         public static IEnumerable<int> IndexesOf(this ICollection collection, object item)
         {
-            List<int> indexes = new List<int>();
+            List<int> indexes = [];
             indexes.Clear();
             int index = 0;
             

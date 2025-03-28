@@ -46,7 +46,7 @@ namespace AlastairLundy.Extensions.Collections.Strings
             
             if (typeOverridesToString == true)
             {
-                List<string> list = new List<string>();
+                List<string> list = [];
 
                 if (typeof(T) != typeof(object))
                 {

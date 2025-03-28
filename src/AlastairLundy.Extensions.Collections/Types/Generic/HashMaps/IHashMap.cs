@@ -25,6 +25,8 @@
 
 using System;
 using System.Collections.Generic;
+// ReSharper disable UnusedMemberInSuper.Global
+// ReSharper disable UnusedMember.Global
 
 namespace AlastairLundy.Extensions.Collections.Generic.HashMaps
 {

@@ -70,7 +70,7 @@ namespace AlastairLundy.Extensions.Collections.Generic
             {
                 throw new OverflowException($"{nameof(source)} contains the maximum size of {int.MaxValue} and cannot be added to.");
             }
-            else if (dictionaryToAdd.Count == int.MaxValue)
+            if (dictionaryToAdd.Count == int.MaxValue)
             {
                 throw new OverflowException($"{nameof(dictionaryToAdd)} contains the maximum size of {int.MaxValue} and cannot be added to {nameof(source)}.");
             }

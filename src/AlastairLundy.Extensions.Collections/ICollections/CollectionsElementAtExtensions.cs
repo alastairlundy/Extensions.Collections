@@ -25,6 +25,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+// ReSharper disable UnusedType.Global
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable ConditionIsAlwaysTrueOrFalse
 
 namespace AlastairLundy.Extensions.Collections.ICollections
 {
@@ -62,7 +65,7 @@ namespace AlastairLundy.Extensions.Collections.ICollections
         public static object? ElementAt(this ICollection collection, int index)
         {
 #if NETSTANDARD2_1 || NET8_0_OR_GREATER
-            object? output = null;
+            object? output = -1;
 #else
             object output = -1;
 #endif
@@ -89,11 +92,13 @@ namespace AlastairLundy.Extensions.Collections.ICollections
                 internalIndex++;
             }
 
-            if (output == null)
+            bool isValid = int.TryParse(output.ToString(), out int value);
+            
+            if (output is null || isValid == false)
             {
                 return null;
             }
-            else if (int.Parse(output.ToString()!) == -1)
+            else if (value == -1)
             {
                 return null;
             }
